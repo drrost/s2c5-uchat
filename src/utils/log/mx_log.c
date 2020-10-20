@@ -2,8 +2,8 @@
 // Created by Rostyslav Druzhchenko on 27.09.2020.
 //
 
-#include <ush.h>
 #include <mx_log.h>
+#include <libmx.h>
 
 static void print_debug(const char *line) {
     FILE *file = fopen("/tmp/ush.log", "a+");

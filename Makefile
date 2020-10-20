@@ -10,7 +10,7 @@ LIBS = -L./libmx/ -lmx
 SRC=src
 OBJ=obj
 
-BINARY = ush
+BINARY = uchat-server
 
 CFILES = $(wildcard src/*.c) $(wildcard src/*/*.c) $(wildcard src/*/*/*.c) \
 		 $(wildcard src/*/*/*/*.c) \
