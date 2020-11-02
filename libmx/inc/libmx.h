@@ -24,6 +24,7 @@ typedef struct s_fd_node {
 void mx_printchar(char c);
 void mx_print_unicode(wchar_t c);
 void mx_printstr(const char *s);
+void mx_printerr(const char *s);
 void mx_printline(const char *s);
 int mx_out_fd(int new_value);
 void mx_printbool(bool value);
