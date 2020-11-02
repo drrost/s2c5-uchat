@@ -17,6 +17,8 @@ CFILES = $(wildcard src/*.c) $(wildcard src/*/*.c) $(wildcard src/*/*/*.c) \
 		 $(wildcard src/*/*/*/*/*.c)
 OBJ_DIR = obj
 
+CONFIG = `pkg-config --libs --cflags gtk+-3.0`
+
 ###############################################################################
 
 all: uninstall ${BINARY}
@@ -24,7 +26,7 @@ all: uninstall ${BINARY}
 ${BINARY}:
 	@make -sC libmx
 	@mkdir -p ${OBJ_DIR}
-	@${CC} ${CFLAGS} ${INCS} ${LIBS} ${CFILES} -o ${BINARY}
+	@${CC} ${CFLAGS} ${INCS} ${LIBS} ${CFILES} ${CONFIG} -o ${BINARY}
 
 uninstall:
 	@rm -rf ${BINARY}

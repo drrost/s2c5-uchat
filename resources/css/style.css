@@ -1,0 +1,17 @@
+/*	GtkWindow {
+		background: #0b93bd; 
+	}*/
+
+	#register_button {
+		background-color: blue;
+		color: #505050;
+	}
+
+	#login_button {
+		background-color: green;
+		color: #505050;
+	}
+
+	#register_button:hover, #login_button:hover {
+		font-weight: bold;
+	}
