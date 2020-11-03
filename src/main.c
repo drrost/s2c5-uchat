@@ -24,7 +24,7 @@
 // }
 
 void launch_login(void) {
-	builder = gtk_builder_new_from_file("resources/glade/test2.glade");
+	builder = gtk_builder_new_from_file("resources/glade/login_page.glade");
     login_window = GTK_WIDGET(gtk_builder_get_object(builder, "login_window"));
     g_signal_connect(login_window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
