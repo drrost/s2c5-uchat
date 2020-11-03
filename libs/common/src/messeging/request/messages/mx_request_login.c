@@ -13,6 +13,7 @@ t_request *mx_request_login(const char *login, const char *password) {
     mx_str_append(&body, "\",\"passowrd\":\"");
     mx_str_append(&body, password);
     mx_str_append(&body, "\"}");
+    request->body = body;
 
     return request;
 }
