@@ -27,6 +27,7 @@
             <property name="margin-top">6</property>
             <property name="max-length">16</property>
             <property name="placeholder-text" translatable="yes">Username</property>
+            <signal name="insert-text" handler="mx_insert_text_handler" swapped="no"/>
             <style>
               <class name="username_entry"/>
             </style>
@@ -44,6 +45,7 @@
             <property name="visibility">False</property>
             <property name="invisible-char">*</property>
             <property name="placeholder-text" translatable="yes">Password</property>
+            <signal name="insert-text" handler="mx_insert_password_handler" swapped="no"/>
           </object>
           <packing>
             <property name="left-attach">1</property>
@@ -75,7 +77,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
-                <signal name="clicked" handler="mx_on_click_login" swapped="no"/>
+                <signal name="clicked" handler="mx_do_login" swapped="no"/>
                 <style>
                   <class name="login_button"/>
                 </style>

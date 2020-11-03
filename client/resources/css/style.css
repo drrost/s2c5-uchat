@@ -1,7 +1,6 @@
-/*	GtkWindow {
-		background: #0b93bd; 
-	}*/
+
 	window {
+		border: 5px double grey;
     	background-image: linear-gradient(rgba(232, 203, 192, 0.521), rgba(99, 111, 164, 1));
 	}
 

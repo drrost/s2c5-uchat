@@ -1,27 +1,22 @@
 //
-// Created by Rostyslav Druzhchenko on 20.10.2020.
+// Created by Karina Barinova on 02.11.2020.
 //
 
 #include <client.h>
 
-//main for client
+void mx_insert_password_handler(GtkEntry *entry) {
+    const gchar *pass = gtk_entry_get_text(entry);
+    pass++;
+}
 
-// void mx_launch_css(void) {
+void mx_do_login(void) {
 
-// 	GtkCssProvider *provider;
-// 	GdkDisplay *display;
-// 	GdkScreen *screen;
-// 	provider = gtk_css_provider_new();
-// 	display = gdk_display_get_default();
-// 	screen = gdk_display_get_default_screen(display);
-// 	gtk_style_context_add_provider_for_screen(screen, GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-
-// 	const gchar *css = "style.css";
-// 	GError *error = 0;
-
-// 	gtk_css_provider_load_from_file(provider, g_file_new_for_path(css), &error);
-// 	g_object_unref(provider);	
-// }
+    //check password
+    //check user
+    //if OK -> open new window
+    //if not OK -> show label "Your login or username is not valid"
+    printf("clicked login\n");
+}
 
 void launch_login(void) {
 	builder = gtk_builder_new_from_file("resources/glade/login_page.glade");
@@ -32,9 +27,11 @@ void launch_login(void) {
     login_grid = GTK_WIDGET(gtk_builder_get_object(builder, "login_grid"));
     username_entry = GTK_WIDGET(gtk_builder_get_object(builder, "username_entry"));
     password_entry = GTK_WIDGET(gtk_builder_get_object(builder, "password_entry"));
+    g_signal_connect(G_OBJECT(username_entry), "insert_text", G_CALLBACK(mx_insert_password_handler), NULL);
     login_layout = GTK_WIDGET(gtk_builder_get_object(builder, "login_layout"));
     register_button = GTK_WIDGET(gtk_builder_get_object(builder, "register_button"));
     login_button = GTK_WIDGET(gtk_builder_get_object(builder, "login_button"));
+    g_signal_connect(G_OBJECT(login_button),"clicked", G_CALLBACK(mx_do_login),NULL);
 
     GtkCssProvider *cssProvider;
     cssProvider = gtk_css_provider_new();
