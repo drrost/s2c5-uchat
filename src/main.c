@@ -2,24 +2,7 @@
 // Created by Rostyslav Druzhchenko on 20.10.2020.
 //
 
-#include <sys/types.h>
-#include <signal.h>
-#include <string.h>
-#include <gtk/gtk.h>
-#include <gtk/gtkx.h>
-#include <math.h>
-#include <ctype.h>
-
 #include <client.h>
-
-GtkWidget *login_window;
-GtkWidget *login_grid;
-GtkWidget *username_entry;
-GtkWidget *password_entry;
-GtkWidget *login_layout;
-GtkWidget *register_button;
-GtkWidget *login_button;
-GtkBuilder *builder;
 
 //main for client
 
@@ -66,7 +49,8 @@ void launch_login(void) {
 }
 
 int main(int argc, char *argv[]) {
-    mx_validate_args(argc, (const char ** )argv);
+    t_start *start_data = mx_validate_args(argc, argv);
+    start_data++;
 
     gtk_init(&argc, &argv);
 
