@@ -10,12 +10,12 @@ void mx_usage(int n) {
 		case 1: {
             mx_printerr("usage: ./client");
             mx_printerr("\033[1;91m [ip_address]\033[0m");
-            mx_printerr(" [port (> 1024)]\n");
+            mx_printerr(" [port (> 0)]\n");
             break;
         }
         case 2: {
             mx_printerr("usage: ./client [ip_address]");
-            mx_printerr("\033[1;91m [port (> 1024)]\n\033[0m");
+            mx_printerr("\033[1;91m [port (> 0)]\n\033[0m");
             break;
         }
     }
@@ -36,7 +36,7 @@ static bool mx_check_ip(char *argv[], char **ip) {
 static bool mx_check_port(char *argv[], short *port) {
 	*port = atoi(argv[2]);
 
-	if (*port <= 1024)
+	if (*port <= 0)
 		return false;
 	return true;
 }
