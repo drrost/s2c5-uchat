@@ -1,17 +1,23 @@
 /*	GtkWindow {
 		background: #0b93bd; 
 	}*/
+	window {
+    background-image: linear-gradient(rgba(232, 203, 192, 0.521), rgba(99, 111, 164, 1));
+
+	}
 
 	#register_button {
-		background-color: blue;
-		color: #505050;
+		background-image: linear-gradient(rgba(65, 131, 215, 0.521), rgba(83, 51, 237, 1));
+		color: black;
+		font-weight: 600;
 	}
 
 	#login_button {
-		background-color: green;
-		color: #505050;
+		background-image: linear-gradient(rgba(1, 152, 117, 0.521), rgba(46, 204, 113, 1));
+		color: black;
+		font-weight: 600;
 	}
 
 	#register_button:hover, #login_button:hover {
-		font-weight: bold;
+		font-weight: 800;
 	}
