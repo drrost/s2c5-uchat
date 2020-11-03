@@ -29,14 +29,20 @@ typedef enum {
 
 typedef struct {
     e_msg_type type;
-    e_status_code *code;
+    e_status_code code;
     char *body;
 } t_response;
 
+// Requests
+//
 t_request *mx_request_new();
-void *mx_request_delete(t_request **request);
+void mx_request_delete(t_request **request);
 
+t_request *mx_request_login(const char *login, const char *password);
+
+// Responses
+//
 t_response *mx_response_new();
-void *mx_response_delete(t_response **response);
+void mx_response_delete(t_response **response);
 
 #endif //SERVER_MX_MESSEGING_H
