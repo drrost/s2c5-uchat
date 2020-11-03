@@ -7,7 +7,9 @@ char **mx_strsplit(const char *s, char c) {
         return 0;
 
     // Init array
-    int arr_size = mx_count_words(s, c);
+    int arr_size = 1;
+    if (mx_strlen(s) != 0)
+        arr_size = mx_count_words(s, c);
 
     char **result = (char **)malloc(sizeof(char *) * (arr_size + 1));
     result[arr_size] = 0;

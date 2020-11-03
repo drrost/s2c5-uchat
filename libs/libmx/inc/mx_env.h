@@ -12,5 +12,6 @@
 t_map *mx_env_get();
 char *mx_getenv(const char *s);
 void mx_setenv(const char *key, const char *value);
+void mx_setenv_i(const char *key, int value);
 
 #endif //INC_04_USH_MX_ENV_H

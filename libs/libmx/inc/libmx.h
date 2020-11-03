@@ -49,6 +49,7 @@ void mx_str_reverse(char *s);
 void mx_strdel(char **str);
 void mx_del_strarr(char ***arr);
 int mx_get_char_index(const char *str, char c);
+int mx_get_char_index_r(const char *str, char c);
 char *mx_strndup(const char *str, size_t n);
 char *mx_strdup(const char *str);
 char *mx_strndup(const char *str, size_t n);
@@ -63,9 +64,12 @@ char *mx_strstr(const char *haystack, const char *needle);
 int mx_get_substr_index(const char *str, const char *sub);
 int mx_count_words(const char *str, char c);
 char *mx_strnew(const int size);
+int mx_strstr_idx(const char *haystack, const char *needle);
 char *mx_strtrim(const char *str);
+char *mx_strtrim_q(const char *str);
 char *mx_del_extra_spaces(const char *str);
 char **mx_strsplit(const char *s, char c);
+char *mx_str_joined_by(char **arr, char *delim);
 char *mx_strjoin(const char *s1, const char *s2);
 char *mx_file_to_str(const char *file);
 int mx_read_line(char **lineptr, size_t buf_size, char delim, const int fd);
@@ -80,7 +84,11 @@ char *mx_add_path(const char *s1, const char *s2);
 void mx_str_append(char **s, const char *to_add);
 char *
 mx_str_replace(char *target, const char *needle, const char *replacement);
+void
+mx_str_replace_p(char **target, const char *needle, const char *replacement);
 bool mx_str_begins_with(char *s, char *needle);
+int mx_arr_size(char **arr);
+bool mx_str_has_prefix(char *s, char* prefix);
 
 // Memory pack
 //

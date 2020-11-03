@@ -1,6 +1,6 @@
 #include <libmx.h>
 
-char *mx_strtrim(const char *str) {
+static char *mx_strtrim_do(const char *str, bool (*cmp)(int)) {
     if (str == 0)
         return 0;
 
@@ -9,7 +9,7 @@ char *mx_strtrim(const char *str) {
 
     int length = mx_strlen(str);
     for (int i = 0; i < length; i++) {
-        if (!mx_isspace(str[i])) {
+        if (!cmp(str[i])) {
             lastChIdx = i;
             if (firstChIdx == -1) {
                 firstChIdx = i;
@@ -26,23 +26,14 @@ char *mx_strtrim(const char *str) {
     return result;
 }
 
-// One more possible solution
+char *mx_strtrim(const char *str) {
+    return mx_strtrim_do(str, mx_isspace);
+}
 
-//char *ltrim(char *s) {
-//    while (isspace(*s)) s++;
-//    return s;
-//}
-//
-//char *rtrim(char *s) {
-//    char *back = s + strlen(s);
-//    while (mx_isspace(*--back));
-//    *(back + 1) = '\0';
-//    return s;
-//}
-//
-//char *mx_strtrim(char *s) {
-//    char *dup = mx_strdup(s);
-//    char * trimmed = rtrim(ltrim(dup));
-//    mx_strtrim(&dup);
-//    return mx_strdup(trimmed);
-//}
+static bool mx_isquote(int c) {
+    return c == '\"';
+}
+
+char *mx_strtrim_q(const char *str) {
+    return mx_strtrim_do(str, mx_isquote);
+}
