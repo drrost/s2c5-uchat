@@ -2,8 +2,13 @@
 		background: #0b93bd; 
 	}*/
 	window {
-    background-image: linear-gradient(rgba(232, 203, 192, 0.521), rgba(99, 111, 164, 1));
+    	background-image: linear-gradient(rgba(232, 203, 192, 0.521), rgba(99, 111, 164, 1));
+	}
 
+	button {
+		border-radius: 5px;
+	    border-width: 0px;
+	    box-shadow: none;
 	}
 
 	#register_button {
