@@ -19,6 +19,10 @@ typedef struct s_fd_node {
     int last_delim_index;
 }              t_fd_node;
 
+#define CREATE_INSTANCE(type) int size = sizeof(type); \
+type *instance = (type *)malloc(size);                 \
+mx_memset(instance, 0, size);
+
 // Utils pack
 //
 void mx_printchar(char c);

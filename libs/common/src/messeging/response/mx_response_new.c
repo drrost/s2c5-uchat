@@ -5,8 +5,6 @@
 #include <mx_messeging.h>
 
 t_response *mx_response_new() {
-    int size = sizeof(t_response);
-    t_response *instance = (t_response *)malloc(size);
-    mx_memset(instance, 0, size);
+    CREATE_INSTANCE(t_response);
     return instance;
 }

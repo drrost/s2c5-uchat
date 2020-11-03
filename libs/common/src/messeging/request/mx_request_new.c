@@ -5,8 +5,6 @@
 #include <mx_messeging.h>
 
 t_request *mx_request_new() {
-    int size = sizeof(t_request);
-    t_request *instance = (t_request *)malloc(size);
-    mx_memset(instance, 0, size);
+    CREATE_INSTANCE(t_request);
     return instance;
 }
