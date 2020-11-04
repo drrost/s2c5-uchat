@@ -13,6 +13,8 @@
 #include <arpa/inet.h>
 #include "libmx.h"
 
+typedef struct s_signin t_signin;
+
 typedef struct s_user_info {
     char id;
     char *name;
@@ -20,27 +22,44 @@ typedef struct s_user_info {
     char *last_name;
 }              t_user_info;
 
+typedef struct s_window_widgets {
+    t_signin *s_signin;
+}              t_window_widgets;
+
 typedef struct s_info {
     int sock;
     int port;
     char *ip;
     t_user_info *user_info;
+    t_window_widgets *widgets;
 }              t_info;
 
 //UTILS
 t_info *mx_validate_args(int argc, char *argv[]);
+void mx_info_init(t_info **info);
+void mx_init_gtk(t_info *info);
 
 //Connection
 void mx_connect(t_info *info);
 int mx_socket(int port, char *ip);
 
-GtkWidget *login_window;
-GtkWidget *login_grid;
-GtkWidget *username_entry;
-GtkWidget *password_entry;
-GtkWidget *login_layout;
-GtkWidget *register_button;
-GtkWidget *login_button;
+struct s_signin {
+    GtkWidget *login_window;
+    GtkWidget *login_grid;
+    GtkWidget *username_entry;
+    GtkWidget *password_entry;
+    GtkWidget *login_layout;
+    GtkWidget *register_button;
+    GtkWidget *login_button;
+};
+
+// GtkWidget *login_window;
+// GtkWidget *login_grid;
+// GtkWidget *username_entry;
+// GtkWidget *password_entry;
+// GtkWidget *login_layout;
+// GtkWidget *register_button;
+// GtkWidget *login_button;
 GtkBuilder *builder;
 
 #endif
