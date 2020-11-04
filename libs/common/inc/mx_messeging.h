@@ -6,6 +6,7 @@
 #define SERVER_MX_MESSEGING_H
 
 #include <libmx.h>
+#include <json.h>
 
 typedef enum {
     E_MSGTYPE_NONE = 0,
@@ -44,5 +45,18 @@ t_request *mx_request_login(const char *login, const char *password);
 //
 t_response *mx_response_new();
 void mx_response_delete(t_response **response);
+
+// Error
+//
+typedef struct s_error {
+    int code;
+    char *message;
+
+    void (*print)(struct s_error *);
+} t_error;
+
+t_error *mx_error_new();
+void mx_error_del(t_error **error);
+t_error *mx_error(const char *json);
 
 #endif //SERVER_MX_MESSEGING_H

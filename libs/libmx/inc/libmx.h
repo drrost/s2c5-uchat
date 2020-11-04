@@ -22,12 +22,14 @@ typedef struct s_fd_node {
 #define CREATE_INSTANCE(type) int size = sizeof(type); \
 type *instance = (type *)malloc(size);                 \
 mx_memset(instance, 0, size);
+#define DELETE_INSTANCE(instance) free(instance); *instance = 0;
 
 // Utils pack
 //
 void mx_printchar(char c);
 void mx_print_unicode(wchar_t c);
 void mx_printstr(const char *s);
+void mx_printstr_ornil(const char *s);
 void mx_printerr(const char *s);
 void mx_printline(const char *s);
 int mx_out_fd(int new_value);
