@@ -22,6 +22,6 @@ typedef struct {
 } t_connection;
 
 t_connection *mx_connection_open(const char *ip, int port);
-void mx_connection_close(t_connection *connection);
+void mx_connection_close(t_connection **connection);
 
 #endif //SERVER_MX_SERVER_H
