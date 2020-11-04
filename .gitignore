@@ -1,9 +1,8 @@
 .DS_store
 *~
 obj
-ush
 *.a
-log.txt
-uls.log
-ush.log
 uchat-server
+cmake-build-debug/
+CMakeLists.txt
+.idea

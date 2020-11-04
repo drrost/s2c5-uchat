@@ -8,6 +8,8 @@ t_request *mx_request_login(const char *login, const char *password) {
     t_request *request = mx_request_new();
 
     char *body = 0;
+
+    // TODO: replace with JSON creation
     mx_str_append(&body, "{\"login\":\"");
     mx_str_append(&body, login);
     mx_str_append(&body, "\",\"passowrd\":\"");
