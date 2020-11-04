@@ -22,7 +22,7 @@ typedef struct s_fd_node {
 #define CREATE_INSTANCE(type) int size = sizeof(type); \
 type *instance = (type *)malloc(size);                 \
 mx_memset(instance, 0, size);
-#define DELETE_INSTANCE(instance) free(instance); *instance = 0;
+#define DELETE_INSTANCE(instance) free(*instance); *instance = 0;
 
 // Utils pack
 //
@@ -46,6 +46,8 @@ int mx_binary_search(char **arr, int size, const char *s, int *count);
 int mx_bubble_sort(char **arr, int size);
 int mx_quicksort(char **arr, int left, int right);
 int mx_nbrlen(int nbr);
+
+int mx_leaks_check_enabled(int value);
 void mx_check_leaks();
 
 // String pack

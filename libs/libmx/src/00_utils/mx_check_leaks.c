@@ -10,6 +10,15 @@
 
 int malloc_counter = 0;
 
+int mx_leaks_check_enabled(int value) {
+    static bool leaks_check_enabled = true;
+
+    if (value == -1)
+        return leaks_check_enabled;
+
+    leaks_check_enabled = value;
+}
+
 #define line_len 1024
 typedef struct s_call {
     long address;
@@ -48,6 +57,9 @@ t_call *find_empty_position() {
 }
 
 static void add_call(t_call *call) {
+    if (!mx_leaks_check_enabled(-1))
+        return;
+
     t_call *position = find_empty_position();
     if (position == 0) {
         fprintf(stderr, "There is no room left for `allocs_array`\n"
@@ -58,6 +70,9 @@ static void add_call(t_call *call) {
 }
 
 static void remove_call(long address) {
+    if (!mx_leaks_check_enabled(-1))
+        return;
+
     for (int i = 0; i < array_size; i++) {
         if (allocs_array[i].address == address) {
             allocs_array[i].address = 0;
@@ -130,6 +145,8 @@ static void cp_stack(char *dst, char **s_arr, int size) {
     }
 }
 
+#include <libmx.h>
+
 void *malloc(unsigned long size) {
     if (real_malloc == 0)
         malloc_init();
@@ -148,7 +165,9 @@ void *malloc(unsigned long size) {
     cp_stack(call.line, strs, frames);
 
     add_call(&call);
-    malloc_counter++;
+    if (mx_leaks_check_enabled(-1))
+        malloc_counter++;
+
     return p;
 }
 
@@ -166,6 +185,8 @@ void free(void *p) {
 
     remove_call((long)p);
     real_free(p);
-    if (p)
-        malloc_counter--;
+    if (p) {
+        if (mx_leaks_check_enabled(-1))
+            malloc_counter--;
+    }
 }
