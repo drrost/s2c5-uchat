@@ -8,15 +8,31 @@
 #include <gtk/gtkx.h>
 #include <math.h>
 #include <ctype.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 #include "libmx.h"
 
-typedef struct s_start {
-	int port;
-	char *ip;
-}			   t_start;
+typedef struct s_user_info {
+    char id;
+    char *name;
+    char *first_name;
+    char *last_name;
+}              t_user_info;
+
+typedef struct s_info {
+    int sock;
+    int port;
+    char *ip;
+    t_user_info *user_info;
+}              t_info;
 
 //UTILS
-t_start *mx_validate_args(int argc, char *argv[]);
+t_info *mx_validate_args(int argc, char *argv[]);
+
+//Connection
+void mx_connect(t_info *info);
+int mx_socket(int port, char *ip);
 
 GtkWidget *login_window;
 GtkWidget *login_grid;

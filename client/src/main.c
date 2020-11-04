@@ -45,13 +45,39 @@ void launch_login(void) {
     gtk_main();
 }
 
+t_user_info *mx_create_user(void) { //t_info *info
+    t_user_info *user = malloc(sizeof(t_user_info));
+
+    user->first_name = 0;
+    user->last_name = 0;
+    user->id = 0;
+    return user;
+}
+
+void mx_info_init(t_info **info) {
+    (*info)->sock = 0;
+    (*info)->user_info = 0;
+    (*info)->user_info = mx_create_user();
+}
+
+void mx_init(t_info **info) {
+    // pthread_t thread_listen;
+    // pthread_t thread_send;
+
+    mx_info_init(info);
+    //mx_connect(*info);
+}
+
 int main(int argc, char *argv[]) {
-    t_start *start_data = mx_validate_args(argc, argv);
-    start_data++;
+    t_info *info = 0;
+    info = mx_validate_args(argc, argv);
 
     gtk_init(&argc, &argv);
+    mx_init(&info);
 
     launch_login();
+
+    mx_check_leaks();
 
     return EXIT_SUCCESS;
 }

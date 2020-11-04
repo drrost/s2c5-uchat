@@ -25,11 +25,13 @@ void mx_usage(int n) {
 static bool mx_check_ip(char *argv[], char **ip) {
 	char *new_ip = mx_strdup(argv[1]);
 
-	if (mx_count_words(new_ip, '.') != 4) {
+	if (!inet_aton(new_ip, 0)) {
 		*ip = NULL;
+		mx_strdel(&new_ip);
 		return false;
 	}
 	*ip = new_ip;
+	mx_strdel(&new_ip);
 	return true;
 }
 
@@ -41,10 +43,10 @@ static bool mx_check_port(char *argv[], short *port) {
 	return true;
 }
 
-t_start *mx_validate_args(int argc, char *argv[]) {
+t_info *mx_validate_args(int argc, char *argv[]) {
 	short port = 0;
 	char *ip = NULL;
-	t_start *start = NULL;
+	t_info *info = NULL;
 
 	if (argc != 3)
 		mx_usage(0);
@@ -53,8 +55,8 @@ t_start *mx_validate_args(int argc, char *argv[]) {
 	if (!mx_check_port(argv, &port))
 		mx_usage(2);
 
-	start = (t_start *)malloc(sizeof(t_start));
-	start->ip = ip;
-	start->port = port;
-	return start;
+	info = (t_info *)malloc(sizeof(t_info));
+	info->ip = ip;
+	info->port = port;
+	return info;
 }
