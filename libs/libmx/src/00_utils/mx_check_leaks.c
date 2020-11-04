@@ -10,6 +10,8 @@
 
 int malloc_counter = 0;
 
+// TODO: Add support for realloc and calloc and delete this method.
+//
 int mx_leaks_check_enabled(int value) {
     static bool leaks_check_enabled = true;
 

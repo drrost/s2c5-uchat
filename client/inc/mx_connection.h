@@ -24,4 +24,7 @@ typedef struct {
 t_connection *mx_connection_open(const char *ip, int port);
 void mx_connection_close(t_connection **connection);
 
+// TODO: Delete it when the server will be done.
+t_response *mx_response_mock_for(t_request *request);
+
 #endif //SERVER_MX_SERVER_H

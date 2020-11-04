@@ -3,14 +3,10 @@
 //
 
 #include <mx_connection.h>
-#include <libmx.h>
 
 static void
 send(t_request *request, void (*completion)(e_connection_code, t_response *)) {
-    t_response *response = mx_response_new();
-    response->code = 401;
-    response->body = mx_strdup("{\"error\":{\"code\":401,\"message\":"
-                               "\"Your account or password is incorrect\"}}");
+    t_response *response = mx_response_mock_for(request);
     completion(E_CONNECTION_CODE_OK, response);
 }
 
