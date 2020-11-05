@@ -11,6 +11,8 @@ send(t_request *request, void (*completion)(e_connection_code, t_response *)) {
 }
 
 t_connection *mx_connection_open(const char *ip, int port) {
+    ip++;
+    port++;
     CREATE_INSTANCE(t_connection);
     instance->send = send;
     // TODO: Open a real socket connection

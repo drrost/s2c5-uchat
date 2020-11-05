@@ -1,7 +1,7 @@
 CC = clang
 CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
-INCS = -I./inc -I../libs/libmx/inc
-LIBS = -L../libs/libmx -lmx
+INCS = -I./inc -I../libs/libmx/inc -I../libs/common/inc
+LIBS = -L../libs/common/ -lmx -L../libs/libmx -lmx
 
 # Folders
 SRC=src
@@ -11,7 +11,8 @@ BINARY = uchat
 
 CFILES = $(wildcard src/*.c) $(wildcard src/*/*.c) $(wildcard src/*/*/*.c) \
 		 $(wildcard src/*/*/*/*.c) \
-		 $(wildcard src/*/*/*/*/*.c)
+		 $(wildcard src/*/*/*/*/*.c) \
+		 $(wildcard src/*/*/*/*/*/*.c)
 OBJ_DIR = obj
 
 CONFIG = `pkg-config --libs --cflags gtk+-3.0`
@@ -22,16 +23,19 @@ all: uninstall ${BINARY}
 
 ${BINARY}:
 	@make -sC ../libs/libmx
+	@make -sC ../libs/common
 	@mkdir -p ${OBJ_DIR}
 	@${CC} ${CFLAGS} ${INCS} ${LIBS} ${CFILES} ${CONFIG} -o ${BINARY}
 
 uninstall:
 	@rm -rf ${BINARY}
 	@make uninstall -sC ../libs/libmx
+	@make uninstall -sC ../libs/common
 
 clean:
 	@rm -rf ${OBJ_DIR}
 	@make clean -sC ../libs/libmx
+	@make clean -sC ../libs/common
 
 reinstall: all
 

@@ -3,8 +3,7 @@
 ###############################################################################
 CC = clang
 CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
-INCS = -I./inc -I./libmx/inc
-LIBS = -L./libmx/ -lmx
+INCS = -I./inc -I../libmx/inc
 
 # Folders
 SRC=src
@@ -12,7 +11,10 @@ OBJ=obj
 
 BINARY = common.a
 
-CFILES = $(wildcard src/*.c) $(wildcard src/*/*.c) $(wildcard src/*/*/*.c)
+CFILES = $(wildcard src/*.c) \
+ 		 $(wildcard src/*/*.c) \
+ 		 $(wildcard src/*/*/*.c) \
+ 		 $(wildcard src/*/*/*/*.c)
 OBJ_DIR = obj
 
 ###############################################################################
@@ -20,7 +22,6 @@ OBJ_DIR = obj
 all: uninstall ${BINARY}
 
 ${BINARY}:
-	@make -sC libmx
 	@mkdir -p ${OBJ_DIR}
 	@${CC} ${CFLAGS} ${INCS} ${CFILES} -c
 	@mv *.o ${OBJ_DIR}
