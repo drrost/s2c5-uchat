@@ -19,6 +19,7 @@ int mx_leaks_check_enabled(int value) {
         return leaks_check_enabled;
 
     leaks_check_enabled = value;
+    return leaks_check_enabled;
 }
 
 #define line_len 1024
