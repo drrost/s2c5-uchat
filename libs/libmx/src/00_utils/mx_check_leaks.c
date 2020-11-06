@@ -10,18 +10,6 @@
 
 int malloc_counter = 0;
 
-// TODO: Add support for realloc and calloc and delete this method.
-//
-int mx_leaks_check_enabled(int value) {
-    static bool leaks_check_enabled = true;
-
-    if (value == -1)
-        return leaks_check_enabled;
-
-    leaks_check_enabled = value;
-    return leaks_check_enabled;
-}
-
 #define line_len 1024
 typedef struct s_call {
     long address;
@@ -30,6 +18,7 @@ typedef struct s_call {
 } t_call;
 
 #define array_size 1024
+static bool allocs_array_initialized = false;
 t_call allocs_array[array_size];
 
 static int total_leaks_size();
@@ -51,6 +40,8 @@ void mx_check_leaks() {
 
 static void *(*real_malloc)(unsigned long) = 0;
 static void (*real_free)(void *) = 0;
+static void *(*real_calloc)(size_t __count, size_t __size) = 0;
+static void *(*real_realloc)(void *__ptr, size_t __size) = 0;
 
 t_call *find_empty_position() {
     for (int i = 0; i < array_size; i++)
@@ -60,9 +51,6 @@ t_call *find_empty_position() {
 }
 
 static void add_call(t_call *call) {
-    if (!mx_leaks_check_enabled(-1))
-        return;
-
     t_call *position = find_empty_position();
     if (position == 0) {
         fprintf(stderr, "There is no room left for `allocs_array`\n"
@@ -73,9 +61,6 @@ static void add_call(t_call *call) {
 }
 
 static void remove_call(long address) {
-    if (!mx_leaks_check_enabled(-1))
-        return;
-
     for (int i = 0; i < array_size; i++) {
         if (allocs_array[i].address == address) {
             allocs_array[i].address = 0;
@@ -112,11 +97,18 @@ static int total_leaks_size() {
 
 // ================================== MALLOC ==================================
 
+static void init_allocs_array_if_necessary() {
+    if (!allocs_array_initialized) {
+        memset(&allocs_array, 0, sizeof(allocs_array));
+        allocs_array_initialized = true;
+    }
+}
+
 static void malloc_init(void) {
     real_malloc = (void *(*)(unsigned long))dlsym(RTLD_NEXT, "malloc");
     if (real_malloc == 0)
         fprintf(stderr, "Error in `dlsym`: %s\n", dlerror());
-    memset(&allocs_array, 0, sizeof(allocs_array));
+    init_allocs_array_if_necessary();
 }
 
 static char *split_to_only_func(char *s) {
@@ -148,8 +140,6 @@ static void cp_stack(char *dst, char **s_arr, int size) {
     }
 }
 
-#include <libmx.h>
-
 void *malloc(unsigned long size) {
     if (real_malloc == 0)
         malloc_init();
@@ -168,8 +158,7 @@ void *malloc(unsigned long size) {
     cp_stack(call.line, strs, frames);
 
     add_call(&call);
-    if (mx_leaks_check_enabled(-1))
-        malloc_counter++;
+    malloc_counter++;
 
     return p;
 }
@@ -188,8 +177,74 @@ void free(void *p) {
 
     remove_call((long)p);
     real_free(p);
-    if (p) {
-        if (mx_leaks_check_enabled(-1))
-            malloc_counter--;
-    }
+    if (p)
+        malloc_counter--;
+}
+
+// ================================== CALLOC ==================================
+
+static void calloc_init(void) {
+    real_calloc = (void *(*)(unsigned long, unsigned long))
+        dlsym(RTLD_NEXT, "calloc");
+    if (real_calloc == 0)
+        fprintf(stderr, "Error in `dlsym`: %s\n", dlerror());
+    init_allocs_array_if_necessary();
+}
+
+void *calloc(size_t count, size_t size) {
+    if (real_calloc == 0)
+        calloc_init();
+
+    void *p = 0;
+    p = real_calloc(count, size);
+
+    t_call call;
+    call.address = (long)p;
+    call.size = size;
+    call.line[0] = '\0';
+
+    void *callstack[128];
+    int frames = backtrace(callstack, 128);
+    char **strs = backtrace_symbols(callstack, frames);
+    cp_stack(call.line, strs, frames);
+
+    add_call(&call);
+    malloc_counter++;
+
+    return p;
+}
+
+// ================================== REALLOC =================================
+
+static void realloc_init(void) {
+    real_realloc = (void *(*)(void *, unsigned long))
+        dlsym(RTLD_NEXT, "realloc");
+    if (real_realloc == 0)
+        fprintf(stderr, "Error in `dlsym`: %s\n", dlerror());
+    init_allocs_array_if_necessary();
+}
+
+void *realloc(void *ptr, size_t size) {
+    if (real_realloc == 0)
+        realloc_init();
+
+    void *p = 0;
+    remove_call((long)p);
+    malloc_counter--;
+    p = real_realloc(ptr, size);
+
+    t_call call;
+    call.address = (long)p;
+    call.size = size;
+    call.line[0] = '\0';
+
+    void *callstack[128];
+    int frames = backtrace(callstack, 128);
+    char **strs = backtrace_symbols(callstack, frames);
+    cp_stack(call.line, strs, frames);
+
+    add_call(&call);
+    malloc_counter++;
+
+    return p;
 }
