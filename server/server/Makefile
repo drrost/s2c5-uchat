@@ -9,7 +9,7 @@ SRC	= $(FILES:%=%.c)
 OBJ	= $(SRC:src/%.c=$(OBJ_DIR)%.o)
 INC_H = $(wildcard $(INC_DIR)*.h)
 
-LIB_DIR	= ../libs
+LIB_DIR	= ../../libs
 LIB_LIST = $(notdir $(wildcard $(LIB_DIR)/*))
 LIB_DIRS = $(foreach libdirs, $(LIB_LIST), $(LIB_DIR)/$(libdirs)/)
 LIB_BIN	= $(join $(LIB_DIRS), $(addsuffix .a, $(LIB_LIST)))
