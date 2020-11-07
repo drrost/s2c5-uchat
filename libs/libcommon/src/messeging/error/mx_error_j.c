@@ -4,7 +4,7 @@
 
 #include <mx_messeging.h>
 
-t_error *mx_error(const char *json) {
+t_error *mx_error_j(const char *json) {
     t_error *error = mx_error_new();
 
     JsonNode *node = json_decode(json);

@@ -1,3 +1,4 @@
+#include <zconf.h>
 //
 // Created by Rostyslav Druzhchenko on 03.11.2020.
 //
@@ -55,10 +56,13 @@ typedef struct s_error {
     char *message;
 
     void (*print)(struct s_error *);
+    char *(*json)(struct s_error *);
 } t_error;
 
 t_error *mx_error_new();
 void mx_error_del(t_error **error);
-t_error *mx_error(const char *json);
+t_error *mx_error_j(const char *json);
+t_error *mx_error_im(int code, const char *message);
+char *mx_error_as_json(int code, char *message);
 
 #endif //SERVER_MX_MESSEGING_H
