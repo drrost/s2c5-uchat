@@ -23,16 +23,17 @@
 typedef struct catalog_sockets {
 	int sock_fd;
 	struct catalog_sockets *neo;
-} s_list_client;
+} t_list_client;
 
 typedef struct {
 	fd_set descriptor;
-	s_list_client base;
-} s_environment_server;
+	t_list_client base;
+} t_environment_server;
 
 
 int  mx_listening_socket(int port);
 void launch_deamon(void);
-int adding_sockets(s_list_client *base, int socket_new);
+int adding_sockets(t_list_client *base, int socket_new);
+int mx_connection_descriptor(fd_set descriptor, t_list_client *pack);
 
 #endif

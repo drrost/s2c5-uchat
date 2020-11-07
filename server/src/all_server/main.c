@@ -1,7 +1,14 @@
 #include "server.h"
 
-static s_environment_server context;
+static t_environment_server context;
 static pthread_mutex_t mutex_context = PTHREAD_MUTEX_INITIALIZER;
+
+static struct timeval mx_time_out(int seconds, int milliseconds) {
+	struct timeval tv;
+	tv.tv_sec  = seconds;
+	tv.tv_usec = milliseconds;
+	return tv;
+}
 
 static void initializing_server_context(void) {
 	pthread_mutex_lock(&mutex_context);
@@ -12,11 +19,21 @@ static void initializing_server_context(void) {
 	//В разработке!
 }
 
-static void *helloWorld() {
-	printf("Hello from thread!\n");
-	return 0;
-	//пример!
-	//создаётся новый поток, внутри которого вызывается функция helloWorld
+static void *mx_server_descriptor(void *param) {
+	fd_set descriptor;
+	struct timeval tv = mx_time_out(1, 0);
+
+	while(true) {    
+		select(FD_SETSIZE, &descriptor, NULL, NULL, &tv);
+		pthread_mutex_lock(&mutex_context);
+		for (t_list_client *pack = context.base.neo; pack != NULL; pack = pack->neo) {
+			if (mx_connection_descriptor(descriptor, pack)) {
+				break;
+			}
+		}
+		pthread_mutex_unlock(&mutex_context);
+	}
+	return NULL;
 }
 
 int main(int argc, char **argv) {
@@ -36,7 +53,7 @@ int main(int argc, char **argv) {
 	initializing_server_context();
 	listen(scts_list, 128);
 	pthread_t thread_server;
-	int rest = pthread_create(&thread_server, NULL, helloWorld, NULL);
+	int rest = pthread_create(&thread_server, NULL, mx_server_descriptor, NULL);
 	printf("main error: can't create thread, status = %d\n", rest);
 
 	while(true) {

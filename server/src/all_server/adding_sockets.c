@@ -1,9 +1,9 @@
 #include "server.h"
 
-int adding_sockets(s_list_client *base, int socket_new) {
+int adding_sockets(t_list_client *base, int socket_new) {
 
-	s_list_client *early = NULL;
-	s_list_client *set = NULL;
+	t_list_client *early = NULL;
+	t_list_client *set = NULL;
 	if (base == NULL) {
 		return -1;
 	}
@@ -11,7 +11,7 @@ int adding_sockets(s_list_client *base, int socket_new) {
 		if (set->sock_fd == socket_new) 
 			return -3;
 	}
-	set = (s_list_client*)malloc(sizeof(s_list_client));
+	set = (t_list_client*)malloc(sizeof(t_list_client));
 	if (set == NULL) {
 		return -1;
 	}
