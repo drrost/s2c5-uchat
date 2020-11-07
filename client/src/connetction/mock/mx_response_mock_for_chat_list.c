@@ -45,6 +45,8 @@ static char *chat_list_json() {
     char *json = 0;
     t_list *list = chat_list();
 
+    json = mx_chat_list_to_json(list);
+
     while (list) {
         t_chat *chat = (t_chat *)list->data;
         mx_pop_front(&list);
