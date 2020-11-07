@@ -10,11 +10,13 @@
 #include <libmx.h>
 #include <json.h>
 
-typedef struct {
+typedef struct s_user {
     char *id;
     char *login;
     char *first_name;
     char *last_name;
+
+    void (*print)(struct s_user*);
 } t_user;
 
 t_user *mx_user_new(void);
@@ -23,7 +25,8 @@ void mx_user_del(t_user **user);
 JsonNode *mx_user_list_to_json_node(t_list *list);
 JsonNode *mx_user_to_json_node(t_user *user);
 
-t_list *mx_user_list_from_json(const char *json);
+t_list *mx_user_list_from_json_node(JsonNode *node);
+t_user *mx_user_from_json_node(JsonNode *node);
 
 // Messages
 //

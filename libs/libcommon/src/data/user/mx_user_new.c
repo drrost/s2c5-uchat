@@ -4,7 +4,20 @@
 
 #include <mx_data.h>
 
+static void print(t_user *this) {
+    mx_printline("User:");
+    mx_printstr("id: ");
+    mx_printline(this->id);
+    mx_printstr("login: ");
+    mx_printline(this->login);
+    mx_printstr("first_name: ");
+    mx_printline(this->first_name);
+    mx_printstr("last_name: ");
+    mx_printline(this->last_name);
+}
+
 t_user *mx_user_new(void) {
     CREATE_INSTANCE(t_user);
+    instance->print = print;
     return instance;
 }

@@ -10,6 +10,15 @@ static void print(t_chat *this) {
     mx_printline(this->id);
     mx_printstr("name: ");
     mx_printline(this->name);
+
+    t_list *list = this->participants;
+    while (list) {
+        t_user *user = (t_user *)list->data;
+        user->print(user);
+        list = list->next;
+    }
+
+    mx_printline("");
 }
 
 t_chat *mx_chat_new(void) {
