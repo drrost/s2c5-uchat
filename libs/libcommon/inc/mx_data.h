@@ -8,6 +8,7 @@
 #include <uuid/uuid.h>
 #include <stdlib.h>
 #include <libmx.h>
+#include <json.h>
 
 typedef struct {
     char *id;
@@ -18,6 +19,8 @@ typedef struct {
 
 t_user *mx_user_new(void);
 void mx_user_del(t_user **user);
+JsonNode *mx_user_list_to_json_node(t_list *list);
+JsonNode *mx_user_to_json_node(t_user *user);
 
 // Messages
 //
@@ -41,5 +44,6 @@ typedef struct {
 t_chat *mx_chat_new(void);
 void mx_chat_del(t_chat **chat);
 char *mx_chat_list_to_json(t_list *list);
+JsonNode *mx_chat_to_json_node(t_chat *chat);
 
 #endif //SERVER_MX_DATA_H
