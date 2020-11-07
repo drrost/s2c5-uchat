@@ -4,7 +4,7 @@
 
 #include <mx_data.h>
 
-t_message *mx_message_new() {
+t_message *mx_message_new(void) {
     CREATE_INSTANCE(t_message);
     return instance;
 }

@@ -4,7 +4,7 @@
 
 #include <mx_data.h>
 
-t_user *mx_user_new() {
+t_user *mx_user_new(void) {
     CREATE_INSTANCE(t_user);
     return instance;
 }
