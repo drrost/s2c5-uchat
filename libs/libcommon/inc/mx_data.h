@@ -30,4 +30,12 @@ typedef struct {
 t_message *mx_message_new();
 void mx_message_del(t_message  **message);
 
+// Chat
+//
+typedef struct {
+    char *name;
+    char *id;
+    t_list *participants; // t_user
+} t_chat;
+
 #endif //SERVER_MX_DATA_H

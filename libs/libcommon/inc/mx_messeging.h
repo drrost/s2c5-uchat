@@ -11,7 +11,7 @@
 typedef enum {
     E_MSGTYPE_NONE = 0,
     E_MSGTYPE_LOGIN,
-    E_MSGTYPE_USRLIST
+    E_MSGTYPE_CHATLIST,
 } e_msg_type;
 
 typedef struct {
@@ -40,6 +40,8 @@ t_request *mx_request_new();
 void mx_request_delete(t_request **request);
 
 t_request *mx_request_login(const char *login, const char *password);
+t_request *mx_request_chat_list(char *auth_token);
+t_request *mx_request_chat_messages(char *auth_token, char *chat_id);
 
 // Responses
 //
