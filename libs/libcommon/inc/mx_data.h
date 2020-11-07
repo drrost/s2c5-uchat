@@ -44,6 +44,7 @@ typedef struct {
 t_chat *mx_chat_new(void);
 void mx_chat_del(t_chat **chat);
 char *mx_chat_list_to_json(t_list *list);
+JsonNode *mx_chat_list_to_json_node(t_list *list);
 JsonNode *mx_chat_to_json_node(t_chat *chat);
 
 #endif //SERVER_MX_DATA_H
