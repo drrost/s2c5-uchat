@@ -1,4 +1,5 @@
 #include "server.h"
+#include <mx_log.h>
 
 static t_environment_server context;
 static pthread_mutex_t mutex_context = PTHREAD_MUTEX_INITIALIZER;
@@ -37,6 +38,8 @@ static void *mx_server_descriptor(void *param) {
 }
 
 int main(int argc, char **argv) {
+    mx_log_i("Starting server", "");
+
 	if (argc != 2) {
 		write(2, "usage: ./server port\n", 21);
 		exit(1);
