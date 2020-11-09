@@ -9,13 +9,20 @@ void mx_insert_password_handler(GtkEntry *entry) {
     pass++;
 }
 
-void mx_do_login(void) {
+static bool mx_check_valid(char *login, char *password) {
+    if (login[0] == '\0' || password[0] == '\0')
+        return false;
+    return true;
+}
 
-    //check password
-    //check user
-    //if OK -> open new window
+void mx_do_login(t_info *info) {
+    const char *login = gtk_entry_get_text(GTK_ENTRY(info->widgets->s_signin->username_entry));
+    const char *password = gtk_entry_get_text(GTK_ENTRY(info->widgets->s_signin->password_entry));
+    if (mx_check_valid((char *)login, (char *)password)) {
+        info->user_info->login = mx_strdup(login);
+        info->user_info->password = mx_strdup(password);
+    }
     //if not OK -> show label "Your login or username is not valid"
-    printf("clicked login\n");
 }
 
 void mx_css_connect(void) {
@@ -53,8 +60,8 @@ void mx_signin_handler(t_info *info) {
     t_signin *window = info->widgets->s_signin;
 
     g_signal_connect(GTK_WIDGET(window->login_window), "destroy", (GCallback)gtk_main_quit, NULL);
-    g_signal_connect(GTK_WIDGET(window->username_entry), "insert_text", (GCallback)mx_insert_password_handler, NULL);
-    g_signal_connect(GTK_WIDGET(window->login_button),"clicked", (GCallback)mx_do_login,NULL);
+    //g_signal_connect(GTK_WIDGET(window->username_entry), "insert_text", (GCallback)mx_insert_password_handler, NULL);
+    g_signal_connect(GTK_WIDGET(window->login_button),"clicked", (GCallback)mx_do_login, info);
 
 }
 
