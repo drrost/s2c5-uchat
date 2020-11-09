@@ -20,6 +20,10 @@ t_user_info *mx_create_user(void) { //t_info *info
     return user;
 }
 
+t_info *mx_info_new() {
+    CREATE_INSTANCE(t_info);
+    return instance;
+}
 
 void mx_info_init(t_info **info) {
     (*info)->sock = 0;

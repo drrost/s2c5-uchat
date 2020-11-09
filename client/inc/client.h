@@ -40,6 +40,7 @@ typedef struct s_info {
 
 //UTILS
 t_info *mx_validate_args(int argc, char *argv[]);
+t_info *mx_info_new();
 void mx_info_init(t_info **info);
 void mx_init_gtk(t_info *info);
 

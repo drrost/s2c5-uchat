@@ -4,6 +4,18 @@
 
 #include <client.h>
 
+#define GET (void *)-1
+
+t_info *gs_info(t_info *in) {
+    static t_info *info = 0;
+    if (info == 0)
+        info = mx_info_new();
+    if (in == GET)
+        return info;
+    info = in;
+    return info;
+}
+
 void mx_insert_password_handler(GtkEntry *entry) {
     const gchar *pass = gtk_entry_get_text(entry);
     pass++;
@@ -16,6 +28,7 @@ static bool mx_check_valid(char *login, char *password) {
 }
 
 void mx_do_login(t_info *info) {
+    info = gs_info(GET);
     const char *login = gtk_entry_get_text(GTK_ENTRY(info->widgets->s_signin->username_entry));
     const char *password = gtk_entry_get_text(GTK_ENTRY(info->widgets->s_signin->password_entry));
     if (mx_check_valid((char *)login, (char *)password)) {
@@ -57,12 +70,13 @@ void mx_init_widgets(GtkBuilder *builder, t_window_widgets *widgets) {
 }
 
 void mx_signin_handler(t_info *info) {
+    gs_info(info);
+
     t_signin *window = info->widgets->s_signin;
 
     g_signal_connect(GTK_WIDGET(window->login_window), "destroy", (GCallback)gtk_main_quit, NULL);
     //g_signal_connect(GTK_WIDGET(window->username_entry), "insert_text", (GCallback)mx_insert_password_handler, NULL);
     g_signal_connect(GTK_WIDGET(window->login_button),"clicked", (GCallback)mx_do_login, info);
-
 }
 
 void mx_event_handler_connect(t_info *info) {
