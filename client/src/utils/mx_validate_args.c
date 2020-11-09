@@ -31,7 +31,6 @@ static bool mx_check_ip(char *argv[], char **ip) {
 		return false;
 	}
 	*ip = new_ip;
-	mx_strdel(&new_ip);
 	return true;
 }
 
@@ -58,5 +57,6 @@ t_info *mx_validate_args(int argc, char *argv[]) {
 	info = (t_info *)malloc(sizeof(t_info));
 	info->ip = ip;
 	info->port = port;
+	//mx_strdel(&ip);
 	return info;
 }
