@@ -21,6 +21,7 @@ typedef struct s_user_info {
     char id;
     char *password;
     char *login;
+    bool logged;
     char *name;
     char *first_name;
     char *last_name;

@@ -32,8 +32,9 @@ void mx_do_login(t_info *info) {
     const char *login = gtk_entry_get_text(GTK_ENTRY(info->widgets->s_signin->username_entry));
     const char *password = gtk_entry_get_text(GTK_ENTRY(info->widgets->s_signin->password_entry));
     if (mx_check_valid((char *)login, (char *)password)) {
-        info->user_info->login = mx_strdup(login);
-        info->user_info->password = mx_strdup(password);
+        info->user_info->login = (char *)login;
+        info->user_info->password = (char *)password;
+        info->user_info->logged = true;
     }
     //if not OK -> show label "Your login or username is not valid"
 }

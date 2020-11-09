@@ -72,9 +72,8 @@ int mx_change_window(t_info *info, int window) {
 }
 
 bool mx_check_login(t_info *info) {
-    if (mx_streq(info->user_info->login, "login") && mx_streq(info->user_info->password, "password"))
+    if (info->user_info->logged)
         return true;
-    printf("false\n");
     return false;
 }
 
@@ -121,9 +120,10 @@ int main(int argc, char *argv[]) {
     connection->send(request, login_completion);
     mx_request_delete(&request);
     mx_connection_close(&connection);
-    
-    gtk_main();
+    printf("logged: %d\n", info->user_info->logged);
     mx_show_window(info);
+    gtk_main();
+    
 
     mx_check_leaks();
 
