@@ -38,6 +38,54 @@
 //     //gtk_main();
 // }
 
+static void show_signin_page(t_window_widgets *widgets) {
+    printf("login\n");
+    widgets++;
+    // gtk_widget_show(widgets->s_signin->login_window);
+    // gtk_widget_hide(widgets->s_signup->signup_window);
+    // gtk_widget_hide(widgets->s_chat_window->chat_window);
+}
+
+// static void show_signup_page(t_window_widgets *widgets) {
+//     gtk_widget_show(widgets->s_signup->signup_window);
+//     gtk_widget_hide(widgets->s_signin->login_window);
+//     gtk_widget_hide(widgets->s_chat_window->chat_window);
+// }
+
+static void show_chat_page(t_window_widgets *widgets) {
+    printf("chat\n");
+    widgets++;
+    // gtk_widget_show(widgets->s_chat_window->chat_window);
+    // gtk_widget_hide(widgets->s_signup->signup_window);
+    // gtk_widget_hide(widgets->s_signin->login_window);
+}
+
+
+int mx_change_window(t_info *info, int window) {
+    if (window == MX_SIGNIN_WINDOW)
+        show_signin_page(info->widgets);
+    //else if (window == MX_SIGNUP_WINDOW)
+        //show_signup_page(info->widgets);
+    else if (window == MX_CHAT_WINDOW)
+        show_chat_page(info->widgets);
+    return 0;
+}
+
+bool mx_check_login(t_info *info) {
+    if (mx_streq(info->user_info->login, "login") && mx_streq(info->user_info->password, "password"))
+        return true;
+    printf("false\n");
+    return false;
+}
+
+static void mx_show_window(t_info *info) {
+    if (mx_check_login(info))
+        mx_change_window(info, MX_CHAT_WINDOW);
+    else
+        mx_change_window(info, MX_SIGNIN_WINDOW);
+}
+
+
 
 void mx_init(t_info **info) {
     // pthread_t thread_listen;
@@ -53,11 +101,11 @@ void login_completion(e_connection_code code, t_response *response) {
         mx_printline("Connection error");
     else if (response->code == E_STATUS_CODE_OK)
         mx_printline("Logged in successfully");
-    else {
-        t_error *error = mx_error(response->body);
-        error->print(error);
-        mx_error_del(&error);
-    }
+    // else {
+    //     t_error *error = mx_error(response->body);
+    //     error->print(error);
+    //     mx_error_del(&error);
+    // }
     mx_response_delete(&response);
 }
 
@@ -73,7 +121,9 @@ int main(int argc, char *argv[]) {
     connection->send(request, login_completion);
     mx_request_delete(&request);
     mx_connection_close(&connection);
+    
     gtk_main();
+    mx_show_window(info);
 
     mx_check_leaks();
 

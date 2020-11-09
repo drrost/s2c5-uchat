@@ -13,10 +13,14 @@
 #include <arpa/inet.h>
 #include "libmx.h"
 
+
+
 typedef struct s_signin t_signin;
 
 typedef struct s_user_info {
     char id;
+    char *password;
+    char *login;
     char *name;
     char *first_name;
     char *last_name;
@@ -52,6 +56,15 @@ struct s_signin {
     GtkWidget *register_button;
     GtkWidget *login_button;
 };
+
+typedef enum {
+    MX_SIGNIN_WINDOW,
+    MX_SIGNUP_WINDOW,
+    MX_CHAT_WINDOW
+} t_windows;
+
+#define MX_SIGNIN_WINDOW 0
+#define MX_CHAT_WINDOW 1
 
 // GtkWidget *login_window;
 // GtkWidget *login_grid;
