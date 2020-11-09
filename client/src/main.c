@@ -3,6 +3,7 @@
 //
 
 #include <client.h>
+#include <mx_connection.h>
 
 // void mx_insert_password_handler(GtkEntry *entry) {
 //     const gchar *pass = gtk_entry_get_text(entry);
@@ -47,12 +48,31 @@ void mx_init(t_info **info) {
     //mx_connect(*info);
 }
 
+void login_completion(e_connection_code code, t_response *response) {
+    if (code != E_CONNECTION_CODE_OK)
+        mx_printline("Connection error");
+    else if (response->code == E_STATUS_CODE_OK)
+        mx_printline("Logged in successfully");
+    else {
+        t_error *error = mx_error(response->body);
+        error->print(error);
+        mx_error_del(&error);
+    }
+    mx_response_delete(&response);
+}
+
 int main(int argc, char *argv[]) {
     t_info *info = 0;
     info = mx_validate_args(argc, argv);
 
     gtk_init(&argc, &argv);
     mx_init(&info);
+
+    t_connection *connection = mx_connection_open(info->ip, info->port);
+    t_request *request = mx_request_login("user", "password");
+    connection->send(request, login_completion);
+    mx_request_delete(&request);
+    mx_connection_close(&connection);
     gtk_main();
 
     mx_check_leaks();
