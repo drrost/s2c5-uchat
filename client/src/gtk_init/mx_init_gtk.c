@@ -34,10 +34,12 @@ void mx_do_login(t_info *info) {
     if (!login || !*login) {
         gtk_widget_grab_focus(info->widgets->s_signin->username_entry);
         gtk_label_set_text(GTK_LABEL(info->widgets->s_signin->status_label), "Invalid login");
+        gtk_widget_set_name(info->widgets->s_signin->status_label, "status_label");
         return;
     } else if (!password || !*password) {
         gtk_widget_grab_focus(info->widgets->s_signin->password_entry);
         gtk_label_set_text(GTK_LABEL(info->widgets->s_signin->status_label), "Invalid password");
+        gtk_widget_set_name(info->widgets->s_signin->status_label, "status_label");
         return;
     }
 }
