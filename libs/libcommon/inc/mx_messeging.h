@@ -8,6 +8,7 @@
 
 #include <libmx.h>
 #include <json.h>
+#include <arpa/inet.h>
 
 typedef enum {
     E_MSGTYPE_NONE = 0,
@@ -48,6 +49,7 @@ t_request *mx_request_chat_messages(char *auth_token, char *chat_id);
 //
 t_response *mx_response_new();
 void mx_response_delete(t_response **response);
+t_response *mx_response_from_raw_data(struct iovec *message);
 
 // Error
 //

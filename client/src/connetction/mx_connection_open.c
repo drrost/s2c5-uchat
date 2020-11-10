@@ -3,10 +3,6 @@
 //
 
 #include <mx_connection.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <string.h>
 
 static void connect_socket(t_connection *connection) {
     struct sockaddr_in serv_addr;
@@ -68,10 +64,12 @@ static void mx_send(t_connection *this,
     free(message.iov_base);
 
     char *buffer = mx_strnew(1024);
-    recv(this->socket, buffer, 1024, 0);
+    int size = recv(this->socket, buffer, 1024, 0);
     fprintf(stdout, "%s\n", buffer);
 
-    t_response *response = mx_response_mock_for(request);
+    message.iov_base = buffer;
+    message.iov_len = size;
+    t_response *response = mx_response_from_raw_data(&message);
     completion(E_CONNECTION_CODE_OK, response);
 
     mx_strdel(&buffer);
@@ -82,7 +80,7 @@ t_connection *mx_connection_open(const char *ip, int port) {
     instance->ip = mx_strdup(ip);
     instance->port = port;
 
-    bool mock = true;
+    bool mock = false;
     if (mock)
         instance->send = send_mock;
     else {

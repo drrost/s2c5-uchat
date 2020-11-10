@@ -6,6 +6,10 @@
 #define SERVER_MX_SERVER_H
 
 #include <mx_messeging.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <string.h>
 
 typedef enum {
     E_CONNECTION_CODE_NONE = 0,

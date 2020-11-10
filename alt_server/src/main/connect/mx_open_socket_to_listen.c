@@ -19,8 +19,9 @@ t_socket_connection mx_open_socket_to_listen(int port) {
     address.sin_addr.s_addr = INADDR_ANY;
     address.sin_port = htons(port);
 
-    if (bind(connection.fd, (struct sockaddr *)&address,
-             sizeof(address)) < 0) {
+    int res = bind(connection.fd, (struct sockaddr *)&address,
+         sizeof(address));
+    if (res < 0) {
         mx_printerr("bind() failed\n");
         exit(EXIT_FAILURE);
     }
@@ -52,7 +53,8 @@ void mx_accept_from_socket(t_socket_connection connection) {
     mx_log_d("SRV: Received request of type:",
              buffer + sizeof(int) * 2);
 
-    char *message = "{\"code\":200,\"token\":\"iJmpOafDYHIlC9hKBzizQVgoUnGZf\"}";
+    char *message = "{\"code\":200,\"type\":1,"
+                    "\"token\":\"iJmpOafDYHIlC9hKBzizQVgoUnGZf\"}";
     int size = mx_strlen(message);
     send(socket, message, size, 0);
 
