@@ -21,6 +21,7 @@ typedef struct s_user_info {
     char id;
     char *password;
     char *login;
+    bool logged;
     char *name;
     char *first_name;
     char *last_name;
@@ -56,6 +57,7 @@ struct s_signin {
     GtkWidget *login_layout;
     GtkWidget *register_button;
     GtkWidget *login_button;
+    GtkWidget *status_label;
 };
 
 typedef enum {
@@ -67,13 +69,6 @@ typedef enum {
 #define MX_SIGNIN_WINDOW 0
 #define MX_CHAT_WINDOW 1
 
-// GtkWidget *login_window;
-// GtkWidget *login_grid;
-// GtkWidget *username_entry;
-// GtkWidget *password_entry;
-// GtkWidget *login_layout;
-// GtkWidget *register_button;
-// GtkWidget *login_button;
 GtkBuilder *builder;
 
 #endif

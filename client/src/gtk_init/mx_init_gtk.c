@@ -16,11 +16,6 @@ t_info *gs_info(t_info *in) {
     return info;
 }
 
-void mx_insert_password_handler(GtkEntry *entry) {
-    const gchar *pass = gtk_entry_get_text(entry);
-    pass++;
-}
-
 static bool mx_check_valid(char *login, char *password) {
     if (login[0] == '\0' || password[0] == '\0')
         return false;
@@ -32,10 +27,21 @@ void mx_do_login(t_info *info) {
     const char *login = gtk_entry_get_text(GTK_ENTRY(info->widgets->s_signin->username_entry));
     const char *password = gtk_entry_get_text(GTK_ENTRY(info->widgets->s_signin->password_entry));
     if (mx_check_valid((char *)login, (char *)password)) {
-        info->user_info->login = mx_strdup(login);
-        info->user_info->password = mx_strdup(password);
+        info->user_info->login = (char *)login;
+        info->user_info->password = (char *)password;
+        info->user_info->logged = true;
+    } 
+    if (!login || !*login) {
+        gtk_widget_grab_focus(info->widgets->s_signin->username_entry);
+        gtk_label_set_text(GTK_LABEL(info->widgets->s_signin->status_label), "Invalid login");
+        gtk_widget_set_name(info->widgets->s_signin->status_label, "status_label");
+        return;
+    } else if (!password || !*password) {
+        gtk_widget_grab_focus(info->widgets->s_signin->password_entry);
+        gtk_label_set_text(GTK_LABEL(info->widgets->s_signin->status_label), "Invalid password");
+        gtk_widget_set_name(info->widgets->s_signin->status_label, "status_label");
+        return;
     }
-    //if not OK -> show label "Your login or username is not valid"
 }
 
 void mx_css_connect(void) {
@@ -60,6 +66,7 @@ void mx_init_signin_window(GtkBuilder *builder, t_signin *signin) {
     signin->login_layout = mx_build(builder, "login_layout");
     signin->register_button = mx_build(builder, "register_button");
     signin->login_button = mx_build(builder, "login_button");
+    signin->status_label = mx_build(builder, "status_label");
 }
 
 void mx_init_widgets(GtkBuilder *builder, t_window_widgets *widgets) {
@@ -75,7 +82,6 @@ void mx_signin_handler(t_info *info) {
     t_signin *window = info->widgets->s_signin;
 
     g_signal_connect(GTK_WIDGET(window->login_window), "destroy", (GCallback)gtk_main_quit, NULL);
-    //g_signal_connect(GTK_WIDGET(window->username_entry), "insert_text", (GCallback)mx_insert_password_handler, NULL);
     g_signal_connect(GTK_WIDGET(window->login_button),"clicked", (GCallback)mx_do_login, info);
 }
 
