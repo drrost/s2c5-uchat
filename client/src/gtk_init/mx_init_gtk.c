@@ -87,7 +87,7 @@ void mx_init_chat_window(GtkBuilder *builder, t_chat *chat) {
     chat->entry_text_message = mx_build(builder, "entry_text_message");
     chat->Scrolled_window_corespondent = mx_build(builder, "Scrolled_window_corespondent");
     chat->Scrolled_window_corespondent_atribut = mx_build(builder, "Scrolled_window_corespondent_atribut");
-    chat->Scrolled_window_corespondent_list = mx_build(builder, "Scrolled_window_corespondent_list");
+    chat->Scrolled_corespondent_list = mx_build(builder, "Scrolled_window_corespondent_list");
     chat->send_button = mx_build(builder, "send_button");
     gtk_widget_set_name(chat->send_button, "send_button");
     GtkWidget *image = gtk_image_new_from_file("resources/media/send.png");
@@ -116,9 +116,31 @@ void mx_signin_handler(t_info *info) {
     g_signal_connect(GTK_WIDGET(window->login_button),"clicked", (GCallback)mx_do_login, info);
 }
 
+// void mx_add_listbox_item(GtkWidget *listbox, char *message) {
+//     GtkWidget *item;
+//     item = gtk_list_item_new_with_label(message);
+//     gtk_container_add(GTK_CONTAINER(listbox), item);
+//     gtk_widget_show(item);
+// }
+
+void mx_send_message(t_info *info) {
+    info = gs_info(GET);
+    const char *message = gtk_entry_get_text(GTK_ENTRY(info->widgets->s_chat->entry_text_message));
+    printf("%s\n", message);
+    // GtkWidget *label_new;
+    // label_new = gtk_label_new(message);
+    // gtk_label_set_line_wrap((GtkLabel *)label_new, TRUE);
+    // gtk_label_set_max_width_chars(GTK_LABEL(label_new), 40);
+    // gtk_label_set_line_wrap_mode((GtkLabel *)label_new, PANGO_WRAP_WORD_CHAR);
+    // //mx_add_listbox_item(info->widgets->s_chat->Scrolled_corespondent_list, message);
+    // gtk_container_add(GTK_CONTAINER(info->widgets->s_chat->Scrolled_corespondent_list), label_new);
+}
+
 void mx_chat_handler(t_info *info) {
+    gs_info(info);
     t_chat *chat = info->widgets->s_chat;
     g_signal_connect(GTK_WIDGET(chat->window_main_chat), "destroy", G_CALLBACK(gtk_main_quit), NULL);
+    g_signal_connect(GTK_WIDGET(chat->send_button), "clicked", (GCallback)mx_send_message, info);
 }
 
 void mx_event_handler_connect(t_info *info) {

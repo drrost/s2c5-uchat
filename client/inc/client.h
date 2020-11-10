@@ -81,7 +81,7 @@ struct s_chat {
     GtkWidget *Scrolled_window_corespondent;
     //GtkBuilder *send_button;                                                      
     GtkWidget *Scrolled_window_corespondent_atribut;
-    GtkWidget *Scrolled_window_corespondent_list;
+    GtkWidget *Scrolled_corespondent_list;
     GtkWidget *send_button;
 };
 
