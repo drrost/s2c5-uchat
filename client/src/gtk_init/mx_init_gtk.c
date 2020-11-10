@@ -38,10 +38,11 @@ void mx_do_login(t_info *info) {
     } 
     if (!login || !*login) {
         gtk_widget_grab_focus(info->widgets->s_signin->username_entry);
-        //gtk_label_ser_text(GTK_LABEL(statusLabel, "Invalid login"));
+        gtk_label_set_text(GTK_LABEL(info->widgets->s_signin->status_label), "Invalid login");
         return;
     } else if (!password || !*password) {
         gtk_widget_grab_focus(info->widgets->s_signin->password_entry);
+        gtk_label_set_text(GTK_LABEL(info->widgets->s_signin->status_label), "Invalid password");
         return;
     }
     //if not OK -> show label "Your login or username is not valid"
@@ -69,6 +70,7 @@ void mx_init_signin_window(GtkBuilder *builder, t_signin *signin) {
     signin->login_layout = mx_build(builder, "login_layout");
     signin->register_button = mx_build(builder, "register_button");
     signin->login_button = mx_build(builder, "login_button");
+    signin->status_label = mx_build(builder, "status_label");
 }
 
 void mx_init_widgets(GtkBuilder *builder, t_window_widgets *widgets) {

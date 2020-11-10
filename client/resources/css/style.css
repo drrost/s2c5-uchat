@@ -4,6 +4,12 @@
     	background-image: linear-gradient(rgba(232, 203, 192, 0.521), rgba(99, 111, 164, 1));
 	}
 
+	#status_label{
+		color: red;
+		background-image: linear-gradient(rgba(232, 203, 192, 0.521), rgba(99, 111, 164, 1));
+		font-weight: 600;
+	}
+
 	button {
 		border-radius: 5px;
 	    border-width: 0px;

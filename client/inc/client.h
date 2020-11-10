@@ -57,6 +57,7 @@ struct s_signin {
     GtkWidget *login_layout;
     GtkWidget *register_button;
     GtkWidget *login_button;
+    GtkWidget *status_label;
 };
 
 typedef enum {
