@@ -11,7 +11,7 @@
 #include <arpa/inet.h>
 
 typedef enum {
-    E_MSGTYPE_NONE = 0,
+    E_MSGTYPE_UNKNOWN = 0,
     E_MSGTYPE_LOGIN,
     E_MSGTYPE_CHATLIST,
 } e_msg_type;
@@ -41,9 +41,13 @@ typedef struct {
 t_request *mx_request_new();
 void mx_request_delete(t_request **request);
 
+t_request *mx_request_from_raw_data(const char *buff, int size);
+
 t_request *mx_request_login(const char *login, const char *password);
 t_request *mx_request_chat_list(char *auth_token);
 t_request *mx_request_chat_messages(char *auth_token, char *chat_id);
+
+t_request *mx_request_login_from_node(JsonNode *node_root);
 
 // Responses
 //

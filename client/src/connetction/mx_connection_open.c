@@ -38,20 +38,9 @@ static void send_mock(t_connection *this,
 }
 
 static struct iovec request_to_iovec(t_request *request) {
-    int size_size = sizeof(int);
-    int size_type = sizeof(request->type);
-    int size_body = mx_strlen(request->body);
-
-    int size = size_size + size_type + size_body;
-    char *message = (char *)malloc(size);
-
-    mx_memcpy(message, &size, size_size);
-    mx_memcpy(message + size_size, &(request->type), size_type);
-    mx_memcpy(message + size_size + size_type, request->body, size_body);
-
     struct iovec result;
-    result.iov_len = size;
-    result.iov_base = message;
+    result.iov_len = mx_strlen(request->body);
+    result.iov_base = mx_strdup(request->body);
 
     return result;
 }

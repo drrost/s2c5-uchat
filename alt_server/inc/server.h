@@ -9,6 +9,8 @@
 #include <netinet/in.h>
 #include <unistd.h>
 
+#include <mx_messeging.h>
+
 typedef struct {
     struct sockaddr_in address;
     int fd;

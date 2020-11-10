@@ -48,10 +48,12 @@ void mx_accept_from_socket(t_socket_connection connection) {
     }
 
     val_read = read(socket, buffer, buff_size);
-    mx_log_di("SRV: Received data of size:", (int)*buffer);
-    mx_log_di("SRV: Received request of type:", (int)*(buffer + sizeof(int)));
-    mx_log_d("SRV: Received request of type:",
-             buffer + sizeof(int) * 2);
+    mx_log_di("SRV: Received data of size:", val_read);
+    mx_log_d("SRV: Received request body:", buffer);
+
+    t_request *request = mx_request_from_raw_data(buffer, val_read);
+    // TODO: Handle request
+    mx_request_delete(&request);
 
     char *message = "{\"code\":200,\"type\":1,"
                     "\"token\":\"iJmpOafDYHIlC9hKBzizQVgoUnGZf\"}";
