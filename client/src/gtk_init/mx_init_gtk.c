@@ -35,6 +35,14 @@ void mx_do_login(t_info *info) {
         info->user_info->login = (char *)login;
         info->user_info->password = (char *)password;
         info->user_info->logged = true;
+    } 
+    if (!login || !*login) {
+        gtk_widget_grab_focus(info->widgets->s_signin->username_entry);
+        //gtk_label_ser_text(GTK_LABEL(statusLabel, "Invalid login"));
+        return;
+    } else if (!password || !*password) {
+        gtk_widget_grab_focus(info->widgets->s_signin->password_entry);
+        return;
     }
     //if not OK -> show label "Your login or username is not valid"
 }
