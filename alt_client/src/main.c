@@ -4,6 +4,7 @@
 #include <arpa/inet.h>
 #include <libmx.h>
 #include <mx_messeging.h>
+#include <mx_connection.h>
 
 static struct iovec compose_login_message() {
     t_request *login_request = mx_request_login("user", "password");
@@ -26,38 +27,34 @@ static struct iovec compose_login_message() {
     return result;
 }
 
+static void print_error(t_response *response) {
+    t_error *error = mx_error_j(response->body);
+    error->print(error);
+    mx_error_del(&error);
+}
+
+static void login_completion(e_connection_code code, t_response *response) {
+    if (code != E_CONNECTION_CODE_OK)
+        mx_printline("Connection error");
+    else if (response->code == E_STATUS_CODE_OK)
+        mx_printline("Logged in successfully");
+    else
+        print_error(response);
+
+    mx_response_delete(&response);
+}
+
 int main() {
-    int sock_fd = 0;
-    int valread = 0;
-    struct sockaddr_in serv_addr;
-    int port = 7766;
-    char *ip = "127.0.0.1";
-    struct iovec message = compose_login_message();
-    char buffer[1024] = {0};
+    t_connection *connection = mx_connection_open("127.0.0.1", 7766);
 
-    sock_fd = socket(AF_INET, SOCK_STREAM, 0);
-    if (sock_fd < 0) {
-        fprintf(stderr, "Socket creation error\n");
-        return -1;
-    }
+    // Login
+    t_request *request = mx_request_login("user", "password");
+    connection->send(connection, request, login_completion);
+    mx_request_delete(&request);
 
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(port);
+    mx_connection_close(&connection);
 
-    if (inet_pton(AF_INET, ip, &serv_addr.sin_addr) <= 0) {
-        fprintf(stderr, "Invalid address/Address not supported\n");
-        return -1;
-    }
-
-    if (connect(sock_fd, (struct sockaddr *)&serv_addr,
-                sizeof(serv_addr)) < 0) {
-        fprintf(stderr, "Connection failed\n");
-        return -1;
-    }
-
-    send(sock_fd, message.iov_base, message.iov_len, 0);
-    valread = recv(sock_fd, buffer, 1024, 0);
-    fprintf(stdout, "%s\n", buffer);
+    mx_check_leaks();
 
     return 0;
 }
