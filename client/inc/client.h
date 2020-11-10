@@ -82,6 +82,7 @@ struct s_chat {
     //GtkBuilder *send_button;                                                      
     GtkWidget *Scrolled_window_corespondent_atribut;
     GtkWidget *Scrolled_window_corespondent_list;
+    GtkWidget *send_button;
 };
 
 typedef enum {

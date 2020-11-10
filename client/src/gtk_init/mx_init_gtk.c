@@ -61,6 +61,8 @@ GtkWidget *mx_build(GtkBuilder *builder, char *id) {
 
 void mx_init_signin_window(GtkBuilder *builder, t_signin *signin) {
     signin->login_window = mx_build(builder, "login_window");
+    gtk_widget_set_name(signin->login_window, "login_window");
+
     signin->login_grid = mx_build(builder, "login_grid");
     signin->username_entry = mx_build(builder, "username_entry");
     signin->password_entry = mx_build(builder, "password_entry");
@@ -76,6 +78,7 @@ void mx_init_chat_window(GtkBuilder *builder, t_chat *chat) {
     chat->chats_window = mx_build(builder, "chats_window");
     chat->Scrolled_window_chats = mx_build(builder, "Scrolled_window_chats");
     chat->fiend_entry = mx_build(builder, "fiend_entry");
+    gtk_entry_set_placeholder_text(GTK_ENTRY(chat->fiend_entry), "Type here to search");
     chat->Scrolled_chats_list = mx_build(builder, "Scrolled_chats_list");
     chat->Scrolled_window_message = mx_build(builder, "Scrolled_window_message");
     chat->image_user = mx_build(builder, "image_user");
@@ -85,6 +88,16 @@ void mx_init_chat_window(GtkBuilder *builder, t_chat *chat) {
     chat->Scrolled_window_corespondent = mx_build(builder, "Scrolled_window_corespondent");
     chat->Scrolled_window_corespondent_atribut = mx_build(builder, "Scrolled_window_corespondent_atribut");
     chat->Scrolled_window_corespondent_list = mx_build(builder, "Scrolled_window_corespondent_list");
+    chat->send_button = mx_build(builder, "send_button");
+    gtk_widget_set_name(chat->send_button, "send_button");
+    GtkWidget *image = gtk_image_new_from_file("resources/media/send.png");
+    //gtk_image_set_pixel_size(GTK_IMAGE(image), 2);
+    GdkPixbuf *pb;
+    pb = gdk_pixbuf_new_from_file("resources/media/send.png", NULL);
+    pb = gdk_pixbuf_scale_simple(pb, 50, 50, GDK_INTERP_BILINEAR);
+    gtk_image_set_from_pixbuf(GTK_IMAGE(image), pb);
+    gtk_button_set_image(GTK_BUTTON(chat->send_button), image);
+    gtk_entry_set_placeholder_text(GTK_ENTRY(chat->entry_text_message), "Start typing...");
 }
 
 void mx_init_widgets(t_window_widgets *widgets) {

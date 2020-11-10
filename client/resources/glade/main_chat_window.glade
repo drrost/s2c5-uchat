@@ -160,7 +160,6 @@
             </child>
             <child>
               <object class="GtkButton" id="send_button">
-                <property name="label" translatable="yes">button</property>
                 <property name="width-request">50</property>
                 <property name="height-request">50</property>
                 <property name="visible">True</property>

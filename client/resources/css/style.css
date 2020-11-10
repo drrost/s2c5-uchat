@@ -1,5 +1,5 @@
 
-	window {
+	#login_window {
 		border: 5px double grey;
     	background-image: linear-gradient(rgba(232, 203, 192, 0.521), rgba(99, 111, 164, 1));
 	}
@@ -13,6 +13,11 @@
 		margin-top:  10px; 
 		font-weight: 500;
 	}
+
+/*	#send_button {
+		color: white;
+		background-image: linear-gradient(rgba(211, 211, 211, 0.521), rgba(211, 211, 211, 1));
+	}*/
 
 	button {
 		border-radius: 5px;
