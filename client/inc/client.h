@@ -16,6 +16,7 @@
 
 
 typedef struct s_signin t_signin;
+typedef struct s_chat t_chat;
 
 typedef struct s_user_info {
     char id;
@@ -28,7 +29,10 @@ typedef struct s_user_info {
 }              t_user_info;
 
 typedef struct s_window_widgets {
+    GtkBuilder *builder;
+    GtkBuilder *builder_window2;
     t_signin *s_signin;
+    t_chat *s_chat;
 }              t_window_widgets;
 
 typedef struct s_info {
@@ -44,6 +48,7 @@ t_info *mx_validate_args(int argc, char *argv[]);
 t_info *mx_info_new();
 void mx_info_init(t_info **info);
 void mx_init_gtk(t_info *info);
+void mx_set_chat_settings(t_chat *chat);
 
 //Connection
 void mx_connect(t_info *info);
@@ -60,6 +65,25 @@ struct s_signin {
     GtkWidget *status_label;
 };
 
+struct s_chat {
+    GtkWidget *window_main_chat;
+    GtkWidget *window_delim2;
+    GtkWidget *chats_window;
+    GtkWidget *Scrolled_window_chats;
+    GtkWidget *fiend_entry;
+    GtkWidget *Scrolled_chats_list;
+    GtkWidget *Scrolled_window_message;
+    GtkWidget *user_login_message;
+    GtkWidget *image_user;
+    GtkWidget *window_text_message_scrolled;
+    GtkWidget *window_text_message_scrolled_atribut;
+    GtkWidget *entry_text_message;
+    GtkWidget *Scrolled_window_corespondent;
+    //GtkBuilder *send_button;                                                      
+    GtkWidget *Scrolled_window_corespondent_atribut;
+    GtkWidget *Scrolled_window_corespondent_list;
+};
+
 typedef enum {
     MX_SIGNIN_WINDOW,
     MX_SIGNUP_WINDOW,
@@ -69,6 +93,6 @@ typedef enum {
 #define MX_SIGNIN_WINDOW 0
 #define MX_CHAT_WINDOW 1
 
-GtkBuilder *builder;
+
 
 #endif
