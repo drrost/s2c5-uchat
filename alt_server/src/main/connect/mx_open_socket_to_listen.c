@@ -52,13 +52,12 @@ void mx_accept_from_socket(t_socket_connection connection) {
     mx_log_d("SRV: Received request body:", buffer);
 
     t_request *request = mx_request_from_raw_data(buffer, val_read);
-    // TODO: Handle request
+    t_response *response = mx_handle_request(request);
     mx_request_delete(&request);
 
-    char *message = "{\"code\":200,\"type\":1,"
-                    "\"token\":\"iJmpOafDYHIlC9hKBzizQVgoUnGZf\"}";
-    int size = mx_strlen(message);
-    send(socket, message, size, 0);
+    struct iovec message = mx_response_to_iovec(response);
+    send(socket, message.iov_base, message.iov_len, 0);
+    mx_strdel(&(message.iov_base));
 
     mx_strdel(&buffer);
 }

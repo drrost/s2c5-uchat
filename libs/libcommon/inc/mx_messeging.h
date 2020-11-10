@@ -19,6 +19,7 @@ typedef enum {
 typedef struct {
     e_msg_type type;
     char *body;
+    JsonNode *json;
 } t_request;
 
 typedef enum {
@@ -42,6 +43,7 @@ t_request *mx_request_new();
 void mx_request_delete(t_request **request);
 
 t_request *mx_request_from_raw_data(const char *buff, int size);
+struct iovec mx_request_to_iovec(t_request *request);
 
 t_request *mx_request_login(const char *login, const char *password);
 t_request *mx_request_chat_list(char *auth_token);
@@ -53,7 +55,9 @@ t_request *mx_request_login_from_node(JsonNode *node_root);
 //
 t_response *mx_response_new();
 void mx_response_delete(t_response **response);
+
 t_response *mx_response_from_raw_data(struct iovec *message);
+struct iovec mx_response_to_iovec(t_response *response);
 
 // Error
 //

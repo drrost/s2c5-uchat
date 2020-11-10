@@ -37,18 +37,10 @@ static void send_mock(t_connection *this,
     completion(E_CONNECTION_CODE_OK, response);
 }
 
-static struct iovec request_to_iovec(t_request *request) {
-    struct iovec result;
-    result.iov_len = mx_strlen(request->body);
-    result.iov_base = mx_strdup(request->body);
-
-    return result;
-}
-
 static void mx_send(t_connection *this,
     t_request *request, void (*completion)(e_connection_code, t_response *)) {
 
-    struct iovec message = request_to_iovec(request);
+    struct iovec message = mx_request_to_iovec(request);
     send(this->socket, message.iov_base, message.iov_len, 0);
     free(message.iov_base);
 
@@ -69,7 +61,7 @@ t_connection *mx_connection_open(const char *ip, int port) {
     instance->ip = mx_strdup(ip);
     instance->port = port;
 
-    bool mock = false;
+    bool mock = true;
     if (mock)
         instance->send = send_mock;
     else {

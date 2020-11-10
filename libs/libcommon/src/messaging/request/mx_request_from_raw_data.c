@@ -31,7 +31,7 @@ t_request *mx_request_from_raw_data(const char *buff, int size) {
     if (node_type->number_ == 1)
         request = mx_request_login_from_node(node_root);
 
-    json_delete(node_root);
+    request->json = node_root;
 
     return request;
 }

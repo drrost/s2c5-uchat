@@ -16,7 +16,15 @@ typedef struct {
     int fd;
 } t_socket_connection;
 
+// Connection
+//
 t_socket_connection mx_open_socket_to_listen(int port);
 void mx_accept_from_socket(t_socket_connection connection);
+
+// Endpoints
+//
+t_response *mx_handle_request(t_request *request);
+
+t_response *mx_handle_login(t_request *request);
 
 #endif //INC_05_UCHAT_SERVER_H
