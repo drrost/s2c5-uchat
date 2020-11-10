@@ -74,7 +74,7 @@ int main(int argc, char *argv[]) {
 
     t_connection *connection = mx_connection_open(info->ip, info->port);
     t_request *request = mx_request_login("user", "password");
-    connection->send(request, login_completion);
+    connection->send(connection, request, login_completion);
     mx_request_delete(&request);
     mx_connection_close(&connection);
     

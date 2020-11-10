@@ -13,12 +13,15 @@ typedef enum {
     E_CONNECTION_CODE_FAILED
 } e_connection_code;
 
-typedef struct {
+typedef struct s_connection {
     char *ip;
     int port;
     int socket;
 
-    void (*send)(t_request *, void(*)(e_connection_code, t_response *));
+    void (*send)(struct s_connection *,
+        t_request *, void(*)(e_connection_code, t_response *));
+
+    char *error_message;
 } t_connection;
 
 t_connection *mx_connection_open(const char *ip, int port);

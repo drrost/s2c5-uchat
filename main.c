@@ -59,7 +59,7 @@ static void chat_list_completion(e_connection_code code, t_response *response) {
 
 int main() {
 
-    t_connection *connection = mx_connection_open("127.0.0.1", 12001);
+    t_connection *connection = mx_connection_open("127.0.0.1", 7766);
 
     // Login
     t_request *request = mx_request_login("user", "password");
