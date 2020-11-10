@@ -9,6 +9,12 @@
 #include <netinet/in.h>
 #include <unistd.h>
 
-void mx_open_socket_to_listen(int port);
+typedef struct {
+    struct sockaddr_in address;
+    int fd;
+} t_socket_connection;
+
+t_socket_connection mx_open_socket_to_listen(int port);
+void mx_accept_from_socket(t_socket_connection connection);
 
 #endif //INC_05_UCHAT_SERVER_H
