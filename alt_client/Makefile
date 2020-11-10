@@ -1,6 +1,7 @@
 CC = clang
 CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
-INCS = -I./inc -I../libs/libmx/inc -I../libs/libcommon/inc
+INCS = -I./inc -I../libs/libmx/inc -I../libs/libcommon/inc \
+    -I../client/inc -I../client/inc/private
 LIBS = -L../libs/libmx -lmx -L../libs/libcommon -lcommon
 
 # Folders
@@ -12,7 +13,10 @@ BINARY = uchat
 CFILES = $(wildcard src/*.c) $(wildcard src/*/*.c) $(wildcard src/*/*/*.c) \
 		 $(wildcard src/*/*/*/*.c) \
 		 $(wildcard src/*/*/*/*/*.c) \
-		 $(wildcard src/*/*/*/*/*/*.c)
+		 $(wildcard src/*/*/*/*/*/*.c) \
+		 $(wildcard ../client/src/connetction/*.c) \
+		 $(wildcard ../client/src/connetction/mock/*.c)
+
 OBJ_DIR = obj
 
 CONFIG = `pkg-config --libs --cflags gtk+-3.0`
