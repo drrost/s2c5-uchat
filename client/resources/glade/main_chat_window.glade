@@ -2,269 +2,181 @@
 <!-- Generated with glade 3.38.1 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
-  <object class="GtkWindow">
+  <object class="GtkWindow" id="window_main_chat">
     <property name="can-focus">False</property>
+    <property name="resizable">False</property>
+    <property name="default-width">800</property>
+    <property name="default-height">600</property>
     <child>
-      <object class="GtkFixed">
+      <object class="GtkBox" id="window_delim2">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="spacing">4</property>
         <child>
-          <object class="GtkBox">
-            <property name="width-request">200</property>
-            <property name="height-request">43</property>
+          <object class="GtkFixed" id="chats_window">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="spacing">5</property>
             <child>
-              <object class="GtkImage">
+              <object class="GtkScrolledWindow" id="Scrolled_window_chats">
+                <property name="width-request">344</property>
+                <property name="height-request">744</property>
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="stock">gtk-orientation-portrait</property>
+                <property name="can-focus">True</property>
+                <property name="shadow-type">in</property>
+                <child>
+                  <object class="GtkViewport" id="Scrolled_window_chats_atribut">
+                    <property name="width-request">350</property>
+                    <property name="height-request">750</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <child>
+                      <object class="GtkListBox" id="Scrolled_chats_list">
+                        <property name="width-request">350</property>
+                        <property name="height-request">500</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
               </object>
               <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
+                <property name="x">4</property>
+                <property name="y">54</property>
               </packing>
             </child>
             <child>
-              <object class="GtkLabel">
+              <object class="GtkSearchEntry" id="fiend_entry">
+                <property name="width-request">350</property>
+                <property name="height-request">50</property>
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Name</property>
-                <attributes>
-                  <attribute name="font-desc" value="Andale Mono 10"/>
-                  <attribute name="weight" value="bold"/>
-                  <attribute name="variant" value="normal"/>
-                </attributes>
+                <property name="can-focus">True</property>
+                <property name="primary-icon-name">edit-find-symbolic</property>
+                <property name="primary-icon-activatable">False</property>
+                <property name="primary-icon-sensitive">False</property>
               </object>
               <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="pack-type">end</property>
-                <property name="position">35</property>
+                <property name="x">1</property>
+                <property name="y">1</property>
               </packing>
             </child>
           </object>
           <packing>
-            <property name="x">815</property>
-            <property name="y">1</property>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
           </packing>
         </child>
         <child>
-          <object class="GtkPaned">
-            <property name="width-request">1024</property>
-            <property name="height-request">706</property>
+          <object class="GtkFixed" id="Scrolled_window_message">
+            <property name="width-request">450</property>
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="position">160</property>
+            <property name="can-focus">False</property>
             <child>
-              <object class="GtkBox">
+              <object class="GtkButton" id="user_login_message">
+                <property name="label" translatable="yes">button</property>
+                <property name="width-request">380</property>
+                <property name="height-request">28</property>
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="orientation">vertical</property>
-                <child>
-                  <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <child>
-                      <object class="GtkSearchEntry">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="primary-icon-name">edit-find-symbolic</property>
-                        <property name="primary-icon-activatable">False</property>
-                        <property name="primary-icon-sensitive">False</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton">
-                        <property name="label" translatable="yes">new</property>
-                        <property name="width-request">0</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                        <property name="vexpand">False</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkScrolledWindow">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="hscrollbar-policy">never</property>
-                    <property name="shadow-type">in</property>
-                    <child>
-                      <object class="GtkViewport">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <child>
-                          <placeholder/>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">True</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
               </object>
               <packing>
-                <property name="resize">False</property>
-                <property name="shrink">True</property>
+                <property name="x">58</property>
+                <property name="y">19</property>
               </packing>
             </child>
             <child>
-              <object class="GtkBox">
+              <object class="GtkImage" id="image_user">
+                <property name="width-request">50</property>
+                <property name="height-request">50</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="orientation">vertical</property>
+                <property name="stock">gtk-missing-image</property>
+              </object>
+              <packing>
+                <property name="x">3</property>
+                <property name="y">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow" id="window_text_message_scrolled">
+                <property name="width-request">360</property>
+                <property name="height-request">138</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="shadow-type">in</property>
                 <child>
-                  <object class="GtkBox">
+                  <object class="GtkViewport" id="window_text_message_scrolled_atribut">
+                    <property name="width-request">450</property>
+                    <property name="height-request">146</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="spacing">1</property>
                     <child>
-                      <object class="GtkImage">
-                        <property name="width-request">70</property>
-                        <property name="height-request">40</property>
+                      <object class="GtkEntry" id="entry_text_message">
+                        <property name="width-request">450</property>
+                        <property name="height-request">146</property>
                         <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="stock">gtk-orientation-portrait</property>
-                        <property name="icon_size">5</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="width-request">100</property>
-                        <property name="height-request">30</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Friend Name</property>
-                        <property name="width-chars">11</property>
-                        <property name="max-width-chars">16</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkScrolledWindow">
-                    <property name="height-request">620</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="shadow-type">in</property>
-                    <child>
-                      <object class="GtkViewport">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <child>
-                          <placeholder/>
-                        </child>
+                        <property name="can-focus">True</property>
+
                       </object>
                     </child>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <!-- n-columns=3 n-rows=1 -->
-                  <object class="GtkGrid">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="orientation">vertical</property>
-                    <property name="column-spacing">7</property>
-                    <property name="baseline-row">1</property>
-                    <child>
-                      <object class="GtkEntry">
-                        <property name="width-request">700</property>
-                        <property name="height-request">50</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="max-length">8</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">0</property>
-                        <property name="top-attach">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton">
-                        <property name="label" translatable="yes">button</property>
-                        <property name="height-request">20</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                        <property name="image-position">bottom</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">1</property>
-                        <property name="top-attach">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton">
-                        <property name="label" translatable="yes">button</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                      </object>
-                      <packing>
-                        <property name="left-attach">2</property>
-                        <property name="top-attach">0</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">True</property>
-                    <property name="fill">True</property>
-                    <property name="padding">1</property>
-                    <property name="position">2</property>
-                  </packing>
                 </child>
               </object>
               <packing>
-                <property name="resize">True</property>
-                <property name="shrink">False</property>
+                <property name="x">4</property>
+                <property name="y">656</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow" id="Scrolled_window_corespondent">
+                <property name="width-request">440</property>
+                <property name="height-request">594</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="shadow-type">in</property>
+                <child>
+                  <object class="GtkViewport" id="Scrolled_window_corespondent_atribut">
+                    <property name="width-request">450</property>
+                    <property name="height-request">600</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <child>
+                      <object class="GtkListBox" id="Scrolled_corespondent_list">
+                        <property name="width-request">450</property>
+                        <property name="height-request">600</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="x">4</property>
+                <property name="y">58</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="send_button">
+                <property name="label" translatable="yes">button</property>
+                <property name="width-request">50</property>
+                <property name="height-request">50</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+              </object>
+              <packing>
+                <property name="x">380</property>
+                <property name="y">720</property>
               </packing>
             </child>
           </object>
           <packing>
-            <property name="y">44</property>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
           </packing>
         </child>
       </object>

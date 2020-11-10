@@ -30,6 +30,7 @@ void mx_do_login(t_info *info) {
         info->user_info->login = (char *)login;
         info->user_info->password = (char *)password;
         info->user_info->logged = true;
+        gtk_main_quit();
     } 
     if (!login || !*login) {
         gtk_widget_grab_focus(info->widgets->s_signin->username_entry);
@@ -69,10 +70,27 @@ void mx_init_signin_window(GtkBuilder *builder, t_signin *signin) {
     signin->status_label = mx_build(builder, "status_label");
 }
 
-void mx_init_widgets(GtkBuilder *builder, t_window_widgets *widgets) {
-    mx_init_signin_window(builder, widgets->s_signin);
+void mx_init_chat_window(GtkBuilder *builder, t_chat *chat) {
+    chat->window_main_chat = mx_build(builder, "window_main_chat");
+    chat->window_delim2 = mx_build(builder, "window_delim2");
+    chat->chats_window = mx_build(builder, "chats_window");
+    chat->Scrolled_window_chats = mx_build(builder, "Scrolled_window_chats");
+    chat->fiend_entry = mx_build(builder, "fiend_entry");
+    chat->Scrolled_chats_list = mx_build(builder, "Scrolled_chats_list");
+    chat->Scrolled_window_message = mx_build(builder, "Scrolled_window_message");
+    chat->image_user = mx_build(builder, "image_user");
+    chat->window_text_message_scrolled = mx_build(builder, "window_text_message_scrolled");
+    chat->window_text_message_scrolled_atribut = mx_build(builder, "window_text_message_scrolled_atribut");
+    chat->entry_text_message = mx_build(builder, "entry_text_message");
+    chat->Scrolled_window_corespondent = mx_build(builder, "Scrolled_window_corespondent");
+    chat->Scrolled_window_corespondent_atribut = mx_build(builder, "Scrolled_window_corespondent_atribut");
+    chat->Scrolled_window_corespondent_list = mx_build(builder, "Scrolled_window_corespondent_list");
+}
+
+void mx_init_widgets(t_window_widgets *widgets) {
+    mx_init_signin_window(widgets->builder, widgets->s_signin);
+    mx_init_chat_window(widgets->builder_window2, widgets->s_chat);
     //sign_up window init
-    //chat window init
     //info++;
 }
 
@@ -85,8 +103,14 @@ void mx_signin_handler(t_info *info) {
     g_signal_connect(GTK_WIDGET(window->login_button),"clicked", (GCallback)mx_do_login, info);
 }
 
+void mx_chat_handler(t_info *info) {
+    t_chat *chat = info->widgets->s_chat;
+    g_signal_connect(GTK_WIDGET(chat->window_main_chat), "destroy", G_CALLBACK(gtk_main_quit), NULL);
+}
+
 void mx_event_handler_connect(t_info *info) {
     mx_signin_handler(info);
+    mx_chat_handler(info);
     //sign_up window handlers init
     //chat window handlers init
 }
@@ -96,16 +120,22 @@ void mx_set_signin_settings(t_signin *signin) {
     gtk_widget_show(signin->login_window); //gtk_widget_show_all ??
 }
 
+void mx_set_chat_settings(t_chat *chat) {
+    gtk_widget_show(chat->window_main_chat);
+}
+
 void mx_set_settings_default(t_window_widgets *widgets) {
     mx_set_signin_settings(widgets->s_signin);
+    // mx_set_chat_settings(widgets->s_chat);
     //sign_up window init
-    //chat window init
 }
 
 void mx_builder_connect(t_info *info) {
-    builder = gtk_builder_new_from_file("resources/glade/login_page.glade");
-    gtk_builder_connect_signals(builder, NULL);
-    mx_init_widgets(builder, info->widgets);
+    info->widgets->builder = gtk_builder_new_from_file("resources/glade/login_page.glade");
+    info->widgets->builder_window2 = gtk_builder_new_from_file("resources/glade/main_chat_window.glade");
+    gtk_builder_connect_signals(info->widgets->builder, NULL);
+    gtk_builder_connect_signals(info->widgets->builder_window2, NULL);
+    mx_init_widgets(info->widgets);
     mx_set_settings_default(info->widgets);
 }
 

@@ -6,11 +6,9 @@
 #include <mx_connection.h>
 
 static void show_signin_page(t_window_widgets *widgets) {
-    printf("login\n");
-    widgets++;
-    // gtk_widget_show(widgets->s_signin->login_window);
+     gtk_widget_show(widgets->s_signin->login_window);
     // gtk_widget_hide(widgets->s_signup->signup_window);
-    // gtk_widget_hide(widgets->s_chat_window->chat_window);
+     gtk_widget_hide(widgets->s_chat->window_main_chat);
 }
 
 // static void show_signup_page(t_window_widgets *widgets) {
@@ -20,11 +18,10 @@ static void show_signin_page(t_window_widgets *widgets) {
 // }
 
 static void show_chat_page(t_window_widgets *widgets) {
-    printf("chat\n");
-    widgets++;
-    // gtk_widget_show(widgets->s_chat_window->chat_window);
+     gtk_widget_show(widgets->s_chat->window_main_chat);
     // gtk_widget_hide(widgets->s_signup->signup_window);
-    // gtk_widget_hide(widgets->s_signin->login_window);
+     gtk_widget_hide(widgets->s_signin->login_window);
+     gtk_main();
 }
 
 
@@ -80,9 +77,9 @@ int main(int argc, char *argv[]) {
     connection->send(request, login_completion);
     mx_request_delete(&request);
     mx_connection_close(&connection);
-    mx_show_window(info);
+    
     gtk_main();
-
+mx_show_window(info);
     mx_check_leaks();
 
     return EXIT_SUCCESS;
