@@ -2,8 +2,8 @@
 *~
 obj
 *.a
-uchat-server
 cmake-build-debug/
 CMakeLists.txt
 .idea
 uchat_server
+uchat

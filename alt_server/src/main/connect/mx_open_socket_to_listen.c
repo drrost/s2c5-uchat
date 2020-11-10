@@ -36,7 +36,7 @@ t_socket_connection mx_open_socket_to_listen(int port) {
 void mx_accept_from_socket(t_socket_connection connection) {
     int socket = 0;
     const int buff_size = 1024;
-    char buffer[buff_size] = {0};
+    char *buffer = mx_strnew(buff_size);
     int val_read = 0;
     int addr_size = sizeof(connection.address);
 
@@ -55,4 +55,6 @@ void mx_accept_from_socket(t_socket_connection connection) {
     char *message = "{\"code\":200,\"token\":\"iJmpOafDYHIlC9hKBzizQVgoUnGZf\"}";
     int size = mx_strlen(message);
     send(socket, message, size, 0);
+
+    mx_strdel(&buffer);
 }
