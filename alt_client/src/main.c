@@ -1,4 +1,3 @@
-#include <sys/socket.h>
 #include <libmx.h>
 #include <mx_messeging.h>
 #include <mx_connection.h>

@@ -61,7 +61,7 @@ t_connection *mx_connection_open(const char *ip, int port) {
     instance->ip = mx_strdup(ip);
     instance->port = port;
 
-    bool mock = true;
+    bool mock = false;
     if (mock)
         instance->send = send_mock;
     else {
