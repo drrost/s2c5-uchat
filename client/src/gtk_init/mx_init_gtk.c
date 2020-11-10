@@ -16,11 +16,6 @@ t_info *gs_info(t_info *in) {
     return info;
 }
 
-void mx_insert_password_handler(GtkEntry *entry) {
-    const gchar *pass = gtk_entry_get_text(entry);
-    pass++;
-}
-
 static bool mx_check_valid(char *login, char *password) {
     if (login[0] == '\0' || password[0] == '\0')
         return false;
@@ -45,7 +40,6 @@ void mx_do_login(t_info *info) {
         gtk_label_set_text(GTK_LABEL(info->widgets->s_signin->status_label), "Invalid password");
         return;
     }
-    //if not OK -> show label "Your login or username is not valid"
 }
 
 void mx_css_connect(void) {
@@ -86,7 +80,6 @@ void mx_signin_handler(t_info *info) {
     t_signin *window = info->widgets->s_signin;
 
     g_signal_connect(GTK_WIDGET(window->login_window), "destroy", (GCallback)gtk_main_quit, NULL);
-    //g_signal_connect(GTK_WIDGET(window->username_entry), "insert_text", (GCallback)mx_insert_password_handler, NULL);
     g_signal_connect(GTK_WIDGET(window->login_button),"clicked", (GCallback)mx_do_login, info);
 }
 

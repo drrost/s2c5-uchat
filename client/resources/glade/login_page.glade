@@ -27,7 +27,6 @@
             <property name="margin-top">6</property>
             <property name="max-length">16</property>
             <property name="placeholder-text" translatable="yes">Username</property>
-            <signal name="insert-text" handler="mx_insert_text_handler" swapped="no"/>
             <style>
               <class name="username_entry"/>
             </style>
@@ -45,7 +44,6 @@
             <property name="visibility">False</property>
             <property name="invisible-char">*</property>
             <property name="placeholder-text" translatable="yes">Password</property>
-            <signal name="insert-text" handler="mx_insert_password_handler" swapped="no"/>
           </object>
           <packing>
             <property name="left-attach">1</property>
