@@ -1,7 +1,7 @@
 
 	#login_window {
 		border: 5px double grey;
-    	background-image: linear-gradient(rgba(232, 203, 192, 0.521), rgba(99, 111, 164, 1));
+		background-image: linear-gradient(rgba(221, 213, 210, 0.521), rgba(115, 167, 207, 1));
 	}
 
 	#status_label{
@@ -26,9 +26,13 @@
 	}
 
 	#register_button {
-		background-image: linear-gradient(rgba(65, 131, 215, 0.521), rgba(83, 51, 237, 1));
+		background-image: linear-gradient(rgba(78, 109, 156, 0.521), rgba(78, 109, 156, 1));
 		color: black;
 		font-weight: 600;
+	}
+
+	#register_button:hover {
+		background-image: linear-gradient(rgba(115, 167, 207, 0.521), rgba(115, 167, 207, 1));
 	}
 
 	#login_button {
