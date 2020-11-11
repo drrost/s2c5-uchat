@@ -3,11 +3,12 @@
 //
 
 #include <client.h>
+//#include <mx_data.h>
 
 static void show_signin_page(t_window_widgets *widgets) { //segfault
      gtk_widget_show(widgets->s_signin->login_window);
     // gtk_widget_hide(widgets->s_signup->signup_window);
-     gtk_widget_hide(widgets->s_chat->window_main_chat);
+     gtk_widget_hide(widgets->s_chat_window->window_main_chat);
 }
 
 // static void show_signup_page(t_window_widgets *widgets) {
@@ -17,9 +18,10 @@ static void show_signin_page(t_window_widgets *widgets) { //segfault
 // }
 
 static void show_chat_page(t_window_widgets *widgets) {
-     gtk_widget_show(widgets->s_chat->window_main_chat);
+     gtk_widget_show(widgets->s_chat_window->window_main_chat);
     // gtk_widget_hide(widgets->s_signup->signup_window);
      gtk_widget_hide(widgets->s_signin->login_window);
+
      gtk_main();
 }
 

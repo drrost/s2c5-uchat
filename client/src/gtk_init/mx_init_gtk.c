@@ -72,7 +72,7 @@ void mx_init_signin_window(GtkBuilder *builder, t_signin *signin) {
     signin->status_label = mx_build(builder, "status_label");
 }
 
-void mx_init_chat_window(GtkBuilder *builder, t_chat *chat) {
+void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
     chat->window_main_chat = mx_build(builder, "window_main_chat");
     chat->window_delim2 = mx_build(builder, "window_delim2");
     chat->chats_window = mx_build(builder, "chats_window");
@@ -114,7 +114,7 @@ void mx_init_chat_window(GtkBuilder *builder, t_chat *chat) {
 
 void mx_init_widgets(t_window_widgets *widgets) {
     mx_init_signin_window(widgets->builder, widgets->s_signin);
-    mx_init_chat_window(widgets->builder_window2, widgets->s_chat);
+    mx_init_chat_window(widgets->builder_window2, widgets->s_chat_window);
     //sign_up window init
     //info++;
 }
@@ -130,16 +130,16 @@ void mx_signin_handler(t_info *info) {
 
 void mx_send_message(t_info *info) {
     info = gs_info(GET);
-    const char *message = gtk_entry_get_text(GTK_ENTRY(info->widgets->s_chat->entry_text_message));
+    const char *message = gtk_entry_get_text(GTK_ENTRY(info->widgets->s_chat_window->entry_text_message));
     GtkWidget *row, *label1, *box;
     row = gtk_list_box_new();
     box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     label1 = gtk_label_new(message);
     gtk_container_add(GTK_CONTAINER(row), box);
     gtk_box_pack_start(GTK_BOX(box), label1, TRUE, TRUE, 0);
-    gtk_container_add(GTK_CONTAINER(info->widgets->s_chat->scrolled_corespondent_list), row);
+    gtk_container_add(GTK_CONTAINER(info->widgets->s_chat_window->scrolled_corespondent_list), row);
     gtk_widget_show_all(row);
-    gtk_entry_set_text(GTK_ENTRY(info->widgets->s_chat->entry_text_message), "");
+    gtk_entry_set_text(GTK_ENTRY(info->widgets->s_chat_window->entry_text_message), "");
 }
 
 gboolean mx_send_message_key(__attribute__((unused)) GtkWidget *widget, GdkEventKey *event, __attribute__((unused)) gpointer data) {
@@ -153,7 +153,7 @@ gboolean mx_send_message_key(__attribute__((unused)) GtkWidget *widget, GdkEvent
 
 void mx_chat_handler(t_info *info) {
     gs_info(info);
-    t_chat *chat = info->widgets->s_chat;
+    t_chat_window *chat = info->widgets->s_chat_window;
     g_signal_connect(GTK_WIDGET(chat->window_main_chat), "destroy", G_CALLBACK(gtk_main_quit), NULL);
     g_signal_connect(GTK_WIDGET(chat->send_button), "clicked", (GCallback)mx_send_message, info);
     g_signal_connect(GTK_WIDGET(chat->entry_text_message), "key-release-event", (GCallback)mx_send_message_key, NULL);
@@ -171,7 +171,7 @@ void mx_set_signin_settings(t_signin *signin) {
     gtk_widget_show(signin->login_window); //gtk_widget_show_all ??
 }
 
-void mx_set_chat_settings(t_chat *chat) {
+void mx_set_chat_settings(t_chat_window *chat) {
     gtk_widget_show(chat->window_main_chat);
 }
 

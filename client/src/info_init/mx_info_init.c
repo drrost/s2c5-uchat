@@ -7,7 +7,7 @@
 void mx_init_memory(t_info **info) {
     (*info)->widgets = malloc(sizeof(t_window_widgets));
     (*info)->widgets->s_signin = malloc(sizeof(t_signin));
-    (*info)->widgets->s_chat = malloc(sizeof(t_chat));
+    (*info)->widgets->s_chat_window = malloc(sizeof(t_chat_window));
 }
 
 t_user_info *mx_create_user(void) { //t_info *info
