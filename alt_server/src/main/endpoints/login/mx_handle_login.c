@@ -12,7 +12,7 @@ t_response *mx_handle_login(t_request *request) {
     char *password = json_find_member(request->json, "password")->string_;
 
     // TODO:
-    char *hash = mx_hash(password);
+//    char *hash = mx_hash(password);
 
     if (mx_streq("user", login) && mx_streq("password", password)) {
         response->code = E_STATUS_CODE_OK;

@@ -24,7 +24,7 @@ static t_list *message_list() {
     t_list *list = 0;
 
     size_t size = rd_random_int(10, 50);
-    for (int i = 0; i < size; i++) {
+    for (size_t i = 0; i < size; i++) {
         t_message *message = random_message();
         mx_push_back(&list, message);
     }
