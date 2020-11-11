@@ -8,7 +8,7 @@ void mx_message_del(t_message **message) {
     t_message *instance = *message;
     mx_strdel(&(instance->id));
     mx_strdel(&(instance->chat_id));
-    mx_strdel(&(instance->user_id));
+    mx_strdel(&(instance->sender_id));
     free(*message);
     *message = 0;
 }

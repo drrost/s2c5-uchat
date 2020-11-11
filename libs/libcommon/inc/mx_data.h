@@ -32,7 +32,8 @@ t_user *mx_user_from_json_node(JsonNode *node);
 //
 typedef struct {
     char *id;
-    char *user_id;
+    double time;
+    char *sender_id;
     char *chat_id;
 } t_message;
 
