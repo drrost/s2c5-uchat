@@ -29,12 +29,12 @@ int main(int argc, char *argv[]) {
     gtk_init(&argc, &argv);
     mx_init(&info);
 
-    t_connection *connection = mx_connection_open(info->ip, info->port); //Connection is not established
+    t_connection *connection = mx_connection_open(info->ip,
+                                                  info->port); //Connection is not established
     t_request *request = mx_request_login("user", "password");
     connection->send(connection, request, login_completion);
     mx_request_delete(&request);
-    
-    
+
     gtk_main();
     mx_show_window(info, connection);
     mx_connection_close(&connection);

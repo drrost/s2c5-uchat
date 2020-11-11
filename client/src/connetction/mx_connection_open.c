@@ -30,7 +30,8 @@ static void connect_socket(t_connection *connection) {
 }
 
 static void send_mock(t_connection *this,
-    t_request *request, void (*completion)(e_connection_code, t_response *)) {
+                      t_request *request,
+                      void (*completion)(e_connection_code, t_response *)) {
 
     this++;
     t_response *response = mx_response_mock_for(request);
@@ -38,7 +39,8 @@ static void send_mock(t_connection *this,
 }
 
 static void mx_send(t_connection *this,
-    t_request *request, void (*completion)(e_connection_code, t_response *)) {
+                    t_request *request,
+                    void (*completion)(e_connection_code, t_response *)) {
 
     struct iovec message = mx_request_to_iovec(request);
     send(this->socket, message.iov_base, message.iov_len, 0);

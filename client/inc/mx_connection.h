@@ -23,7 +23,7 @@ typedef struct s_connection {
     int socket;
 
     void (*send)(struct s_connection *,
-        t_request *, void(*)(e_connection_code, t_response *));
+                 t_request *, void(*)(e_connection_code, t_response *));
 
     char *error_message;
 } t_connection;

@@ -5,6 +5,7 @@
 #include <client.h>
 #include <mx_data.h>
 #include <mx_connection.h>
+
 #define GET (void *)-1
 
 static t_info *gs_info(t_info *in) {
@@ -46,9 +47,11 @@ void mx_append_and_print(t_chat *chat, t_window_widgets *widgets) {
         box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
         login = gtk_label_new(user->login);
         gtk_container_add(GTK_CONTAINER(row), box);
-        gtk_box_pack_start(GTK_BOX(box), login, FALSE, FALSE, 15); //TRUE adds spacing
+        gtk_box_pack_start(GTK_BOX(box), login, FALSE, FALSE,
+                           15); //TRUE adds spacing
         gtk_box_set_spacing(GTK_BOX(box), 40);
-        gtk_container_add(GTK_CONTAINER(widgets->s_chat_window->scrolled_chats_list), row);
+        gtk_container_add(
+            GTK_CONTAINER(widgets->s_chat_window->scrolled_chats_list), row);
         gtk_widget_set_name(row, "contact_row");
         gtk_widget_show_all(row);
         list = list->next;
@@ -64,7 +67,8 @@ void mx_show_conversation_list(t_list *list) {
     }
 }
 
-static void chat_list_completion(e_connection_code code, t_response *response) {
+static void
+chat_list_completion(e_connection_code code, t_response *response) {
     if (code != E_CONNECTION_CODE_OK)
         mx_printline("Connection error");
     else if (response->code == E_STATUS_CODE_OK) {
@@ -79,11 +83,10 @@ static void chat_list_completion(e_connection_code code, t_response *response) {
     mx_response_delete(&response);
 }
 
-
 static void show_signin_page(t_window_widgets *widgets) { //segfault
-     gtk_widget_show(widgets->s_signin->login_window);
+    gtk_widget_show(widgets->s_signin->login_window);
     // gtk_widget_hide(widgets->s_signup->signup_window);
-     gtk_widget_hide(widgets->s_chat_window->window_main_chat);
+    gtk_widget_hide(widgets->s_chat_window->window_main_chat);
 }
 
 // static void show_signup_page(t_window_widgets *widgets) {
@@ -92,7 +95,8 @@ static void show_signin_page(t_window_widgets *widgets) { //segfault
 //     gtk_widget_hide(widgets->s_chat_window->chat_window);
 // }
 
-static void show_chat_page(t_window_widgets *widgets, t_connection *connection, const char *login) {
+static void show_chat_page(t_window_widgets *widgets, t_connection *connection,
+                           const char *login) {
 
     //
     char *auth_token = "mTetZt2VaeZLUcxfjKyOZAJbaeo6x";
@@ -100,19 +104,21 @@ static void show_chat_page(t_window_widgets *widgets, t_connection *connection, 
 
     connection->send(connection, request, chat_list_completion);
     mx_request_delete(&request);
-    gtk_label_set_text(GTK_LABEL(widgets->s_chat_window->label_user_name), login);
-     gtk_widget_show(widgets->s_chat_window->window_main_chat);
+    gtk_label_set_text(GTK_LABEL(widgets->s_chat_window->label_user_name),
+                       login);
+    gtk_widget_show(widgets->s_chat_window->window_main_chat);
     // gtk_widget_hide(widgets->s_signup->signup_window);
-     gtk_widget_hide(widgets->s_signin->login_window);
+    gtk_widget_hide(widgets->s_signin->login_window);
 
-     gtk_main();
+    gtk_main();
 }
 
-static int mx_change_window(t_info *info, int window, t_connection *connection) {
+static int
+mx_change_window(t_info *info, int window, t_connection *connection) {
     gs_info(info);
     if (window == MX_SIGNIN_WINDOW)
         show_signin_page(info->widgets);
-    //else if (window == MX_SIGNUP_WINDOW)
+        //else if (window == MX_SIGNUP_WINDOW)
         //show_signup_page(info->widgets);
     else if (window == MX_CHAT_WINDOW)
         show_chat_page(info->widgets, connection, info->user_info->login);

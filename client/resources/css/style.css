@@ -1,55 +1,55 @@
 
-	#login_window {
-		border: 5px double grey;
-		background-image: linear-gradient(rgba(221, 213, 210, 0.521), rgba(115, 167, 207, 1));
-	}
+#login_window {
+    border: 5px double grey;
+    background-image: linear-gradient(rgba(221, 213, 210, 0.521), rgba(115, 167, 207, 1));
+}
 
-	#status_label{
-		color: white;
-		background-image: linear-gradient(rgba(197, 18, 68, 0.521), rgba(197, 18, 68, 1));
-		padding: 10px;
-		border-radius: 0;
-		box-shadow: 1px 1px 1px #aaaaaa;
-		margin-top:  10px; 
-		font-weight: 500;
-	}
+#status_label {
+    color: white;
+    background-image: linear-gradient(rgba(197, 18, 68, 0.521), rgba(197, 18, 68, 1));
+    padding: 10px;
+    border-radius: 0;
+    box-shadow: 1px 1px 1px #aaaaaa;
+    margin-top: 10px;
+    font-weight: 500;
+}
 
-	#label_user_name, #user_message, #fiend_entry, #entry_text_message, #contact_row {
-		font-size: 15px;		
-	}
+#label_user_name, #user_message, #fiend_entry, #entry_text_message, #contact_row {
+    font-size: 15px;
+}
 
-	#contact_row {
-		border-bottom: 1px solid grey;
-		padding: 8px;
-	}
+#contact_row {
+    border-bottom: 1px solid grey;
+    padding: 8px;
+}
 
 /*	#send_button {
 		color: white;
 		background-image: linear-gradient(rgba(211, 211, 211, 0.521), rgba(211, 211, 211, 1));
 	}*/
 
-	button {
-		border-radius: 5px;
-	    border-width: 0px;
-	    box-shadow: none;
-	}
+button {
+    border-radius: 5px;
+    border-width: 0px;
+    box-shadow: none;
+}
 
-	#register_button {
-		background-image: linear-gradient(rgba(78, 109, 156, 0.521), rgba(78, 109, 156, 1));
-		color: black;
-		font-weight: 600;
-	}
+#register_button {
+    background-image: linear-gradient(rgba(78, 109, 156, 0.521), rgba(78, 109, 156, 1));
+    color: black;
+    font-weight: 600;
+}
 
-	#register_button:hover {
-		background-image: linear-gradient(rgba(115, 167, 207, 0.521), rgba(115, 167, 207, 1));
-	}
+#register_button:hover {
+    background-image: linear-gradient(rgba(115, 167, 207, 0.521), rgba(115, 167, 207, 1));
+}
 
-	#login_button {
-		background-image: linear-gradient(rgba(1, 152, 117, 0.521), rgba(46, 204, 113, 1));
-		color: black;
-		font-weight: 600;
-	}
+#login_button {
+    background-image: linear-gradient(rgba(1, 152, 117, 0.521), rgba(46, 204, 113, 1));
+    color: black;
+    font-weight: 600;
+}
 
-	#register_button:hover, #login_button:hover {
-		font-weight: 800;
-	}
+#register_button:hover, #login_button:hover {
+    font-weight: 800;
+}
