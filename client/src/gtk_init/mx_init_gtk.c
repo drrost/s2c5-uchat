@@ -166,7 +166,6 @@ void mx_send_message(t_info *info) {
 //    gtk_container_add(GTK_CONTAINER(info->widgets->s_chat_window->scrolled_corespondent_list), row_log);
 //    gtk_widget_show_all(row_log);
 //    gtk_entry_set_text(GTK_ENTRY(info->widgets->s_chat_window->l), "");
-
 }
 
 gboolean mx_send_message_key(__attribute__((unused)) GtkWidget *widget,
@@ -189,7 +188,6 @@ void mx_chat_handler(t_info *info) {
                      (GCallback)mx_send_message, info);
     g_signal_connect(GTK_WIDGET(chat->entry_text_message), "key-release-event",
                      (GCallback)mx_send_message_key, NULL);
-
 }
 
 void mx_event_handler_connect(t_info *info) {
