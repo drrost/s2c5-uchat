@@ -30,6 +30,14 @@ static void chat_list_del(t_list **list) {
     }
 }
 
+static void message_list_del(t_list **list) {
+    while (*list) {
+        t_message *message = (t_message *)(*list)->data;
+        mx_pop_front(list);
+        mx_message_del(&message);
+    }
+}
+
 // === Response callbacks =====================================================
 
 static void login_completion(e_connection_code code, t_response *response) {
@@ -90,20 +98,13 @@ static void print_list(t_list *list, void (*printer)(void *)) {
     mx_list_foreach(list, printer);
 }
 
-void mx_list_del(t_list **list, void (*deleter)(void *)) {
-    while (list) {
-//        deleter((*list)->data);
-        mx_pop_front(list);
-    }
-}
-
 static void message_list_completion(e_connection_code code, t_response *response) {
     if (code != E_CONNECTION_CODE_OK)
         mx_printline("Connection error");
     else if (response->code == E_STATUS_CODE_OK) {
         t_list *list = mx_message_list_from_json(response->body);
         print_list(list, mx_message_print);
-        mx_list_del(&list, (void (*)(void *))mx_message_del);
+        message_list_del(&list);
     }
     else
         print_error(response);
