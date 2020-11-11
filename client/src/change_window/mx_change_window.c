@@ -48,7 +48,7 @@ void mx_append_and_print(t_chat *chat, t_window_widgets *widgets) {
         gtk_container_add(GTK_CONTAINER(row), box);
         gtk_box_pack_start(GTK_BOX(box), login, FALSE, FALSE, 15); //TRUE adds spacing
         gtk_box_set_spacing(GTK_BOX(box), 40);
-        gtk_container_add(GTK_CONTAINER(widgets->s_chat_window->Scrolled_chats_list), row);
+        gtk_container_add(GTK_CONTAINER(widgets->s_chat_window->scrolled_chats_list), row);
         gtk_widget_set_name(row, "contact_row");
         gtk_widget_show_all(row);
         list = list->next;
