@@ -98,6 +98,7 @@ void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
     gtk_image_set_from_pixbuf(GTK_IMAGE(image), pb);
     gtk_button_set_image(GTK_BUTTON(chat->send_button), image);
     gtk_entry_set_placeholder_text(GTK_ENTRY(chat->entry_text_message), "Start typing...");
+
     
     //Example: Show somethn in chats list
     GtkWidget *row, *label1, *box;
@@ -110,6 +111,7 @@ void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
     //gtk_box_pack_start(GTK_BOX(box), label2, TRUE, TRUE, 0);
     gtk_container_add(GTK_CONTAINER(chat->scrolled_chats_list), row);
     gtk_widget_show_all(row);
+
 }
 
 void mx_init_widgets(t_window_widgets *widgets) {

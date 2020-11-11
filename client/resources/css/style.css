@@ -14,6 +14,12 @@
 		font-weight: 500;
 	}
 
+	#contact_row {
+		font-size: 12px;
+		border-bottom: 1px solid grey;
+		padding: 8px;
+	}
+
 /*	#send_button {
 		color: white;
 		background-image: linear-gradient(rgba(211, 211, 211, 0.521), rgba(211, 211, 211, 1));

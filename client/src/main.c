@@ -33,10 +33,11 @@ int main(int argc, char *argv[]) {
     t_request *request = mx_request_login("user", "password");
     connection->send(connection, request, login_completion);
     mx_request_delete(&request);
-    mx_connection_close(&connection);
+    
     
     gtk_main();
-    mx_show_window(info);
+    mx_show_window(info, connection);
+    mx_connection_close(&connection);
     mx_check_leaks();
 
     return EXIT_SUCCESS;
