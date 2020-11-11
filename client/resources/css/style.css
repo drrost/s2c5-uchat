@@ -14,8 +14,11 @@
 		font-weight: 500;
 	}
 
+	#label_user_name, #user_message, #fiend_entry, #entry_text_message, #contact_row {
+		font-size: 15px;		
+	}
+
 	#contact_row {
-		font-size: 12px;
 		border-bottom: 1px solid grey;
 		padding: 8px;
 	}

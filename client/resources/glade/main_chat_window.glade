@@ -4,9 +4,9 @@
   <requires lib="gtk+" version="3.24"/>
   <object class="GtkWindow" id="window_main_chat">
     <property name="can-focus">False</property>
-    <property name="resizable">False</property>
-    <property name="default-width">800</property>
-    <property name="default-height">600</property>
+    <property name="window-position">center</property>
+    <property name="default-width">1280</property>
+    <property name="default-height">720</property>
     <child>
       <object class="GtkBox" id="window_delim2">
         <property name="visible">True</property>
@@ -14,23 +14,25 @@
         <property name="spacing">4</property>
         <child>
           <object class="GtkFixed" id="chats_window">
+            <property name="width-request">450</property>
+            <property name="height-request">700</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <child>
-              <object class="GtkScrolledWindow" id="Scrolled_window_chats">
-                <property name="width-request">344</property>
-                <property name="height-request">744</property>
+              <object class="GtkScrolledWindow" id="scrolled_window_chats">
+                <property name="width-request">450</property>
+                <property name="height-request">725</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="shadow-type">in</property>
                 <child>
-                  <object class="GtkViewport" id="Scrolled_window_chats_atribut">
+                  <object class="GtkViewport" id="scrolled_window_chats_atribut">
                     <property name="width-request">350</property>
                     <property name="height-request">750</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <child>
-                      <object class="GtkListBox" id="Scrolled_chats_list">
+                      <object class="GtkListBox" id="scrolled_chats_list">
                         <property name="width-request">350</property>
                         <property name="height-request">500</property>
                         <property name="visible">True</property>
@@ -42,12 +44,12 @@
               </object>
               <packing>
                 <property name="x">4</property>
-                <property name="y">54</property>
+                <property name="y">62</property>
               </packing>
             </child>
             <child>
               <object class="GtkSearchEntry" id="fiend_entry">
-                <property name="width-request">350</property>
+                <property name="width-request">448</property>
                 <property name="height-request">50</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
@@ -57,35 +59,22 @@
               </object>
               <packing>
                 <property name="x">1</property>
-                <property name="y">1</property>
+                <property name="y">4</property>
               </packing>
             </child>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
+            <property name="padding">6</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
-          <object class="GtkFixed" id="Scrolled_window_message">
-            <property name="width-request">450</property>
+          <object class="GtkFixed" id="scrolled_window_message">
+            <property name="width-request">780</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <child>
-              <object class="GtkButton" id="user_login_message">
-                <property name="label" translatable="yes">button</property>
-                <property name="width-request">380</property>
-                <property name="height-request">28</property>
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-              </object>
-              <packing>
-                <property name="x">58</property>
-                <property name="y">19</property>
-              </packing>
-            </child>
             <child>
               <object class="GtkImage" id="image_user">
                 <property name="width-request">50</property>
@@ -101,8 +90,8 @@
             </child>
             <child>
               <object class="GtkScrolledWindow" id="window_text_message_scrolled">
-                <property name="width-request">360</property>
-                <property name="height-request">138</property>
+                <property name="width-request">720</property>
+                <property name="height-request">128</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="shadow-type">in</property>
@@ -129,15 +118,15 @@
               </packing>
             </child>
             <child>
-              <object class="GtkScrolledWindow" id="Scrolled_window_corespondent">
-                <property name="width-request">440</property>
+              <object class="GtkScrolledWindow" id="scrolled_window_corespondent">
+                <property name="width-request">770</property>
                 <property name="height-request">594</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="hscrollbar-policy">never</property>
                 <property name="shadow-type">in</property>
                 <child>
-                  <object class="GtkViewport" id="Scrolled_window_corespondent_atribut">
+                  <object class="GtkViewport" id="scrolled_window_corespondent_atribut">
                     <property name="width-request">450</property>
                     <property name="height-request">600</property>
                     <property name="visible">True</property>
@@ -167,14 +156,28 @@
                 <property name="receives-default">True</property>
               </object>
               <packing>
-                <property name="x">380</property>
+                <property name="x">727</property>
                 <property name="y">720</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_user_name">
+                <property name="width-request">570</property>
+                <property name="height-request">50</property>
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes"></property>
+              </object>
+              <packing>
+                <property name="x">94</property>
+                <property name="y">4</property>
               </packing>
             </child>
           </object>
           <packing>
             <property name="expand">True</property>
             <property name="fill">True</property>
+            <property name="padding">9</property>
             <property name="position">1</property>
           </packing>
         </child>

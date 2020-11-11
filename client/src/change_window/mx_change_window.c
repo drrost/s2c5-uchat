@@ -48,7 +48,7 @@ void mx_append_and_print(t_chat *chat, t_window_widgets *widgets) {
         gtk_container_add(GTK_CONTAINER(row), box);
         gtk_box_pack_start(GTK_BOX(box), login, FALSE, FALSE, 15); //TRUE adds spacing
         gtk_box_set_spacing(GTK_BOX(box), 40);
-        gtk_container_add(GTK_CONTAINER(widgets->s_chat_window->Scrolled_chats_list), row);
+        gtk_container_add(GTK_CONTAINER(widgets->s_chat_window->scrolled_chats_list), row);
         gtk_widget_set_name(row, "contact_row");
         gtk_widget_show_all(row);
         list = list->next;
@@ -92,7 +92,7 @@ static void show_signin_page(t_window_widgets *widgets) { //segfault
 //     gtk_widget_hide(widgets->s_chat_window->chat_window);
 // }
 
-static void show_chat_page(t_window_widgets *widgets, t_connection *connection) {
+static void show_chat_page(t_window_widgets *widgets, t_connection *connection, const char *login) {
 
     //
     char *auth_token = "mTetZt2VaeZLUcxfjKyOZAJbaeo6x";
@@ -100,6 +100,7 @@ static void show_chat_page(t_window_widgets *widgets, t_connection *connection) 
 
     connection->send(connection, request, chat_list_completion);
     mx_request_delete(&request);
+    gtk_label_set_text(GTK_LABEL(widgets->s_chat_window->label_user_name), login);
      gtk_widget_show(widgets->s_chat_window->window_main_chat);
     // gtk_widget_hide(widgets->s_signup->signup_window);
      gtk_widget_hide(widgets->s_signin->login_window);
@@ -114,7 +115,7 @@ static int mx_change_window(t_info *info, int window, t_connection *connection) 
     //else if (window == MX_SIGNUP_WINDOW)
         //show_signup_page(info->widgets);
     else if (window == MX_CHAT_WINDOW)
-        show_chat_page(info->widgets, connection);
+        show_chat_page(info->widgets, connection, info->user_info->login);
     return 0;
 }
 

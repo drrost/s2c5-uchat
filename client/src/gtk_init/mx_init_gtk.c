@@ -76,17 +76,21 @@ void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
     chat->window_main_chat = mx_build(builder, "window_main_chat");
     chat->window_delim2 = mx_build(builder, "window_delim2");
     chat->chats_window = mx_build(builder, "chats_window");
-    chat->Scrolled_window_chats = mx_build(builder, "Scrolled_window_chats");
+    chat->scrolled_window_chats = mx_build(builder, "scrolled_window_chats");
     chat->fiend_entry = mx_build(builder, "fiend_entry");
+    gtk_widget_set_name(chat->fiend_entry, "fiend_entry");
     gtk_entry_set_placeholder_text(GTK_ENTRY(chat->fiend_entry), "Type here to search");
-    chat->Scrolled_chats_list = mx_build(builder, "Scrolled_chats_list");
-    chat->Scrolled_window_message = mx_build(builder, "Scrolled_window_message");
+    chat->scrolled_chats_list = mx_build(builder, "scrolled_chats_list");
+    chat->label_user_name = mx_build(builder, "label_user_name");
+    gtk_widget_set_name(chat->label_user_name, "label_user_name");
+    chat->scrolled_window_message = mx_build(builder, "scrolled_window_message");
     chat->image_user = mx_build(builder, "image_user");
     chat->window_text_message_scrolled = mx_build(builder, "window_text_message_scrolled");
     chat->window_text_message_scrolled_atribut = mx_build(builder, "window_text_message_scrolled_atribut");
     chat->entry_text_message = mx_build(builder, "entry_text_message");
-    chat->Scrolled_window_corespondent = mx_build(builder, "Scrolled_window_corespondent");
-    chat->Scrolled_window_corespondent_atribut = mx_build(builder, "Scrolled_window_corespondent_atribut");
+    gtk_widget_set_name(chat->entry_text_message, "entry_text_message");
+    chat->scrolled_window_corespondent = mx_build(builder, "scrolled_window_corespondent");
+    chat->scrolled_window_corespondent_atribut = mx_build(builder, "scrolled_window_corespondent_atribut");
     chat->scrolled_corespondent_list = mx_build(builder, "scrolled_corespondent_list");
     chat->send_button = mx_build(builder, "send_button");
     gtk_widget_set_name(chat->send_button, "send_button");
@@ -119,15 +123,29 @@ void mx_signin_handler(t_info *info) {
 void mx_send_message(t_info *info) {
     info = gs_info(GET);
     const char *message = gtk_entry_get_text(GTK_ENTRY(info->widgets->s_chat_window->entry_text_message));
-    GtkWidget *row, *label1, *box;
-    row = gtk_list_box_new();
-    box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    label1 = gtk_label_new(message);
-    gtk_container_add(GTK_CONTAINER(row), box);
-    gtk_box_pack_start(GTK_BOX(box), label1, TRUE, TRUE, 0);
-    gtk_container_add(GTK_CONTAINER(info->widgets->s_chat_window->scrolled_corespondent_list), row);
-    gtk_widget_show_all(row);
+    if (mx_strlen(message)) {
+        GtkWidget *row, *label1, *box;
+        row = gtk_list_box_new();
+        box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+        label1 = gtk_label_new(message);
+        gtk_container_add(GTK_CONTAINER(row), box);
+        gtk_box_pack_start(GTK_BOX(box), label1, TRUE, TRUE, 5);
+        gtk_container_add(GTK_CONTAINER(info->widgets->s_chat_window->scrolled_corespondent_list), row);
+        gtk_widget_set_name(label1, "user_message");
+        gtk_widget_show_all(row);
+    }
     gtk_entry_set_text(GTK_ENTRY(info->widgets->s_chat_window->entry_text_message), "");
+
+//    GtkWidget *row_log, *label_log, *box_log;
+//    row_log = gtk_list_box_new();
+//    box_log = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+//    label_log = gtk_label_new(info->user_info->login);
+//    gtk_container_add(GTK_CONTAINER(row_log), box_log);
+//    gtk_box_pack_start(GTK_BOX(box_log), label_log, TRUE, TRUE, 0);
+//    gtk_container_add(GTK_CONTAINER(info->widgets->s_chat_window->scrolled_corespondent_list), row_log);
+//    gtk_widget_show_all(row_log);
+//    gtk_entry_set_text(GTK_ENTRY(info->widgets->s_chat_window->l), "");
+
 }
 
 gboolean mx_send_message_key(__attribute__((unused)) GtkWidget *widget, GdkEventKey *event, __attribute__((unused)) gpointer data) {
