@@ -15,9 +15,21 @@
 	}
 
 	#contact_row {
-		font-size: 12px;
+		font-size: 15px;
 		border-bottom: 1px solid grey;
 		padding: 8px;
+	}
+
+	#user_message {
+		font-size: 15px;
+	}
+
+	#fiend_entry {
+		font-size: 15px;
+	}
+
+	#entry_text_message {
+		font-size: 15px;
 	}
 
 /*	#send_button {
