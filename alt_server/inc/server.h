@@ -27,4 +27,8 @@ t_response *mx_handle_request(t_request *request);
 
 t_response *mx_handle_login(t_request *request);
 
+// Crypt
+//
+char *mx_hash(const char *s);
+
 #endif //INC_05_UCHAT_SERVER_H

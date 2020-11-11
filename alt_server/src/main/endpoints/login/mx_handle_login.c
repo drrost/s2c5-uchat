@@ -11,6 +11,9 @@ t_response *mx_handle_login(t_request *request) {
     char *login = json_find_member(request->json, "login")->string_;
     char *password = json_find_member(request->json, "password")->string_;
 
+    // TODO:
+    char *hash = mx_hash(password);
+
     if (mx_streq("user", login) && mx_streq("password", password)) {
         response->code = E_STATUS_CODE_OK;
         response->body = mx_strdup(

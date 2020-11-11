@@ -23,7 +23,7 @@ int main() {
     t_connection *connection = mx_connection_open("127.0.0.1", 7766);
 
     // Login
-    t_request *request = mx_request_login("user", "password");
+    t_request *request = mx_request_login("user", "ladylady1");
     connection->send(connection, request, login_completion);
     mx_request_delete(&request);
 
