@@ -14,22 +14,13 @@
 		font-weight: 500;
 	}
 
+	#label_user_name, #user_message, #fiend_entry, #entry_text_message, #contact_row {
+		font-size: 15px;		
+	}
+
 	#contact_row {
-		font-size: 15px;
 		border-bottom: 1px solid grey;
 		padding: 8px;
-	}
-
-	#user_message {
-		font-size: 15px;
-	}
-
-	#fiend_entry {
-		font-size: 15px;
-	}
-
-	#entry_text_message {
-		font-size: 15px;
 	}
 
 /*	#send_button {

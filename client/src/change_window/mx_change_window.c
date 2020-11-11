@@ -92,7 +92,7 @@ static void show_signin_page(t_window_widgets *widgets) { //segfault
 //     gtk_widget_hide(widgets->s_chat_window->chat_window);
 // }
 
-static void show_chat_page(t_window_widgets *widgets, t_connection *connection) {
+static void show_chat_page(t_window_widgets *widgets, t_connection *connection, const char *login) {
 
     //
     char *auth_token = "mTetZt2VaeZLUcxfjKyOZAJbaeo6x";
@@ -100,6 +100,7 @@ static void show_chat_page(t_window_widgets *widgets, t_connection *connection) 
 
     connection->send(connection, request, chat_list_completion);
     mx_request_delete(&request);
+    gtk_label_set_text(GTK_LABEL(widgets->s_chat_window->label_user_name), login);
      gtk_widget_show(widgets->s_chat_window->window_main_chat);
     // gtk_widget_hide(widgets->s_signup->signup_window);
      gtk_widget_hide(widgets->s_signin->login_window);
@@ -114,7 +115,7 @@ static int mx_change_window(t_info *info, int window, t_connection *connection) 
     //else if (window == MX_SIGNUP_WINDOW)
         //show_signup_page(info->widgets);
     else if (window == MX_CHAT_WINDOW)
-        show_chat_page(info->widgets, connection);
+        show_chat_page(info->widgets, connection, info->user_info->login);
     return 0;
 }
 

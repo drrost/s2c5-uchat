@@ -72,12 +72,12 @@ struct s_chat_window {
     GtkWidget *fiend_entry;
     GtkWidget *scrolled_chats_list;
     GtkWidget *scrolled_window_message;
-    GtkWidget *user_login_message;
     GtkWidget *image_user;
     GtkWidget *window_text_message_scrolled;
     GtkWidget *window_text_message_scrolled_atribut;
     GtkWidget *entry_text_message;
     GtkWidget *scrolled_window_corespondent;
+    GtkWidget *label_user_name;
     //GtkBuilder *send_button;                                                      
     GtkWidget *scrolled_window_corespondent_atribut;
     GtkWidget *scrolled_corespondent_list;
