@@ -13,8 +13,6 @@
 #include <arpa/inet.h>
 #include "libmx.h"
 
-
-
 typedef struct s_signin t_signin;
 typedef struct s_chat t_chat;
 
@@ -49,6 +47,7 @@ t_info *mx_info_new();
 void mx_info_init(t_info **info);
 void mx_init_gtk(t_info *info);
 void mx_set_chat_settings(t_chat *chat);
+void mx_show_window(t_info *info);
 
 //Connection
 void mx_connect(t_info *info);
@@ -81,7 +80,7 @@ struct s_chat {
     GtkWidget *Scrolled_window_corespondent;
     //GtkBuilder *send_button;                                                      
     GtkWidget *Scrolled_window_corespondent_atribut;
-    GtkWidget *Scrolled_corespondent_list;
+    GtkWidget *scrolled_corespondent_list;
     GtkWidget *send_button;
 };
 
