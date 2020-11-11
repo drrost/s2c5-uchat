@@ -35,10 +35,18 @@ typedef struct {
     double time;
     char *sender_id;
     char *chat_id;
+    char *message;
 } t_message;
 
 t_message *mx_message_new(void);
 void mx_message_del(t_message  **message);
+
+char *mx_message_list_to_json(t_list *list);
+JsonNode *mx_message_list_to_json_node(t_list *list);
+JsonNode *mx_message_to_json_node(t_message *message);
+
+t_list *mx_message_list_from_json(const char *json);
+t_message *mx_message_from_json_node(JsonNode *node);
 
 // Chat
 //

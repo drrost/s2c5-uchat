@@ -8,6 +8,7 @@
 
 #include <time.h>
 #include <stdlib.h>
+#include <math.h>
 
 static int is_initialized = 0;
 
@@ -20,6 +21,15 @@ int rd_random_int(int from, int to) {
         srand(time(0));
     }
     return rand() % (to - from + 1) + from;
+}
+
+double rd_random_double(int from, int to) {
+    double result = rd_random_int(from, to);
+    int mantissa_len = rd_random_int(1, 6);
+    int max = pow(10, mantissa_len);
+    double mantissa = rd_random_int(0, max) / max;
+    result += mantissa;
+    return result;
 }
 
 void rd_random_fill(int *arr, int n, int from, int to) {

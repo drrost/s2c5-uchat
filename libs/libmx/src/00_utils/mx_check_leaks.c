@@ -17,7 +17,7 @@ typedef struct s_call {
     char line[line_len];
 } t_call;
 
-#define array_size 1024
+#define array_size 4096
 static bool allocs_array_initialized = false;
 t_call allocs_array[array_size];
 

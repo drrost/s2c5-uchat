@@ -10,6 +10,7 @@
 #define __RD_RANDOM_H__
 
 int rd_random_int(int from, int to);
+double rd_random_double(int from, int to);
 void rd_random_fill(int *arr, int n, int from, int to);
 
 char rd_random_lower_char();

@@ -14,6 +14,7 @@ typedef enum {
     E_MSGTYPE_UNKNOWN = 0,
     E_MSGTYPE_LOGIN,
     E_MSGTYPE_CHATLIST,
+    E_MSGTYPE_MESSAGE_LIST
 } e_msg_type;
 
 typedef struct {
@@ -48,6 +49,7 @@ struct iovec mx_request_to_iovec(t_request *request);
 t_request *mx_request_login(const char *login, const char *password);
 t_request *mx_request_chat_list(char *auth_token);
 t_request *mx_request_chat_messages(char *auth_token, char *chat_id);
+t_request *mx_request_message_list(char *auth_token, char *chat_id);
 
 t_request *mx_request_login_from_node(JsonNode *node_root);
 

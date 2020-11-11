@@ -57,19 +57,79 @@ static void chat_list_completion(e_connection_code code, t_response *response) {
     mx_response_delete(&response);
 }
 
+//
+
+void mx_list_foreach(t_list *list, void (*f)(void *)) {
+    if (!list || !f)
+        return;
+
+    while (list) {
+        f(list->data);
+        list = list->next;
+    }
+}
+
+void mx_message_print(void *data) {
+    t_message *message = (t_message *)data;
+
+    mx_printline("Message:");
+    mx_printstr("  id:");
+    mx_printline(message->id);
+    mx_printstr("  message:");
+    mx_printline(message->message);
+    mx_printstr("  chat_id:");
+    mx_printline(message->chat_id);
+    mx_printstr("  sender_id:");
+    mx_printline(message->sender_id);
+    mx_printstr("  time:");
+    mx_printint(message->time);
+    mx_printstr("\n");
+}
+
+static void print_list(t_list *list, void (*printer)(void *)) {
+    mx_list_foreach(list, printer);
+}
+
+void mx_list_del(t_list **list, void (*deleter)(void *)) {
+    while (list) {
+//        deleter((*list)->data);
+        mx_pop_front(list);
+    }
+}
+
+static void message_list_completion(e_connection_code code, t_response *response) {
+    if (code != E_CONNECTION_CODE_OK)
+        mx_printline("Connection error");
+    else if (response->code == E_STATUS_CODE_OK) {
+        t_list *list = mx_message_list_from_json(response->body);
+        print_list(list, mx_message_print);
+        mx_list_del(&list, (void (*)(void *))mx_message_del);
+    }
+    else
+        print_error(response);
+
+    mx_response_delete(&response);
+}
+
 int main() {
 
     t_connection *connection = mx_connection_open("127.0.0.1", 7766);
 
     // Login
     t_request *request = mx_request_login("user", "password");
-    connection->send(request, login_completion);
+    connection->send(connection, request, login_completion);
     mx_request_delete(&request);
 
-    //
+    // Chat list
     char *auth_token = "mTetZt2VaeZLUcxfjKyOZAJbaeo6x";
     request = mx_request_chat_list(auth_token);
-    connection->send(request, chat_list_completion);
+    connection->send(connection, request, chat_list_completion);
+    mx_request_delete(&request);
+
+    // Message list
+    char *chat_id = "KasSKeIVWjPR82xB5QNGYt4jH2lZVR";
+    request = mx_request_message_list(auth_token, chat_id);
+    connection->send(connection, request, message_list_completion);
     mx_request_delete(&request);
 
     mx_connection_close(&connection);
