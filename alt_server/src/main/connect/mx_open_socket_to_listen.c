@@ -57,7 +57,8 @@ void mx_accept_from_socket(t_socket_connection connection) {
 
     struct iovec message = mx_response_to_iovec(response);
     send(socket, message.iov_base, message.iov_len, 0);
-    mx_strdel(&((char *)message.iov_base));
+    char **s = (char **)&(message.iov_base);
+    mx_strdel(s);
 
     mx_strdel(&buffer);
 }
