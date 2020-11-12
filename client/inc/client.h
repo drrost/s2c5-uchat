@@ -57,6 +57,8 @@ void show_signin_page(t_window_widgets *widgets);
 
 //Build
 void mx_init_widgets(t_window_widgets *widgets);
+//Callback handlers
+void mx_signin_handler(t_info *info);
 //Connection
 void mx_connect(t_info *info);
 int mx_socket(int port, char *ip);
