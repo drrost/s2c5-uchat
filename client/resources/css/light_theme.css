@@ -23,6 +23,10 @@
     padding: 8px;
 }
 
+#theme_switch {
+    background-image: linear-gradient(rgba(200, 200, 200, 0.521), rgba(200, 200, 200, 1));
+}
+
 /*	#send_button {
 		color: white;
 		background-image: linear-gradient(rgba(211, 211, 211, 0.521), rgba(211, 211, 211, 1));
