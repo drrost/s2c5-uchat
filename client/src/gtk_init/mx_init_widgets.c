@@ -38,6 +38,15 @@ static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
     chat->scrolled_window_message = mx_build(builder,
                                              "scrolled_window_message");
     chat->image_user = mx_build(builder, "image_user");
+    //GtkWidget *user = gtk_image_new_from_file("resources/media/man.png");
+
+    GdkPixbuf *pb1;
+    pb1 = gdk_pixbuf_new_from_file("resources/media/man.png", NULL);
+    pb1 = gdk_pixbuf_scale_simple(pb1, 50, 50, GDK_INTERP_BILINEAR);
+    gtk_image_set_from_pixbuf(GTK_IMAGE(chat->image_user), pb1);
+    //gtk_button_set_image(GTK_IMAGE(chat->image_user), chat->image_user);
+
+
     chat->window_text_message_scrolled = mx_build(builder,
                                                   "window_text_message_scrolled");
     chat->window_text_message_scrolled_atribut = mx_build(builder,
