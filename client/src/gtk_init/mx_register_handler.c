@@ -20,7 +20,6 @@ t_info *register_info(t_info *in) {
 void mx_go_to_login(t_info *info) {
     info = register_info(GET);
 
-    //show_signin_page(info->widgets);
     gtk_widget_show(info->widgets->s_signin->login_window);
     gtk_widget_hide(info->widgets->s_register->register_window);
     gtk_widget_hide(info->widgets->s_chat_window->window_main_chat);
