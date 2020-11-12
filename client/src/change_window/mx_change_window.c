@@ -85,15 +85,16 @@ chat_list_completion(e_connection_code code, t_response *response) {
 
 static void show_signin_page(t_window_widgets *widgets) { //segfault
     gtk_widget_show(widgets->s_signin->login_window);
-    // gtk_widget_hide(widgets->s_signup->signup_window);
+    gtk_widget_hide(widgets->s_register->register_window);
     gtk_widget_hide(widgets->s_chat_window->window_main_chat);
 }
 
-// static void show_signup_page(t_window_widgets *widgets) {
-//     gtk_widget_show(widgets->s_signup->signup_window);
-//     gtk_widget_hide(widgets->s_signin->login_window);
-//     gtk_widget_hide(widgets->s_chat_window->chat_window);
-// }
+static void show_register_page(t_window_widgets *widgets) {
+    gtk_widget_show(widgets->s_register->register_window);
+    gtk_widget_hide(widgets->s_signin->login_window);
+    gtk_widget_hide(widgets->s_chat_window->window_main_chat);
+    gtk_main();
+}
 
 static void show_chat_page(t_window_widgets *widgets, t_connection *connection,
                            const char *login) {
@@ -107,7 +108,7 @@ static void show_chat_page(t_window_widgets *widgets, t_connection *connection,
     gtk_label_set_text(GTK_LABEL(widgets->s_chat_window->label_user_name),
                        login);
     gtk_widget_show(widgets->s_chat_window->window_main_chat);
-    // gtk_widget_hide(widgets->s_signup->signup_window);
+    gtk_widget_hide(widgets->s_register->register_window);
     gtk_widget_hide(widgets->s_signin->login_window);
 
     gtk_main();
@@ -118,22 +119,28 @@ mx_change_window(t_info *info, int window, t_connection *connection) {
     gs_info(info);
     if (window == MX_SIGNIN_WINDOW)
         show_signin_page(info->widgets);
-        //else if (window == MX_SIGNUP_WINDOW)
-        //show_signup_page(info->widgets);
+    else if (window == MX_REGISTER_WINDOW)
+        show_register_page(info->widgets);
     else if (window == MX_CHAT_WINDOW)
         show_chat_page(info->widgets, connection, info->user_info->login);
     return 0;
 }
 
-static bool mx_check_login(t_info *info) {
+static int mx_check_login(t_info *info) {
     if (info->user_info->logged)
-        return true;
-    return false;
+        return 1;
+    if (info->user_info->regist)
+        return 2;
+    return 0;
 }
 
 void mx_show_window(t_info *info, t_connection *connection) {
-    if (mx_check_login(info))
+    printf("in mx_show_window\n");
+    int check = mx_check_login(info);
+    if (check == 1)
         mx_change_window(info, MX_CHAT_WINDOW, connection);
+    else if (check == 2)
+        mx_change_window(info, MX_REGISTER_WINDOW, connection);
     else
         mx_change_window(info, MX_SIGNIN_WINDOW, connection);
 }

@@ -16,12 +16,14 @@
 
 typedef struct s_signin t_signin;
 typedef struct s_chat_window t_chat_window;
+typedef struct s_register t_register;
 
 typedef struct s_user_info {
     char id;
     char *password;
     char *login;
     bool logged;
+    bool regist; //clicked sign up button/register
     char *name;
     char *first_name;
     char *last_name;
@@ -30,8 +32,10 @@ typedef struct s_user_info {
 typedef struct s_window_widgets {
     GtkBuilder *builder;
     GtkBuilder *builder_window2;
+    GtkBuilder *builder_window3;
     t_signin *s_signin;
     t_chat_window *s_chat_window;
+    t_register *s_register;
 }              t_window_widgets;
 
 typedef struct s_info {
@@ -78,11 +82,23 @@ struct s_chat_window {
     GtkWidget *entry_text_message;
     GtkWidget *scrolled_window_corespondent;
     GtkWidget *label_user_name;
-    //GtkBuilder *send_button;                                                      
     GtkWidget *scrolled_window_corespondent_atribut;
     GtkWidget *scrolled_corespondent_list;
     GtkWidget *send_button;
     GtkWidget *theme_switch;
+};
+
+struct s_register {
+    GtkWidget *register_window;
+    GtkWidget *register_grid;
+    GtkWidget *first_name;
+    GtkWidget *last_name;
+    GtkWidget *register_username;
+    GtkWidget *register_password;
+    GtkWidget *register_password_confirm;
+    GtkWidget *register_layout;
+    GtkWidget *register_register_button;
+    GtkWidget *register_status_label;
 };
 
 typedef enum {
@@ -93,7 +109,7 @@ typedef enum {
 
 #define MX_SIGNIN_WINDOW 0
 #define MX_CHAT_WINDOW 1
-
+#define MX_REGISTER_WINDOW 2
 
 
 #endif

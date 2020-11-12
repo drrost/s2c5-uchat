@@ -121,11 +121,34 @@ void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
                                    "Start typing...");
 }
 
+void mx_init_register_window(GtkBuilder *builder, t_register *regist) {
+    regist->register_window = mx_build(builder, "register_window");
+    gtk_widget_set_name(regist->register_window, "register_window");
+
+    regist->register_grid = mx_build(builder, "register_grid");
+    regist->first_name = mx_build(builder, "first_name");
+    regist->last_name = mx_build(builder, "last_name");
+    regist->register_username = mx_build(builder, "register_username");
+    regist->register_password = mx_build(builder, "register_password");
+    regist->register_password_confirm = mx_build(builder, "register_password_confirm");
+    regist->register_layout = mx_build(builder, "register_layout");
+    regist->register_register_button = mx_build(builder, "register_register_button");
+    gtk_widget_set_name(regist->register_register_button, "register_register_button");
+
+    //gtk_widget_set_name(chat->fiend_entry, "fiend_entry");
+}
+
 void mx_init_widgets(t_window_widgets *widgets) {
     mx_init_signin_window(widgets->builder, widgets->s_signin);
     mx_init_chat_window(widgets->builder_window2, widgets->s_chat_window);
-    //sign_up window init
-    //info++;
+    mx_init_register_window(widgets->builder_window3, widgets->s_register);
+}
+
+void mx_go_register(t_info *info) {
+    info = gs_info(GET);
+
+    info->user_info->regist = true;
+    gtk_main_quit();
 }
 
 void mx_signin_handler(t_info *info) {
@@ -137,6 +160,8 @@ void mx_signin_handler(t_info *info) {
                      (GCallback)gtk_main_quit, NULL);
     g_signal_connect(GTK_WIDGET(window->login_button), "clicked",
                      (GCallback)mx_do_login, info);
+    g_signal_connect(GTK_WIDGET(window->register_button), "clicked",
+                     (GCallback)mx_go_register, info);
 }
 
 void mx_send_message(t_info *info) {
@@ -191,9 +216,17 @@ void mx_chat_handler(t_info *info) {
                      (GCallback)mx_send_message_key, NULL);
 }
 
+void mx_register_handler(t_info *info) {
+    t_register *regist = info->widgets->s_register;
+
+    g_signal_connect(GTK_WIDGET(regist->register_window), "destroy",
+                     G_CALLBACK(gtk_main_quit), NULL);
+}
+
 void mx_event_handler_connect(t_info *info) {
     mx_signin_handler(info);
     mx_chat_handler(info);
+    mx_register_handler(info);
     //sign_up window handlers init
 }
 
@@ -217,8 +250,11 @@ void mx_builder_connect(t_info *info) {
         "resources/glade/login_page.glade");
     info->widgets->builder_window2 = gtk_builder_new_from_file(
         "resources/glade/main_chat_window.glade");
+    info->widgets->builder_window3 = gtk_builder_new_from_file(
+        "resources/glade/register.glade");
     gtk_builder_connect_signals(info->widgets->builder, NULL);
     gtk_builder_connect_signals(info->widgets->builder_window2, NULL);
+    gtk_builder_connect_signals(info->widgets->builder_window3, NULL);
     mx_init_widgets(info->widgets);
     mx_set_settings_default(info->widgets);
 }
