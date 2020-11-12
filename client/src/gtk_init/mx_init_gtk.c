@@ -109,6 +109,7 @@ void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
                                                 "scrolled_corespondent_list");
     chat->send_button = mx_build(builder, "send_button");
     gtk_widget_set_name(chat->send_button, "send_button");
+    chat->theme_switch = mx_build(builder, "theme_switch");
     GtkWidget *image = gtk_image_new_from_file("resources/media/send.png");
     //gtk_image_set_pixel_size(GTK_IMAGE(image), 2);
     GdkPixbuf *pb;
