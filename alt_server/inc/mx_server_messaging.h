@@ -8,5 +8,6 @@
 #include <mx_messeging.h>
 
 t_response *mx_response_401_wrong_lp(e_msg_type msg_type);
+t_response *mx_response_login(const char *token);
 
 #endif //SERVER_MX_SERVER_MESSAGING_H
