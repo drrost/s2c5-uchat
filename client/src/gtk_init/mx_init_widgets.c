@@ -27,6 +27,7 @@ static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
     chat->window_delim2 = mx_build(builder, "window_delim2");
     chat->chats_window = mx_build(builder, "chats_window");
     chat->scrolled_window_chats = mx_build(builder, "scrolled_window_chats");
+    gtk_widget_set_name(chat->scrolled_window_chats, "scrolled_window_chats");
     chat->fiend_entry = mx_build(builder, "fiend_entry");
     gtk_widget_set_name(chat->fiend_entry, "fiend_entry");
     gtk_entry_set_placeholder_text(GTK_ENTRY(chat->fiend_entry),
@@ -45,6 +46,7 @@ static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
     gtk_widget_set_name(chat->entry_text_message, "entry_text_message");
     chat->scrolled_window_corespondent = mx_build(builder,
                                                   "scrolled_window_corespondent");
+    gtk_widget_set_name(chat->scrolled_window_corespondent, "scrolled_window_corespondent");
     chat->scrolled_window_corespondent_atribut = mx_build(builder,
                                                           "scrolled_window_corespondent_atribut");
     chat->scrolled_corespondent_list = mx_build(builder,

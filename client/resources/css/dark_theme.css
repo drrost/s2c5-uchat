@@ -14,3 +14,13 @@
 #theme_switch {
     background-image: linear-gradient(rgba(0, 0, 0, 0.521), rgba(0, 0, 0, 1));
 }
+
+#scrolled_window_chats {
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+#scrolled_window_corespondent {
+    border: 1px solid grey;
+    border-radius: 10px;
+}

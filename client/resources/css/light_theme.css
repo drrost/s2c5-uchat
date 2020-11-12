@@ -19,8 +19,18 @@
 }
 
 #fiend_entry {
-    background: #F2F2F2;
-    color: #C8C8C8;
+    /*background: #F2F2F2;
+    color: #C8C8C8;*/
+}
+
+#scrolled_window_chats {
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+#scrolled_window_corespondent {
+    border: 1px solid grey;
+    border-radius: 10px;
 }
 
 #contact_row {
