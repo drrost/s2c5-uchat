@@ -9,7 +9,7 @@
 #include <netinet/in.h>
 #include <unistd.h>
 
-#include <mx_messeging.h>
+#include <mx_server_messaging.h>
 
 typedef struct {
     struct sockaddr_in address;
