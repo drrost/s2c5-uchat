@@ -1,0 +1,26 @@
+#window_main_chat {
+    background-image: linear-gradient(rgba(59, 54, 50, 0.521), rgba(0, 33, 50, 1));
+}
+
+#label_user_name, #user_message, #fiend_entry, #entry_text_message, #contact_row {
+    font-size: 15px;
+}
+
+#contact_row {
+    border-bottom: 1px solid white;
+    padding: 8px;
+}
+
+#theme_switch {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.521), rgba(0, 0, 0, 1));
+}
+
+#scrolled_window_chats {
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+#scrolled_window_corespondent {
+    border: 1px solid grey;
+    border-radius: 10px;
+}
