@@ -18,6 +18,7 @@
             <property name="height-request">700</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="margin-start">8</property>
             <child>
               <object class="GtkScrolledWindow" id="scrolled_window_chats">
                 <property name="width-request">450</property>
@@ -49,16 +50,17 @@
             </child>
             <child>
               <object class="GtkSearchEntry" id="fiend_entry">
-                <property name="width-request">448</property>
+                <property name="width-request">450</property>
                 <property name="height-request">50</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
+                <property name="margin-bottom">7</property>
                 <property name="primary-icon-name">edit-find-symbolic</property>
                 <property name="primary-icon-activatable">False</property>
                 <property name="primary-icon-sensitive">False</property>
               </object>
               <packing>
-                <property name="x">1</property>
+                <property name="x">3</property>
                 <property name="y">4</property>
               </packing>
             </child>
@@ -77,8 +79,8 @@
             <property name="can-focus">False</property>
             <child>
               <object class="GtkImage" id="image_user">
-                <property name="width-request">50</property>
-                <property name="height-request">50</property>
+                <property name="width-request">58</property>
+                <property name="height-request">58</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="stock">gtk-missing-image</property>
@@ -104,9 +106,10 @@
                     <child>
                       <object class="GtkEntry" id="entry_text_message">
                         <property name="width-request">450</property>
-                        <property name="height-request">146</property>
+                        <property name="height-request">100</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
+                        <property name="margin-top">6</property>
                       </object>
                     </child>
                   </object>
@@ -123,6 +126,7 @@
                 <property name="height-request">594</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
+                <property name="margin-top">4</property>
                 <property name="hscrollbar-policy">never</property>
                 <property name="shadow-type">in</property>
                 <child>
