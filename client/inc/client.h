@@ -57,6 +57,7 @@ void show_signin_page(t_window_widgets *widgets);
 
 //Build
 void mx_init_widgets(t_window_widgets *widgets);
+void mx_set_settings_default(t_window_widgets *widgets);
 //Callback handlers
 void mx_signin_handler(t_info *info);
 void mx_chat_handler(t_info *info);

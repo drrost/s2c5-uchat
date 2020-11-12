@@ -21,21 +21,6 @@ void mx_event_handler_connect(t_info *info) {
     mx_register_handler(info);
 }
 
-void mx_set_signin_settings(t_signin *signin) {
-    gtk_widget_set_size_request(signin->login_window, 1350, 750);
-    gtk_widget_show(signin->login_window); //gtk_widget_show_all ??
-}
-
-void mx_set_chat_settings(t_chat_window *chat) {
-    gtk_widget_show(chat->window_main_chat);
-}
-
-void mx_set_settings_default(t_window_widgets *widgets) {
-    mx_set_signin_settings(widgets->s_signin);
-    // mx_set_chat_settings(widgets->s_chat);
-    //sign_up window init
-}
-
 void mx_builder_connect(t_info *info) {
     info->widgets->builder = gtk_builder_new_from_file(
         "resources/glade/login_page.glade");
