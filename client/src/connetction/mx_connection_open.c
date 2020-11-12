@@ -43,7 +43,7 @@ static void mx_send(t_connection *this,
                     void (*completion)(e_connection_code, t_response *)) {
 
     struct iovec message = mx_request_to_iovec(request);
-    size_t sent = send(this->socket, message.iov_base, message.iov_len, 0);
+    send(this->socket, message.iov_base, message.iov_len, 0);
     free(message.iov_base);
 
     char *buffer = mx_strnew(1024);
