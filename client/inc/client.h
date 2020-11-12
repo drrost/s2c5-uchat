@@ -60,6 +60,7 @@ void mx_init_widgets(t_window_widgets *widgets);
 //Callback handlers
 void mx_signin_handler(t_info *info);
 void mx_chat_handler(t_info *info);
+void mx_register_handler(t_info *info);
 //Connection
 void mx_connect(t_info *info);
 int mx_socket(int port, char *ip);
