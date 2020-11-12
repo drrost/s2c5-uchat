@@ -67,4 +67,6 @@ void mx_chat_handler(t_info *info) {
                      (GCallback)mx_send_message, info);
     g_signal_connect(GTK_WIDGET(chat->entry_text_message), "key-release-event",
                      (GCallback)mx_send_message_key, NULL);
+    // g_signal_connect(GTK_WIDGET(chat->theme_switch), "notify::active",
+    //                  (GCallback)mx_change_theme, NULL);
 }
