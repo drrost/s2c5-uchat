@@ -50,6 +50,7 @@ static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
     chat->scrolled_corespondent_list = mx_build(builder,
                                                 "scrolled_corespondent_list");
     chat->send_button = mx_build(builder, "send_button");
+    chat->stickers_button = mx_build(builder, "stickers_button");
     gtk_widget_set_name(chat->send_button, "send_button");
     chat->theme_switch = mx_build(builder, "theme_switch");
     gtk_widget_set_name(chat->theme_switch, "theme_switch");

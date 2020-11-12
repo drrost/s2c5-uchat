@@ -54,7 +54,8 @@
                 <property name="height-request">50</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <property name="margin-bottom">7</property>
+                <property name="margin-top">3</property>
+                <property name="margin-bottom">6</property>
                 <property name="primary-icon-name">edit-find-symbolic</property>
                 <property name="primary-icon-activatable">False</property>
                 <property name="primary-icon-sensitive">False</property>
@@ -161,7 +162,7 @@
               </object>
               <packing>
                 <property name="x">727</property>
-                <property name="y">720</property>
+                <property name="y">728</property>
               </packing>
             </child>
             <child>
@@ -187,6 +188,19 @@
               <packing>
                 <property name="x">700</property>
                 <property name="y">20</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="stickers_button">
+                <property name="width-request">50</property>
+                <property name="height-request">50</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+              </object>
+              <packing>
+                <property name="x">727</property>
+                <property name="y">669</property>
               </packing>
             </child>
           </object>
