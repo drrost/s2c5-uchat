@@ -83,10 +83,11 @@ chat_list_completion(e_connection_code code, t_response *response) {
     mx_response_delete(&response);
 }
 
-static void show_signin_page(t_window_widgets *widgets) { //segfault
+void show_signin_page(t_window_widgets *widgets) { //segfault
     gtk_widget_show(widgets->s_signin->login_window);
     gtk_widget_hide(widgets->s_register->register_window);
     gtk_widget_hide(widgets->s_chat_window->window_main_chat);
+    gtk_main();
 }
 
 static void show_register_page(t_window_widgets *widgets) {
@@ -135,7 +136,6 @@ static int mx_check_login(t_info *info) {
 }
 
 void mx_show_window(t_info *info, t_connection *connection) {
-    printf("in mx_show_window\n");
     int check = mx_check_login(info);
     if (check == 1)
         mx_change_window(info, MX_CHAT_WINDOW, connection);

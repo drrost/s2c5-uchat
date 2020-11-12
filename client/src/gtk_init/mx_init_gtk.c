@@ -148,7 +148,10 @@ void mx_go_register(t_info *info) {
     info = gs_info(GET);
 
     info->user_info->regist = true;
-    gtk_main_quit();
+    gtk_widget_show(info->widgets->s_register->register_window);
+    gtk_widget_hide(info->widgets->s_signin->login_window);
+    gtk_widget_hide(info->widgets->s_chat_window->window_main_chat);
+    gtk_main();
 }
 
 void mx_signin_handler(t_info *info) {
@@ -216,11 +219,25 @@ void mx_chat_handler(t_info *info) {
                      (GCallback)mx_send_message_key, NULL);
 }
 
+void mx_go_to_login(t_info *info) {
+    info = gs_info(GET);
+
+    //show_signin_page(info->widgets);
+    gtk_widget_show(info->widgets->s_signin->login_window);
+    gtk_widget_hide(info->widgets->s_register->register_window);
+    gtk_widget_hide(info->widgets->s_chat_window->window_main_chat);
+    gtk_main();
+}
+
+
 void mx_register_handler(t_info *info) {
+    gs_info(info);
     t_register *regist = info->widgets->s_register;
 
     g_signal_connect(GTK_WIDGET(regist->register_window), "destroy",
                      G_CALLBACK(gtk_main_quit), NULL);
+    g_signal_connect(GTK_WIDGET(regist->register_register_button), "clicked",
+                     (GCallback)mx_go_to_login, info);
 }
 
 void mx_event_handler_connect(t_info *info) {
