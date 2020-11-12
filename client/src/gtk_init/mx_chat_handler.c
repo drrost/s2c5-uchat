@@ -1,5 +1,5 @@
 //
-// Created by Karina Barinova on 02.11.2020.
+// Created by Karina Barinova on 12.11.2020.
 //
 
 #include <client.h>
@@ -58,6 +58,13 @@ gboolean mx_send_message_key(__attribute__((unused)) GtkWidget *widget,
     return FALSE;
 }
 
+void mx_change_theme(GtkSwitch *button) {
+    if (gtk_switch_get_active(button))
+        mx_css_connect_dark();
+    else
+        mx_css_connect_light();
+}
+
 void mx_chat_handler(t_info *info) {
     chat_info(info);
     t_chat_window *chat = info->widgets->s_chat_window;
@@ -67,6 +74,6 @@ void mx_chat_handler(t_info *info) {
                      (GCallback)mx_send_message, info);
     g_signal_connect(GTK_WIDGET(chat->entry_text_message), "key-release-event",
                      (GCallback)mx_send_message_key, NULL);
-    // g_signal_connect(GTK_WIDGET(chat->theme_switch), "notify::active",
-    //                  (GCallback)mx_change_theme, NULL);
+    g_signal_connect(GTK_WIDGET(chat->theme_switch), "notify::active",
+                     (GCallback)mx_change_theme, NULL);
 }

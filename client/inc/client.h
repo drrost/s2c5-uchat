@@ -55,6 +55,10 @@ void mx_set_chat_settings(t_chat_window *chat);
 void mx_show_window(t_info *info, t_connection *connection);
 void show_signin_page(t_window_widgets *widgets);
 
+//Change theme
+void mx_css_connect_light(void);
+void mx_css_connect_dark(void);
+
 //Build
 void mx_init_widgets(t_window_widgets *widgets);
 void mx_set_settings_default(t_window_widgets *widgets);

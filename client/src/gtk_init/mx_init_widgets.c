@@ -23,6 +23,7 @@ static void mx_init_signin_window(GtkBuilder *builder, t_signin *signin) {
 
 static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
     chat->window_main_chat = mx_build(builder, "window_main_chat");
+    gtk_widget_set_name(chat->window_main_chat, "window_main_chat");
     chat->window_delim2 = mx_build(builder, "window_delim2");
     chat->chats_window = mx_build(builder, "chats_window");
     chat->scrolled_window_chats = mx_build(builder, "scrolled_window_chats");

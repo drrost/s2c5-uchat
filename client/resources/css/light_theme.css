@@ -1,5 +1,5 @@
 
-#login_window, #register_window {
+#login_window, #register_window, #window_main_chat {
     border: 5px double grey;
     background-image: linear-gradient(rgba(221, 213, 210, 0.521), rgba(115, 167, 207, 1));
 }
