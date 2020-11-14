@@ -10,6 +10,7 @@
 #include <unistd.h>
 
 #include <mx_server_messaging.h>
+#include <mx_server_db.h>
 
 typedef struct {
     struct sockaddr_in address;
