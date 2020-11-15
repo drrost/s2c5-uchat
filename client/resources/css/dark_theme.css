@@ -6,10 +6,23 @@
     font-size: 15px;
 }
 
+#label_user_name {
+	color: white;
+}
+
 #contact_row {
     border-bottom: 1px solid white;
     padding: 8px;
 }
+
+#user_message {
+    background: rgb(0,33,50);
+    border-radius: 8px;
+    padding: 8px;
+    margin: 2px 8px 2px 0;
+    color: white;
+}
+
 
 #theme_switch {
     background-image: linear-gradient(rgba(0, 0, 0, 0.521), rgba(0, 0, 0, 1));
