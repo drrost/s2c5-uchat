@@ -37,6 +37,7 @@ static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
     gtk_entry_set_placeholder_text(GTK_ENTRY(chat->fiend_entry),
                                    "Type here to search");
     chat->scrolled_chats_list = mx_build(builder, "scrolled_chats_list");
+    gtk_widget_set_name(chat->scrolled_chats_list,"scrolled_chats_list");
     chat->label_user_name = mx_build(builder, "label_user_name");
     gtk_widget_set_name(chat->label_user_name, "label_user_name");
     chat->scrolled_window_message = mx_build(builder,

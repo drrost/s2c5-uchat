@@ -33,12 +33,12 @@
 }
 
 #scrolled_window_corespondent {
-    border: 1px solid grey;
+    border: 1px solid white;
     border-radius: 10px;
 }
 
 #contact_row {
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid white;
     padding: 8px;
 }
 

@@ -28,12 +28,23 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0.521), rgba(0, 0, 0, 1));
 }
 
+/*some transparency*/
+#scrolled_chats_list { 
+	background: transparent;
+}
+
 #scrolled_window_chats {
-    border: 1px solid grey;
+    border: 1px solid white;
     border-radius: 10px;
 }
 
 #scrolled_window_corespondent {
-    border: 1px solid grey;
+    border: 1px solid white;
     border-radius: 10px;
+
+}
+
+#contact_row {
+    border-bottom: 1px solid grey;
+    padding: 8px;
 }
