@@ -11,6 +11,8 @@ GtkWidget *mx_build(GtkBuilder *builder, char *id) {
 static void mx_init_signin_window(GtkBuilder *builder, t_signin *signin) {
     signin->login_window = mx_build(builder, "login_window");
     gtk_widget_set_name(signin->login_window, "login_window");
+    gtk_window_set_resizable(GTK_WINDOW(signin->login_window), FALSE);
+    //gtk_window_set_decorated(GTK_WINDOW(signin->login_window), FALSE);
 
     signin->login_grid = mx_build(builder, "login_grid");
     signin->username_entry = mx_build(builder, "username_entry");
@@ -24,6 +26,8 @@ static void mx_init_signin_window(GtkBuilder *builder, t_signin *signin) {
 static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
     chat->window_main_chat = mx_build(builder, "window_main_chat");
     gtk_widget_set_name(chat->window_main_chat, "window_main_chat");
+    gtk_window_set_resizable(GTK_WINDOW(chat->window_main_chat), FALSE);
+    //gtk_window_set_decorated(GTK_WINDOW(chat->window_main_chat), FALSE); //allows to remove resize control
     chat->window_delim2 = mx_build(builder, "window_delim2");
     chat->chats_window = mx_build(builder, "chats_window");
     chat->scrolled_window_chats = mx_build(builder, "scrolled_window_chats");
@@ -79,6 +83,8 @@ static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
 static void mx_init_register_window(GtkBuilder *builder, t_register *regist) {
     regist->register_window = mx_build(builder, "register_window");
     gtk_widget_set_name(regist->register_window, "register_window");
+    gtk_window_set_resizable(GTK_WINDOW(regist->register_window), FALSE);
+    //gtk_window_set_decorated(GTK_WINDOW(regist->register_window), FALSE);
 
     regist->register_grid = mx_build(builder, "register_grid");
     regist->first_name = mx_build(builder, "first_name");
