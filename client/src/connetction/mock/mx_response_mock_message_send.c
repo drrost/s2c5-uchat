@@ -24,5 +24,4 @@ t_response *mx_response_mock_message_send(t_request *request) {
     json_delete(root);
 
     return response;
-
 }

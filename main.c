@@ -81,15 +81,18 @@ void mx_message_print(void *data) {
     t_message *message = (t_message *)data;
 
     mx_printline("Message:");
-    mx_printstr("  id:");
-    mx_printline(message->id);
+    mx_printstr("  id: ");
+    mx_printint(message->id);
+    mx_printline("");
     mx_printstr("  message:");
     mx_printline(message->message);
-    mx_printstr("  chat_id:");
-    mx_printline(message->chat_id);
-    mx_printstr("  sender_id:");
-    mx_printline(message->sender_id);
-    mx_printstr("  time:");
+    mx_printstr("  chat_id: ");
+    mx_printint(message->chat_id);
+    mx_printline("");
+    mx_printstr("  sender_id: ");
+    mx_printint(message->sender_id);
+    mx_printline("");
+    mx_printstr("  time: ");
     mx_printint(message->time);
     mx_printstr("\n");
 }
@@ -149,7 +152,7 @@ int main() {
     // Message send
     char *text = "Hi there!";
     t_message *message = mx_message_new();
-    message->chat_id = mx_strdup(chat_id);
+    message->chat_id = 44;
     message->message = mx_strdup(text);
 
     request = mx_request_message_send(auth_token, message);

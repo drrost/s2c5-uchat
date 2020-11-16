@@ -6,16 +6,11 @@
 #include <mx_data.h>
 #include <rd_random.h>
 
-static char *random_str() {
-    int len = rd_random_int(10, 20);
-    return rd_random_strn(len);
-}
-
 static t_message *random_message() {
     t_message *message = mx_message_new();
-    message->id = random_str();
-    message->sender_id = random_str();
-    message->chat_id = random_str();
+    message->id = rd_random_int(1, 100);
+    message->sender_id = rd_random_int(1, 100);
+    message->chat_id = rd_random_int(1, 100);
     message->message = rd_random_strn(rd_random_int(10, 100));
     return message;
 }
