@@ -15,19 +15,93 @@ t_info *chat_info(t_info *in) {
     info = in;
     return info;
 }
+// gboolean timer_handler(t_info *info_time)
+// {
+//     GDateTime *date_time;
+//     gchar *dt_format;
 
+//     date_time = g_date_time_new_now_local();                        // get local time
+//     dt_format = g_date_time_format(date_time, "%H:%M");            // 24hr time format
+//     gtk_label_set_text(GTK_LABEL(info_time->), dt_format);    // update label
+//     g_free (dt_format);
+    
+//     return TRUE;
+// }
+
+ GtkWidget *mx_time_mess_to(char *data) {
+    GtkWidget *box;
+    GtkWidget *label;
+    GtkWidget *date;
+
+    label = gtk_label_new("");
+    date = gtk_label_new(data);
+    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, TRUE);
+    gtk_box_pack_start(GTK_BOX(box), label, 1, 1, 1);
+    gtk_box_pack_start(GTK_BOX(box), date, 1, 1, 1);
+    gtk_widget_set_name(date, "time");
+     
+
+    return box;
+}
+static GtkWidget *mx_name_mess_to(char *user) {
+    GtkWidget *box;
+    GtkWidget *label;
+    GtkWidget *login;
+
+    label = gtk_label_new("");
+    login = gtk_label_new(user);
+    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, TRUE);
+    gtk_box_pack_start(GTK_BOX(box), login, 1, 1, 1);
+    gtk_box_pack_start(GTK_BOX(box), label, 1, 1, 1);
+    gtk_widget_set_name(login, "user");
+
+    return box;
+}
 
 void mx_send_message(t_info *info) {
     info = chat_info(GET);
     const char *message = gtk_entry_get_text(
         GTK_ENTRY(info->widgets->s_chat_window->entry_text_message));
     if (mx_strlen(message)) {
-        GtkWidget *row, *label1, *box;
-        row = gtk_list_box_new();
-        box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+        GtkWidget *row, *label1, *box, *box2, *box3, *box4, *login, *data;
+
+        row = gtk_list_box_row_new();
+        //gtk_widget_set_size_request(row, 590, 30);
+        gtk_list_box_row_set_activatable(GTK_LIST_BOX_ROW(row), TRUE);
+        gtk_list_box_row_set_selectable(GTK_LIST_BOX_ROW(row), FALSE);
+
         label1 = gtk_label_new(message);
+
+        box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, FALSE);
+        //gtk_widget_set_size_request(box, 590, 30);
+        box2 = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, FALSE);
+        box3 = gtk_box_new (GTK_ORIENTATION_VERTICAL, FALSE);
+        box4 = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, FALSE);
+
+        login = mx_name_mess_to(info->user_info->login);
+        data = mx_time_mess_to("today");
+        //data = mx_time_mess_to(info->user_info->local_time);
+
+        //data = g_timeout_add_seconds(1, (GSourceFunc)timer_handler, info->time);
+        gtk_widget_set_halign(row, GTK_ALIGN_END);
+
+     
+        gtk_box_pack_start(GTK_BOX(box2), data, 0, 1, 1);
+        gtk_box_pack_start(GTK_BOX(box3), login, 1, 0, 1);
+
+        gtk_box_pack_end(GTK_BOX(box3), login, 0, 0, 1);
+        gtk_box_pack_start(GTK_BOX(box4), data, 1, 1, 1);
+        gtk_box_pack_start(GTK_BOX(box3), box4, 1, 1, 1);
+        gtk_box_pack_start(GTK_BOX(box3), label1, 1, 1, 1);
+        gtk_box_pack_start(GTK_BOX(box), box3, 1, 1, 1);
+
+        gtk_container_add_with_properties (GTK_CONTAINER (box), box2, "expand", TRUE, NULL);
+        gtk_container_add(GTK_CONTAINER(box), box3);
+
         gtk_container_add(GTK_CONTAINER(row), box);
-        gtk_box_pack_start(GTK_BOX(box), label1, TRUE, TRUE, 5);
+
+
+       // gtk_box_pack_start(GTK_BOX(box), label1, TRUE, TRUE, 0);
         gtk_container_add(GTK_CONTAINER(
             info->widgets->s_chat_window->scrolled_corespondent_list), row);
         gtk_widget_set_name(label1, "user_message");
@@ -36,16 +110,8 @@ void mx_send_message(t_info *info) {
     gtk_entry_set_text(
         GTK_ENTRY(info->widgets->s_chat_window->entry_text_message), "");
 
-//    GtkWidget *row_log, *label_log, *box_log;
-//    row_log = gtk_list_box_new();
-//    box_log = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-//    label_log = gtk_label_new(info->user_info->login);
-//    gtk_container_add(GTK_CONTAINER(row_log), box_log);
-//    gtk_box_pack_start(GTK_BOX(box_log), label_log, TRUE, TRUE, 0);
-//    gtk_container_add(GTK_CONTAINER(info->widgets->s_chat_window->scrolled_corespondent_list), row_log);
-//    gtk_widget_show_all(row_log);
-//    gtk_entry_set_text(GTK_ENTRY(info->widgets->s_chat_window->l), "");
 }
+
 
 gboolean mx_send_message_key(__attribute__((unused)) GtkWidget *widget,
                              GdkEventKey *event,

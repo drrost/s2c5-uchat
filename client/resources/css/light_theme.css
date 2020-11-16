@@ -18,6 +18,10 @@
     font-size: 15px;
 }
 
+#label_user_name {
+    color: black;
+}
+
 #fiend_entry {
     /*background: #F2F2F2;
     color: #C8C8C8;*/
@@ -29,23 +33,30 @@
 }
 
 #scrolled_window_corespondent {
-    border: 1px solid grey;
+    border: 1px solid white;
     border-radius: 10px;
 }
 
 #contact_row {
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid white;
     padding: 8px;
+}
+
+#user_message {
+    background: rgb(115,167,207);
+    border-radius: 8px;
+    padding: 8px;
+    margin: 2px 8px 2px 0;
+    color: white;
 }
 
 #theme_switch {
     background-image: linear-gradient(rgba(200, 200, 200, 0.521), rgba(200, 200, 200, 1));
 }
 
-	#send_button {
-
-		background: transparent;
-	}
+#send_button {
+	background: transparent;
+}
 
 button {
     border-radius: 5px;
