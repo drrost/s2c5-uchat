@@ -1,4 +1,3 @@
-#include <libmx.h>
 #include <server.h>
 #include <mx_log.h>
 
@@ -6,6 +5,12 @@ int main(int argc, char **argv) {
     argc++;
     argv++;
     int port = 7766;
+
+    int offset = 0;
+    int limit = 100;
+    char *chat_id;
+    mx_db_init();
+//    t_list *list = mx_db_message_list(offset, limit, chat_id);
 
     mx_log_i("SRV: Start", "on port %d", port);
 
