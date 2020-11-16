@@ -12,7 +12,7 @@ int main(int argc, char **argv) {
 
     int offset = 0;
     int limit = 100;
-    int chat_id;
+    int chat_id = 0;
     mx_db_init();
     t_list *list = mx_db_message_list(offset, limit, chat_id);
 

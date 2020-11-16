@@ -6,11 +6,10 @@
 
 t_message *mx_message_from_json_node(JsonNode *node) {
     t_message *message = mx_message_new();
-    message->id = mx_strdup(json_find_member(node, "id")->string_);
+    message->id = json_find_member(node, "id")->number_;
     message->time = json_find_member(node, "time")->number_;
-    message->sender_id = mx_strdup(
-        json_find_member(node, "sender_id")->string_);
-    message->chat_id = mx_strdup(json_find_member(node, "chat_id")->string_);
+    message->sender_id = json_find_member(node, "sender_id")->number_;
+    message->chat_id = json_find_member(node, "chat_id")->number_;
     message->message = mx_strdup(json_find_member(node, "message")->string_);
 
     return message;

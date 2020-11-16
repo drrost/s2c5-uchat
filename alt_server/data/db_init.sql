@@ -82,7 +82,7 @@ INSERT INTO message (text, chat_id, user_id, time)
 VALUES ('some text', 1, 1, strftime('%s', 'now'));
 
 -- R
-SELECT * FROM message ORDER BY time LIMIT 10 OFFSET 10;
+SELECT * FROM message ORDER BY time LIMIT 10 OFFSET 0;
 -- pages count (limit 10)
 SELECT round((21 + (10 - 1))/10);
 
