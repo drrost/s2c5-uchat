@@ -10,11 +10,14 @@
 #include <json.h>
 #include <arpa/inet.h>
 
+#include <mx_data.h>
+
 typedef enum {
     E_MSGTYPE_UNKNOWN = 0,
     E_MSGTYPE_LOGIN,
     E_MSGTYPE_CHATLIST,
-    E_MSGTYPE_MESSAGE_LIST
+    E_MSGTYPE_MESSAGE_LIST,
+    E_MSGTYPE_MESSAGE_SEND
 } e_msg_type;
 
 typedef struct {
@@ -52,6 +55,8 @@ t_request *mx_request_chat_messages(char *auth_token, char *chat_id);
 t_request *mx_request_message_list(char *auth_token, char *chat_id);
 
 t_request *mx_request_login_from_node(JsonNode *node_root);
+
+t_request *mx_request_message_send(char *auth_token, t_message *message);
 
 // Responses
 //
