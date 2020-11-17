@@ -10,7 +10,7 @@
 
 int malloc_counter = 0;
 
-#define line_len 1024
+#define line_len 16384
 typedef struct s_call {
     long address;
     unsigned long size;
