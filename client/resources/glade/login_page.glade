@@ -62,7 +62,6 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
-                <signal name="clicked" handler="mx_on_click_register" swapped="no"/>
                 <style>
                   <class name="login_button"/>
                 </style>
@@ -75,7 +74,6 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
-                <signal name="clicked" handler="mx_do_login" swapped="no"/>
                 <style>
                   <class name="login_button"/>
                 </style>

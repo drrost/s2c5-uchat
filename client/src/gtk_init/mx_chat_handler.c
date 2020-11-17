@@ -107,6 +107,38 @@ gboolean mx_send_message_key(__attribute__((unused)) GtkWidget *widget,
     return FALSE;
 }
 
+void mx_find_contact(void) {
+    t_info *info = chat_info(GET);
+    const char *contact = gtk_entry_get_text(
+        GTK_ENTRY(info->widgets->s_chat_window->fiend_entry));
+    if (mx_strlen(contact)) {
+        printf("needs to be found %s\n", contact);
+        //t_list *list = mx_chat_list_from_json(response->body);
+        // while (list) {
+        // t_chat *chat = (t_chat *)list->data;
+        // t_list *list = chat->participants;
+        // t_user *user = (t_user *)list->data;
+        // if (mx_strcmp(user->login, contact) == 0) {
+        //     //do smth
+        // }
+        //list = list->next;
+    //}
+    }
+    gtk_entry_set_text(
+        GTK_ENTRY(info->widgets->s_chat_window->fiend_entry), "");
+}
+
+gboolean mx_find_clicked(__attribute__((unused)) GtkWidget *widget,
+                             GdkEventKey *event,
+                             __attribute__((unused)) gpointer data) {
+    switch (event->keyval) {
+        case GDK_KEY_Return:
+            mx_find_contact();
+            break;
+    }
+    return FALSE;
+}
+
 void mx_change_theme(GtkSwitch *button) {
     if (gtk_switch_get_active(button))
         mx_css_connect_dark();
@@ -125,4 +157,6 @@ void mx_chat_handler(t_info *info) {
                      (GCallback)mx_send_message_key, NULL);
     g_signal_connect(GTK_WIDGET(chat->theme_switch), "notify::active",
                      (GCallback)mx_change_theme, NULL);
+    g_signal_connect(GTK_WIDGET(chat->fiend_entry), "key-release-event",
+                     (GCallback)mx_find_clicked, NULL);
 }
