@@ -19,13 +19,10 @@ t_info *chat_info(t_info *in) {
 
 GtkWidget *mx_time_mess_to(char *data) {
     GtkWidget *box;
-    GtkWidget *label;
     GtkWidget *date;
 
-    label = gtk_label_new("");
     date = gtk_label_new(data);
     box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, TRUE);
-    gtk_box_pack_start(GTK_BOX(box), label, 1, 1, 1);
     gtk_box_pack_start(GTK_BOX(box), date, 1, 1, 1);
     gtk_widget_set_name(date, "time");
      
@@ -33,14 +30,11 @@ GtkWidget *mx_time_mess_to(char *data) {
 }
 static GtkWidget *mx_name_mess_to(char *user) {
     GtkWidget *box;
-    GtkWidget *label;
     GtkWidget *login;
 
-    label = gtk_label_new("");
     login = gtk_label_new(user);
     box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, TRUE);
     gtk_box_pack_start(GTK_BOX(box), login, 1, 1, 1);
-    gtk_box_pack_start(GTK_BOX(box), label, 1, 1, 1);
     gtk_widget_set_name(login, "user");
 
     return box;
@@ -58,16 +52,17 @@ void mx_send_message(t_info *info) {
         time_t t;
         time(&t);
 
-        t_message *message_send = mx_message_new();
+        t_message *message_send = mx_message_new(); //Abort error if Press Send Icon!!
         message_send->chat_id = 44;
         message_send->message = mx_strdup(message);
-        GtkWidget *row, *label1, *box, *box2, *box3, *box4, *login, *time;
+        GtkWidget *row, *label1, *box, *box2, *box3, *login, *time;
 
         request = mx_request_message_send(auth_token, message_send);
         connection->send(connection, request, message_send_completion);
         mx_message_del(&message_send);
 
         row = gtk_list_box_row_new();
+        gtk_widget_set_halign(row, GTK_ALIGN_END);
         gtk_list_box_row_set_activatable(GTK_LIST_BOX_ROW(row), TRUE);
         gtk_list_box_row_set_selectable(GTK_LIST_BOX_ROW(row), FALSE);
 
@@ -75,16 +70,12 @@ void mx_send_message(t_info *info) {
         box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, FALSE);
         box2 = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, FALSE);
         box3 = gtk_box_new (GTK_ORIENTATION_VERTICAL, FALSE);
-        box4 = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, FALSE);
 
         login = mx_name_mess_to(info->user_info->login);
         time = mx_time_mess_to(ctime(&t));
-        gtk_widget_set_halign(row, GTK_ALIGN_END);
 
         gtk_box_pack_start(GTK_BOX(box2), time, 0, 1, 1);
         gtk_box_pack_end(GTK_BOX(box3), login, 0, 0, 1);
-        gtk_box_pack_start(GTK_BOX(box4), time, 1, 1, 1);
-        gtk_box_pack_start(GTK_BOX(box3), box4, 1, 1, 1);
         gtk_box_pack_start(GTK_BOX(box3), label1, 1, 1, 1);
         gtk_box_pack_start(GTK_BOX(box), box3, 1, 1, 1);
 
