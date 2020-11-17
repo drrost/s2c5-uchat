@@ -54,6 +54,12 @@ void mx_init_gtk(t_info *info);
 void mx_set_chat_settings(t_chat_window *chat);
 void mx_show_window(t_info *info, t_connection *connection);
 void show_signin_page(t_window_widgets *widgets);
+t_request *gs_request(t_request *in);
+t_connection *gs_connection(t_connection *in);
+
+//Remove
+void message_send_completion(e_connection_code code, t_response *response);
+void print_error(t_response *response);
 
 //Change theme
 void mx_css_connect_light(void);
