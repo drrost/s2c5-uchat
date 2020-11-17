@@ -18,6 +18,7 @@ typedef struct s_signin t_signin;
 typedef struct s_chat_window t_chat_window;
 typedef struct s_register t_register;
 
+
 typedef struct s_user_info {
     char id;
     char *password;
@@ -33,6 +34,7 @@ typedef struct s_window_widgets {
     GtkBuilder *builder;
     GtkBuilder *builder_window2;
     GtkBuilder *builder_window3;
+    GtkWidget * w_lbl_time; 
     t_signin *s_signin;
     t_chat_window *s_chat_window;
     t_register *s_register;
@@ -100,6 +102,7 @@ struct s_chat_window {
     GtkWidget *send_button;
     GtkWidget *stickers_button;
     GtkWidget *theme_switch;
+    GtkWidget * w_lbl_time; 
 };
 
 struct s_register {

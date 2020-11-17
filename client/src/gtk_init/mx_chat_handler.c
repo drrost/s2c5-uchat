@@ -15,18 +15,18 @@ t_info *chat_info(t_info *in) {
     info = in;
     return info;
 }
-// gboolean timer_handler(t_info *info_time)
-// {
-//     GDateTime *date_time;
-//     gchar *dt_format;
+gboolean timer_handler(t_info *info_time)
+{
+    GDateTime *date_time;
+    gchar *dt_format;
 
-//     date_time = g_date_time_new_now_local();                        // get local time
-//     dt_format = g_date_time_format(date_time, "%H:%M");            // 24hr time format
-//     gtk_label_set_text(GTK_LABEL(info_time->), dt_format);    // update label
-//     g_free (dt_format);
+    date_time = g_date_time_new_now_local();                        // get local time
+    dt_format = g_date_time_format(date_time, "%H:%M");            // 24hr time format
+    gtk_label_set_text(GTK_LABEL(info_time->widgets->s_chat_window->w_lbl_time), dt_format);    // update label
+    g_free (dt_format);
     
-//     return TRUE;
-// }
+    return TRUE;
+}
 
  GtkWidget *mx_time_mess_to(char *data) {
     GtkWidget *box;
