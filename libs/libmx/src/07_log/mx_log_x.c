@@ -15,13 +15,21 @@ void mx_log_di(const char *subject, int number) {
     mx_strdel(&s);
 }
 
-void mx_log_d(const char *subject, const char *details) {
-    mx_log(subject, details, LOG_DEBUG);
+void mx_log_d(const char *subject, const char *details, ...) {
+    char *in_details = mx_strnew(DETAILES_SIZE);
+
+    va_list argp;
+    va_start(argp, details);
+    vsprintf(in_details, details, argp);
+    va_end(argp);
+
+    mx_log(subject, in_details, LOG_DEBUG);
+    mx_strdel(&in_details);
+
 }
 
 void mx_log_i(const char *subject, const char *details, ...) {
-    static const size_t details_size = 1024;
-    char *in_details = mx_strnew(details_size);
+    char *in_details = mx_strnew(DETAILES_SIZE);
 
     va_list argp;
     va_start(argp, details);
@@ -33,8 +41,7 @@ void mx_log_i(const char *subject, const char *details, ...) {
 }
 
 void mx_log_e(const char *subject, const char *details, ...) {
-    static const size_t details_size = 1024;
-    char *in_details = mx_strnew(details_size);
+    char *in_details = mx_strnew(DETAILES_SIZE);
 
     va_list argp;
     va_start(argp, details);

@@ -8,7 +8,7 @@
     <property name="default-width">1280</property>
     <property name="default-height">720</property>
     <child>
-      <!-- n-columns=3 n-rows=3 -->
+      <!-- n-columns=3 n-rows=4 -->
       <object class="GtkGrid" id="login_grid">
         <property name="name">main_grid</property>
         <property name="visible">True</property>
@@ -24,7 +24,6 @@
             <property name="name">username_entry</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
-            <property name="margin-top">6</property>
             <property name="max-length">16</property>
             <property name="placeholder-text" translatable="yes">Username</property>
             <style>
@@ -55,6 +54,7 @@
             <property name="name">button_layout</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="margin-top">1</property>
             <child>
               <object class="GtkButton" id="register_button">
                 <property name="label" translatable="yes">Sign Up</property>
@@ -62,7 +62,6 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
-                <signal name="clicked" handler="mx_on_click_register" swapped="no"/>
                 <style>
                   <class name="login_button"/>
                 </style>
@@ -75,7 +74,6 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
-                <signal name="clicked" handler="mx_do_login" swapped="no"/>
                 <style>
                   <class name="login_button"/>
                 </style>
@@ -99,6 +97,12 @@
             <property name="left-attach">1</property>
             <property name="top-attach">3</property>
           </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
         </child>
         <child>
           <placeholder/>

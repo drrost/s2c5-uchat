@@ -31,10 +31,10 @@
           </packing>
         </child>
         <child>
-          <object class="GtkEntry" id="last_name">
+          <object class="GtkEntry" id="email">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
-            <property name="placeholder-text" translatable="yes">Last name</property>
+            <property name="placeholder-text" translatable="yes">Email address</property>
             <property name="input-purpose">alpha</property>
           </object>
           <packing>

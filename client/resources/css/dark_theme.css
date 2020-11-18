@@ -2,7 +2,8 @@
     background-image: linear-gradient(rgba(59, 54, 50, 0.521), rgba(0, 33, 50, 1));
 }
 
-#label_user_name, #user_message, #fiend_entry, #entry_text_message, #contact_row {
+#label_user_name, #user_message, #fiend_entry, #entry_text_message, 
+#contact_row, #time, #user {
     font-size: 15px;
 }
 
@@ -18,17 +19,15 @@
 #user_message {
     background: rgb(0,33,50);
     border-radius: 8px;
-    padding: 8px;
-    margin: 2px 8px 2px 0;
+    padding: 10px;
+    margin: 6px 12px 6px 0;
     color: white;
 }
-
 
 #theme_switch {
     background-image: linear-gradient(rgba(0, 0, 0, 0.521), rgba(0, 0, 0, 1));
 }
 
-/*some transparency*/
 #scrolled_chats_list { 
 	background: transparent;
 }

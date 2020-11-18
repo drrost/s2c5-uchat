@@ -30,8 +30,8 @@ char *mx_db_path();
 
 // Auth
 
-char *mx_user_id_for_credentials(const char *login, const char *password);
-int mx_save_token_to_db(const char *token, const char *user_id);
+int mx_user_id_for_credentials(const char *login, const char *password);
+int mx_save_token_to_db(const char *token, int user_id);
 
 // Messages
 

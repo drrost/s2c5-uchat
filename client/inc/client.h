@@ -61,6 +61,10 @@ void mx_show_window(t_info *info, t_connection *connection);
 void show_signin_page(t_window_widgets *widgets);
 t_request *gs_request(t_request *in);
 t_connection *gs_connection(t_connection *in);
+char *gs_response_body(char *in);
+bool mx_register_validation(t_register *regist);
+void mx_register_clear_input(t_register *regist);
+void mx_login_clear_input(t_signin *win);
 
 //Remove
 void message_send_completion(e_connection_code code, t_response *response);
@@ -118,7 +122,7 @@ struct s_register {
     GtkWidget *register_window;
     GtkWidget *register_grid;
     GtkWidget *first_name;
-    GtkWidget *last_name;
+    GtkWidget *email;
     GtkWidget *register_username;
     GtkWidget *register_password;
     GtkWidget *register_password_confirm;

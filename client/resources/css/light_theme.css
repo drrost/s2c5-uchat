@@ -5,7 +5,7 @@
 }
 
 .login_window {
-    background: url('../media/background.png');
+    background: url('../media/background.jpg');
     background-size: cover;
 }
 
@@ -19,7 +19,8 @@
     font-weight: 500;
 }
 
-#label_user_name, #user_message, #fiend_entry, #entry_text_message, #contact_row {
+#label_user_name, #user_message, #fiend_entry, #entry_text_message, 
+#contact_row, #time, #user {
     font-size: 15px;
 }
 
@@ -50,13 +51,17 @@
 #user_message {
     background: rgb(115,167,207);
     border-radius: 8px;
-    padding: 8px;
-    margin: 2px 8px 2px 0;
+    padding: 10px;
+    margin: 6px 12px 6px 0;
     color: white;
 }
 
 #theme_switch {
     background-image: linear-gradient(rgba(200, 200, 200, 0.521), rgba(200, 200, 200, 1));
+}
+
+#scrolled_chats_list { 
+    background: transparent;
 }
 
 #send_button {

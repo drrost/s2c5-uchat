@@ -11,6 +11,8 @@ int mx_save_token_to_db(const char *token, const char *user_id) {
         return 1;
     }
 
+    
+
 //    sqlite3 *db;
 //    sqlite3_stmt *res;
 //    char *err_msg = 0;
