@@ -11,7 +11,7 @@ t_response *mx_handle_login(t_request *request) {
     char *login = json_find_member(request->json, "login")->string_;
     char *password = json_find_member(request->json, "password")->string_;
 
-    char *user_id = mx_user_id_for_credentials(login, password);
+    int user_id = mx_user_id_for_credentials(login, password);
     if (user_id) {
         char *token = rd_random_strn(30);
         mx_save_token_to_db(token, user_id);
@@ -19,7 +19,6 @@ t_response *mx_handle_login(t_request *request) {
     }
     else
         response = mx_response_401_wrong_lp(E_MSGTYPE_LOGIN);
-    mx_strdel(&user_id);
 
     return response;
 }
