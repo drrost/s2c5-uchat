@@ -17,6 +17,11 @@ t_user *mx_user_for_token(const char *token) {
     return user;
 }
 
+int mx_save_message_to_db(t_message *message) {
+    // INSERT INTO message
+    return 0;
+}
+
 t_response *mx_handle_message(t_request *request) {
     t_response *response = 0;
 
@@ -36,7 +41,7 @@ t_response *mx_handle_message(t_request *request) {
         response = mx_response_401_wrong_lp(E_MSGTYPE_MESSAGE_SEND);
     else {
         // TODO: Save message to data base
-        // rc = mx_save_message_to_db(message);
+        rc = mx_save_message_to_db(message);
 
         if (!rc)
             response = mx_response_message_send(message);
