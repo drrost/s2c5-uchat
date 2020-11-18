@@ -30,7 +30,6 @@ static void message_send_completion(e_connection_code code, t_response *response
     mx_response_delete(&response);
 }
 
-
 int main() {
     t_connection *connection = mx_connection_open("127.0.0.1", 7766);
 
