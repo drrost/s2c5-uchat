@@ -9,17 +9,16 @@
 
 t_request *gs_request(t_request *in) {
     static t_request *request = 0;
-    // if (info == 0)
-    //     info = mx_info_new();
+    
     if (in == GET)
         return request;
     request = in;
     return request;
 }
+
 t_connection *gs_connection(t_connection *in) {
     static t_connection *connection = 0;
-    // if (info == 0)
-    //     info = mx_info_new();
+
     if (in == GET)
         return connection;
     connection = in;

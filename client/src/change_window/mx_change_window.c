@@ -58,6 +58,7 @@ void mx_show_conversation_list(t_list *list) {
 
 static void
 chat_list_completion(e_connection_code code, t_response *response) {
+    //gs_response(response);
     if (code != E_CONNECTION_CODE_OK)
         mx_printline("Connection error");
     else if (response->code == E_STATUS_CODE_OK) {

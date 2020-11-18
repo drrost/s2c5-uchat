@@ -16,6 +16,18 @@ t_info *chat_info(t_info *in) {
     return info;
 }
 
+// t_response *gs_response(t_response *in) {
+//     static t_response *response = 0;
+
+//     if (in == GET) {
+//         printf("strlen: %d\n", mx_strlen(response->body));
+//         return response;
+//     }
+//     response = in;
+//     printf("strlen: %d\n", mx_strlen(response->body));
+//     return response;
+// }
+
 
 GtkWidget *mx_time_mess_to(char *data) {
     GtkWidget *box;
@@ -112,16 +124,20 @@ void mx_find_contact(void) {
     const char *contact = gtk_entry_get_text(
         GTK_ENTRY(info->widgets->s_chat_window->fiend_entry));
     if (mx_strlen(contact)) {
+        //t_response *response = gs_response(GET);
         printf("needs to be found %s\n", contact);
-        //t_list *list = mx_chat_list_from_json(response->body);
+        // t_list *list = mx_chat_list_from_json(response->body);
         // while (list) {
-        // t_chat *chat = (t_chat *)list->data;
-        // t_list *list = chat->participants;
-        // t_user *user = (t_user *)list->data;
-        // if (mx_strcmp(user->login, contact) == 0) {
-        //     //do smth
+        //     t_chat *chat = (t_chat *)list->data;
+        //     t_list *list_participants = chat->participants;
+        //     t_user *user = (t_user *)list_participants->data;
+        //     if (mx_strcmp(user->login, contact) == 0) {
+        //         break;
+        //     }
+        //     else
+        //         printf("%s\n", user->login);
+        //     list = list->next;
         // }
-        //list = list->next;
     //}
     }
     gtk_entry_set_text(

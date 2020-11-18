@@ -89,7 +89,7 @@ static void mx_init_register_window(GtkBuilder *builder, t_register *regist) {
 
     regist->register_grid = mx_build(builder, "register_grid");
     regist->first_name = mx_build(builder, "first_name");
-    regist->last_name = mx_build(builder, "last_name");
+    regist->email = mx_build(builder, "email");
     regist->register_username = mx_build(builder, "register_username");
     regist->register_password = mx_build(builder, "register_password");
     regist->register_password_confirm = mx_build(builder, "register_password_confirm");
