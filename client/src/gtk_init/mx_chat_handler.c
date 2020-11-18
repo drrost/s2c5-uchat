@@ -17,6 +17,22 @@ t_info *chat_info(t_info *in) {
     return info;
 }
 
+
+static void set_preferences(GtkWidget *label) {
+    gtk_label_set_line_wrap(GTK_LABEL(label), TRUE);
+    gtk_label_set_line_wrap_mode(GTK_LABEL(label), PANGO_WRAP_CHAR);
+    gtk_label_set_max_width_chars (GTK_LABEL (label), 30); 
+//                                     //MX_MSGWIDTH(msg), msgheight / 4);
+        // gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
+//     gtk_label_set_line_wrap(GTK_LABEL(lable), TRUE);
+    
+//     gtk_label_set_max_width_chars(GTK_LABEL(lable), 50);
+//     gtk_widget_set_halign (lable, GTK_ALIGN_FILL);
+//     //gtk_label_set_justify(GTK_LABEL(lable), GTK_JUSTIFY_LEFT);
+//     gtk_label_set_text(GTK_LABEL(lable), msg);
+//     gtk_widget_set_size_request(new->widgets->s_chat_window->entry_text_message,
+//                                 MX_MSGWIDTH(msg), msgheight / 4);
+}
 char *gs_response_body(char *in) {
     static char *body = 0;
 
@@ -28,35 +44,14 @@ char *gs_response_body(char *in) {
 }
 
 
-GtkWidget *mx_time_mess_to(char *data) {
-    GtkWidget *box;
-    GtkWidget *date;
-
-    date = gtk_label_new(data);
-    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, TRUE);
-    gtk_box_pack_start(GTK_BOX(box), date, 1, 1, 1);
-    gtk_widget_set_name(date, "time");
-     
-    return box;
-}
-static GtkWidget *mx_name_mess_to(char *user) {
-    GtkWidget *box;
-    GtkWidget *login;
-
-    login = gtk_label_new(user);
-    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, TRUE);
-    gtk_box_pack_start(GTK_BOX(box), login, 1, 1, 1);
-    gtk_widget_set_name(login, "user");
-
-    return box;
-}
-
 void mx_send_message(t_info *info) {
     info = chat_info(GET);
     t_request *request = gs_request(GET);
     t_connection *connection = gs_connection(GET);
     const char *message = gtk_entry_get_text(
         GTK_ENTRY(info->widgets->s_chat_window->entry_text_message));
+    gtk_label_set_line_wrap(GTK_LABEL(info->widgets->s_chat_window->entry_text_message), TRUE);
+    gtk_label_set_max_width_chars (GTK_LABEL(info->widgets->s_chat_window->entry_text_message), 30); 
     char *auth_token = "mTetZt2VaeZLUcxfjKyOZAJbaeo6x";
 
     if (mx_strlen(message)) {
@@ -66,7 +61,9 @@ void mx_send_message(t_info *info) {
         t_message *message_send = mx_message_new();
         message_send->chat_id = 44;
         message_send->message = mx_strdup(message);
-        GtkWidget *row, *label1, *box, *box2, *box3, *login, *time;
+        GtkWidget *row, *label1, *general_box, *box_left, *box_right, *login, *time;
+
+
 
         request = mx_request_message_send(auth_token, message_send);
         connection->send(connection, request, message_send_completion);
@@ -78,25 +75,23 @@ void mx_send_message(t_info *info) {
         gtk_list_box_row_set_selectable(GTK_LIST_BOX_ROW(row), FALSE);
 
         label1 = gtk_label_new(message);
-        box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, FALSE);
-        box2 = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, FALSE);
-        box3 = gtk_box_new (GTK_ORIENTATION_VERTICAL, FALSE);
+        set_preferences(label1);
+        
+        general_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, FALSE);// created boxes
+        box_right = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, FALSE);
+        box_left = gtk_box_new (GTK_ORIENTATION_VERTICAL, FALSE);
 
         login = mx_name_mess_to(info->user_info->login);
         time = mx_time_mess_to(ctime(&t));
 
-        gtk_box_pack_start(GTK_BOX(box2), time, 0, 1, 1);
-        gtk_box_pack_end(GTK_BOX(box3), login, 0, 0, 1);
-        gtk_box_pack_start(GTK_BOX(box3), label1, 1, 1, 1);
-        gtk_box_pack_start(GTK_BOX(box), box3, 1, 1, 1);
+        gtk_box_pack_start(GTK_BOX(box_right), time, 0, 1, 1);// snap to left or top side, leaving space on right or bottom
+        gtk_box_pack_end(GTK_BOX(box_left), login, 0, 0, 1); // snap to right or bottom side, leaving space on left or top
+        gtk_box_pack_start(GTK_BOX(box_left), label1, 1, 1, 1);
+        gtk_box_pack_start(GTK_BOX(general_box), box_left, 1, 1, 1);
 
-        gtk_container_add_with_properties (GTK_CONTAINER (box), box2, "expand", TRUE, NULL);
-        gtk_container_add(GTK_CONTAINER(box), box3);
-
-        gtk_container_add(GTK_CONTAINER(row), box);
-
-
-       // gtk_box_pack_start(GTK_BOX(box), label1, TRUE, TRUE, 0);
+      gtk_container_add_with_properties (GTK_CONTAINER (general_box), box_right, "expand", TRUE, NULL); //placing widgets in a container
+        gtk_container_add(GTK_CONTAINER(general_box), box_left);
+        gtk_container_add(GTK_CONTAINER(row), general_box);
         gtk_container_add(GTK_CONTAINER(
             info->widgets->s_chat_window->scrolled_corespondent_list), row);
         gtk_widget_set_name(label1, "user_message");
@@ -104,6 +99,7 @@ void mx_send_message(t_info *info) {
     }
     gtk_entry_set_text(
         GTK_ENTRY(info->widgets->s_chat_window->entry_text_message), "");
+    
 }
 
 

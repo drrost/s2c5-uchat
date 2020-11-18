@@ -111,6 +111,8 @@
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="margin-top">6</property>
+                        <property name="width-chars">0</property>
+                        <property name="max-width-chars">0</property>
                       </object>
                     </child>
                   </object>
