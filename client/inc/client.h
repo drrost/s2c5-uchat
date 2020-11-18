@@ -56,7 +56,7 @@ void mx_show_window(t_info *info, t_connection *connection);
 void show_signin_page(t_window_widgets *widgets);
 t_request *gs_request(t_request *in);
 t_connection *gs_connection(t_connection *in);
-t_response *gs_response(t_response *in);
+char *gs_response_body(char *in);
 bool mx_register_validation(t_register *regist);
 void mx_register_clear_input(t_register *regist);
 void mx_login_clear_input(t_signin *win);

@@ -10,6 +10,7 @@
 
 static t_info *gs_info(t_info *in) {
     static t_info *info = 0;
+
     if (info == 0)
         info = mx_info_new();
     if (in == GET)
@@ -21,6 +22,7 @@ static t_info *gs_info(t_info *in) {
 static void chat_list_del(t_list **list) {
     while (*list) {
         t_chat *chat = (t_chat *)(*list)->data;
+
         mx_pop_front(list);
         mx_chat_del(&chat);
     }
@@ -28,10 +30,11 @@ static void chat_list_del(t_list **list) {
 
 void mx_append_and_print(t_chat *chat, t_window_widgets *widgets) {
     GtkWidget *row, *login, *box;
-
     t_list *list = chat->participants;
+
     while (list) {
         t_user *user = (t_user *)list->data;
+        
         row = gtk_list_box_new();
         box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
         login = gtk_label_new(user->login);
@@ -49,6 +52,7 @@ void mx_append_and_print(t_chat *chat, t_window_widgets *widgets) {
 
 void mx_show_conversation_list(t_list *list) {
     t_info *info = gs_info(GET);
+
     while (list) {
         t_chat *chat = (t_chat *)list->data;
         mx_append_and_print(chat, info->widgets);
@@ -58,18 +62,19 @@ void mx_show_conversation_list(t_list *list) {
 
 static void
 chat_list_completion(e_connection_code code, t_response *response) {
-    //gs_response(response);
+
+    gs_response_body(response->body);
+    
     if (code != E_CONNECTION_CODE_OK)
         mx_printline("Connection error");
     else if (response->code == E_STATUS_CODE_OK) {
         t_list *list = mx_chat_list_from_json(response->body);
         mx_show_conversation_list(list);
-        //print_chat_list(list);
         chat_list_del(&list);
     }
     else
         print_error(response);
-
+    response->body = 0;
     mx_response_delete(&response);
 }
 

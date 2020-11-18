@@ -8,6 +8,7 @@
 
 t_info *chat_info(t_info *in) {
     static t_info *info = 0;
+
     if (info == 0)
         info = mx_info_new();
     if (in == GET)
@@ -16,17 +17,15 @@ t_info *chat_info(t_info *in) {
     return info;
 }
 
-// t_response *gs_response(t_response *in) {
-//     static t_response *response = 0;
+char *gs_response_body(char *in) {
+    static char *body = 0;
 
-//     if (in == GET) {
-//         printf("strlen: %d\n", mx_strlen(response->body));
-//         return response;
-//     }
-//     response = in;
-//     printf("strlen: %d\n", mx_strlen(response->body));
-//     return response;
-// }
+    if (in == GET) {
+        return body;
+    }
+    body = in;
+    return body;
+}
 
 
 GtkWidget *mx_time_mess_to(char *data) {
@@ -64,7 +63,7 @@ void mx_send_message(t_info *info) {
         time_t t;
         time(&t);
 
-        t_message *message_send = mx_message_new(); //Abort error if Press Send Icon!!
+        t_message *message_send = mx_message_new();
         message_send->chat_id = 44;
         message_send->message = mx_strdup(message);
         GtkWidget *row, *label1, *box, *box2, *box3, *login, *time;
@@ -123,22 +122,21 @@ void mx_find_contact(void) {
     t_info *info = chat_info(GET);
     const char *contact = gtk_entry_get_text(
         GTK_ENTRY(info->widgets->s_chat_window->fiend_entry));
+
     if (mx_strlen(contact)) {
-        //t_response *response = gs_response(GET);
-        printf("needs to be found %s\n", contact);
-        // t_list *list = mx_chat_list_from_json(response->body);
-        // while (list) {
-        //     t_chat *chat = (t_chat *)list->data;
-        //     t_list *list_participants = chat->participants;
-        //     t_user *user = (t_user *)list_participants->data;
-        //     if (mx_strcmp(user->login, contact) == 0) {
-        //         break;
-        //     }
-        //     else
-        //         printf("%s\n", user->login);
-        //     list = list->next;
-        // }
-    //}
+        char *body = gs_response_body(GET);
+        t_list *list = mx_chat_list_from_json(body);
+        
+        while (list) {
+            t_chat *chat = (t_chat *)list->data;
+            t_list *list_participants = chat->participants;
+            t_user *user = (t_user *)list_participants->data;
+            if (!mx_strcmp(user->login, contact)) {
+                printf("found\n");
+                break;
+            }
+            list = list->next;
+        }
     }
     gtk_entry_set_text(
         GTK_ENTRY(info->widgets->s_chat_window->fiend_entry), "");
