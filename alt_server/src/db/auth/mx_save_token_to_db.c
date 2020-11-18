@@ -10,14 +10,16 @@ static int run_sql(sqlite3 *db, const char *token, int user_id) {
     int size = mx_strlen(sql);
     char *resolved = mx_strnew(size * 2);
     sprintf(resolved, sql, user_id, token);
-    sqlite3_stmt *stmt = 0;
-    int rc = sqlite3_prepare_v2(db, resolved, -1, &stmt, 0);
+    char *error_message = 0;
+    int rc = sqlite3_exec(db, resolved, 0, 0, &error_message);
     mx_strdel(&resolved);
 
-    if (rc)
-        mx_log_e("SRV", "Can't run SQL \"%s\"", sql);
-
-    sqlite3_finalize(stmt);
+    if (rc != SQLITE_OK) {
+        mx_log_e("DB", "Can't run SQL \"%s\"", sql);
+        sqlite3_free(error_message);
+    }
+    else
+        mx_log_i("DB", "Saved token to data base \"%s\"", token);
 
     return rc;
 }
