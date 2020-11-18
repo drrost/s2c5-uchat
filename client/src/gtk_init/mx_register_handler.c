@@ -16,6 +16,8 @@ t_info *register_info(t_info *in) {
     return info;
 }
 
+
+
 void mx_go_to_login(t_info *info) {
     info = register_info(GET);
 
@@ -23,10 +25,7 @@ void mx_go_to_login(t_info *info) {
         gtk_widget_show(info->widgets->s_signin->login_window);
         gtk_widget_hide(info->widgets->s_register->register_window);
         gtk_widget_hide(info->widgets->s_chat_window->window_main_chat);
-        gtk_entry_set_text(
-        GTK_ENTRY(info->widgets->s_signin->username_entry), "");
-        gtk_entry_set_text(
-        GTK_ENTRY(info->widgets->s_signin->password_entry), "");
+        mx_login_clear_input(info->widgets->s_signin);
     }
 }
 

@@ -58,6 +58,8 @@ t_request *gs_request(t_request *in);
 t_connection *gs_connection(t_connection *in);
 t_response *gs_response(t_response *in);
 bool mx_register_validation(t_register *regist);
+void mx_register_clear_input(t_register *regist);
+void mx_login_clear_input(t_signin *win);
 
 //Remove
 void message_send_completion(e_connection_code code, t_response *response);
