@@ -86,13 +86,13 @@ static void mx_register_handle_error(t_register *regist,
     const char *mail, const char *user, const char *pass) {
     if (check_data(mail, user, pass) == 1)
         mx_show_error(regist->register_window, 
-            "Incorrect email address. Example - ****@**.**\n");
+            "Incorrect email address. Example - user123@gmail.com\n");
     else if (check_data(mail, user, pass) == 2)
         mx_show_error(regist->register_window, 
-            "Incorrect username\n");
+            "Incorrect username\nYour usersname must contain only digits and letters\n");
     else if (check_data(mail, user, pass) == 3)
         mx_show_error(regist->register_window, 
-            "Incorrect password\n");
+            "Incorrect password\nYour password must contain only digits and letters\n");
     else
         mx_show_error(regist->register_window, 
             "Passwords do not match\n");
