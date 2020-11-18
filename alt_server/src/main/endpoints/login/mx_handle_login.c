@@ -12,7 +12,7 @@ t_response *mx_handle_login(t_request *request) {
     char *password = json_find_member(request->json, "password")->string_;
 
     int user_id = mx_user_id_for_credentials(login, password);
-    if (user_id) {
+    if (user_id > 0) {
         char *token = rd_random_strn(30);
         mx_save_token_to_db(token, user_id);
         response = mx_response_login(token);

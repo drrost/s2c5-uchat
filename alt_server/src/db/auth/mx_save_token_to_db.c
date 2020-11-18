@@ -5,43 +5,31 @@
 #include <mx_log.h>
 #include <mx_server_db.h>
 
-int mx_save_token_to_db(const char *token, const char *user_id) {
+static int run_sql(sqlite3 *db, const char *token, int user_id) {
+    char *sql = "INSERT INTO auth (user_id, token) VALUES (%d, '%s')";
+    int size = mx_strlen(sql);
+    char *resolved = mx_strnew(size * 2);
+    sprintf(resolved, sql, user_id, token);
+    sqlite3_stmt *stmt = 0;
+    int rc = sqlite3_prepare_v2(db, resolved, -1, &stmt, 0);
+    mx_strdel(&resolved);
+
+    if (rc)
+        mx_log_e("SRV", "Can't run SQL \"%s\"", sql);
+
+    sqlite3_finalize(stmt);
+
+    return rc;
+}
+
+int mx_save_token_to_db(const char *token, int user_id) {
     if (token == 0) {
         mx_log_e("Error saving token", "token is NULL");
         return 1;
     }
 
-    
+    t_db_connection *db_connection =
+        mx_db_connection_setget((t_db_connection *)-1);
 
-//    sqlite3 *db;
-//    sqlite3_stmt *res;
-//    char *err_msg = 0;
-//
-//    int rc = sqlite3_open("./data/uchat.sqlite", &db);
-//    if (rc != SQLITE_OK) {
-//        mx_log_e("Cannot open database: %s\n", sqlite3_errmsg(db));
-//        sqlite3_close(db);
-//        return 1;
-//    }
-//
-//    char *sql = sqlite3_prepare_v2(db, "INSERT INTO test (3) VALUES (5)",
-//                                   -1, &res, 0);
-//    rc = sqlite3_exec(db, sql, 0, 0, &err_msg);
-//
-//    if (rc != SQLITE_OK) {
-//
-//        mx_log_e(stderr, "SQL error: %s\n", err_msg);
-//
-//        sqlite3_free(err_msg);
-//        sqlite3_close(db);
-//
-//        return 1;
-//    }
-//
-//    sqlite3_finalize(res);
-//    sqlite3_close(db);
-
-    return 0;
-
-    user_id++;
+    return run_sql(db_connection->db, token, user_id);
 }
