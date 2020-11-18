@@ -47,6 +47,7 @@ JsonNode *mx_message_to_json_node(t_message *message);
 
 t_list *mx_message_list_from_json(const char *json);
 t_message *mx_message_from_json_node(JsonNode *node);
+t_message *mx_message_from_json(const char *json);
 
 // Chat
 //

@@ -51,7 +51,7 @@ FROM user;
 -- CREATE TABLE IF NOT EXISTS auth
 -- (
 --     id            INTEGER PRIMARY KEY,
---     user_id       TEXT,
+--     user_id       INTEGER,
 --     token         TEXT,
 --     creation_date REAL,
 --     FOREIGN KEY (user_id) REFERENCES user (user_id)

@@ -27,6 +27,7 @@ void mx_accept_from_socket(t_socket_connection connection);
 t_response *mx_handle_request(t_request *request);
 
 t_response *mx_handle_login(t_request *request);
+t_response *mx_handle_message(t_request *request);
 
 // Crypt
 //

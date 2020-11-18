@@ -11,6 +11,8 @@ t_request *mx_request_message_send(char *auth_token, t_message *message) {
     JsonNode *node_root = mx_message_to_json_node(message);
     JsonNode *node_token = json_mkstring(auth_token);
     json_append_member(node_root, "token", node_token);
+    JsonNode *node_type = json_mknumber(E_MSGTYPE_MESSAGE_SEND);
+    json_append_member(node_root, "type", node_type);
     request->body = json_encode(node_root);
 
     json_delete(node_root);
