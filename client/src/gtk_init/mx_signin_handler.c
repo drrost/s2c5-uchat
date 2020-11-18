@@ -52,7 +52,6 @@ static void mx_do_login(t_info *info) {
     }
 }
 
-
 static void mx_go_register(t_info *info) {
     info = signin_info(GET);
 
