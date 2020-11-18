@@ -1,5 +1,7 @@
 #ifndef CLIENT_H
 #define CLIENT_H
+#define MX_MSGHEIGHT(msg) (strlen(msg) + 20 * 10)
+#define MX_MSGWIDTH(msg) (strlen(msg) * 4 > 400 ? 400 : strlen(msg) * 4)
 
 #include <sys/types.h>
 #include <signal.h>
@@ -33,8 +35,7 @@ typedef struct s_user_info {
 typedef struct s_window_widgets {
     GtkBuilder *builder;
     GtkBuilder *builder_window2;
-    GtkBuilder *builder_window3;
-    GtkWidget * w_lbl_time; 
+    GtkBuilder *builder_window3; 
     t_signin *s_signin;
     t_chat_window *s_chat_window;
     t_register *s_register;
@@ -53,9 +54,17 @@ t_info *mx_validate_args(int argc, char *argv[]);
 t_info *mx_info_new();
 void mx_info_init(t_info **info);
 void mx_init_gtk(t_info *info);
+GtkWidget *mx_name_mess_to(char *user);
+GtkWidget *mx_time_mess_to(char *data);
 void mx_set_chat_settings(t_chat_window *chat);
 void mx_show_window(t_info *info, t_connection *connection);
 void show_signin_page(t_window_widgets *widgets);
+t_request *gs_request(t_request *in);
+t_connection *gs_connection(t_connection *in);
+
+//Remove
+void message_send_completion(e_connection_code code, t_response *response);
+void print_error(t_response *response);
 
 //Change theme
 void mx_css_connect_light(void);
@@ -102,7 +111,7 @@ struct s_chat_window {
     GtkWidget *send_button;
     GtkWidget *stickers_button;
     GtkWidget *theme_switch;
-    GtkWidget * w_lbl_time; 
+    GtkWidget *msg_bt;
 };
 
 struct s_register {

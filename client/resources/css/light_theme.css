@@ -1,7 +1,12 @@
 
-#login_window, #register_window, #window_main_chat {
+#register_window, #window_main_chat {
     border: 5px double grey;
     background-image: linear-gradient(rgba(221, 213, 210, 0.521), rgba(115, 167, 207, 1));
+}
+
+.login_window {
+    background: url('../media/background.png');
+    background-size: cover;
 }
 
 #status_label {
@@ -65,7 +70,7 @@ button {
 }
 
 #register_button, #register_register_button {
-    background-image: linear-gradient(rgba(78, 109, 156, 0.521), rgba(78, 109, 156, 1));
+    background-image: linear-gradient(rgba(106, 115, 156, 0.521), rgba(106, 115, 156, 1));
     color: black;
     font-weight: 600;
 }
@@ -75,7 +80,7 @@ button {
 }
 
 #login_button {
-    background-image: linear-gradient(rgba(1, 152, 117, 0.521), rgba(46, 204, 113, 1));
+    background-image: linear-gradient(rgba(127, 205, 242, 0.521), rgba(127, 205, 242, 1));
     color: black;
     font-weight: 600;
 }

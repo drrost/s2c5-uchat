@@ -26,18 +26,7 @@ static void chat_list_del(t_list **list) {
     }
 }
 
-static void print_error(t_response *response) {
-    t_error *error = mx_error_j(response->body);
-    error->print(error);
-    mx_error_del(&error);
-}
-
 void mx_append_and_print(t_chat *chat, t_window_widgets *widgets) {
-    // mx_printline("Chat:");
-    // mx_printstr("id: ");
-    // mx_printline(this->id);
-    // mx_printstr("name: ");
-    // mx_printline(this->name);
     GtkWidget *row, *login, *box;
 
     t_list *list = chat->participants;

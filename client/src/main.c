@@ -3,7 +3,28 @@
 //
 
 #include <client.h>
-#include <mx_connection.h>
+//#include <mx_connection.h>
+
+#define GET (void *)-1
+
+t_request *gs_request(t_request *in) {
+    static t_request *request = 0;
+    // if (info == 0)
+    //     info = mx_info_new();
+    if (in == GET)
+        return request;
+    request = in;
+    return request;
+}
+t_connection *gs_connection(t_connection *in) {
+    static t_connection *connection = 0;
+    // if (info == 0)
+    //     info = mx_info_new();
+    if (in == GET)
+        return connection;
+    connection = in;
+    return connection;
+}
 
 void mx_init(t_info **info) {
     // pthread_t thread_listen;
@@ -30,11 +51,12 @@ int main(int argc, char *argv[]) {
     mx_init(&info);
 
     t_connection *connection = mx_connection_open(info->ip,
-                                                  info->port); //Connection is not established
+                                                  info->port);
     t_request *request = mx_request_login("user", "password");
     connection->send(connection, request, login_completion);
     mx_request_delete(&request);
-
+    gs_request(request);
+    gs_connection(connection);
     gtk_main();
     mx_show_window(info, connection);
     mx_connection_close(&connection);

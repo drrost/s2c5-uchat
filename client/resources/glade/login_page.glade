@@ -121,7 +121,7 @@
       </object>
     </child>
     <style>
-      <class name="main_window"/>
+      <class name="login_window"/>
     </style>
   </object>
 </interface>

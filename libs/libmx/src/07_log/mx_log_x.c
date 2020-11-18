@@ -41,6 +41,6 @@ void mx_log_e(const char *subject, const char *details, ...) {
     vsprintf(in_details, details, argp);
     va_end(argp);
 
-    mx_log(subject, details, LOG_ERROR);
+    mx_log(subject, in_details, LOG_ERROR);
     mx_strdel(&in_details);
 }

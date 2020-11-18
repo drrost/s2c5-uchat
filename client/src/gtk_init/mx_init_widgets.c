@@ -46,7 +46,7 @@ static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
     //GtkWidget *user = gtk_image_new_from_file("resources/media/man.png");
 
     GdkPixbuf *pb1;
-    pb1 = gdk_pixbuf_new_from_file("resources/media/man.png", NULL);
+    pb1 = gdk_pixbuf_new_from_file("resources/media/default_user_photo.png", NULL);
     pb1 = gdk_pixbuf_scale_simple(pb1, 50, 50, GDK_INTERP_BILINEAR);
     gtk_image_set_from_pixbuf(GTK_IMAGE(chat->image_user), pb1);
     //gtk_button_set_image(GTK_IMAGE(chat->image_user), chat->image_user);
@@ -70,10 +70,10 @@ static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
     gtk_widget_set_name(chat->send_button, "send_button");
     chat->theme_switch = mx_build(builder, "theme_switch");
     gtk_widget_set_name(chat->theme_switch, "theme_switch");
-    GtkWidget *image = gtk_image_new_from_file("resources/media/send.png");
+    GtkWidget *image = gtk_image_new_from_file("resources/media/right-arrow.png");
     //gtk_image_set_pixel_size(GTK_IMAGE(image), 2);
     GdkPixbuf *pb;
-    pb = gdk_pixbuf_new_from_file("resources/media/send.png", NULL);
+    pb = gdk_pixbuf_new_from_file("resources/media/right-arrow.png", NULL);
     pb = gdk_pixbuf_scale_simple(pb, 50, 50, GDK_INTERP_BILINEAR);
     gtk_image_set_from_pixbuf(GTK_IMAGE(image), pb);
     gtk_button_set_image(GTK_BUTTON(chat->send_button), image);
