@@ -20,7 +20,3 @@ BEGIN
     SET creation_date = (strftime('%s', CURRENT_TIMESTAMP))
     WHERE rowid = NEW.rowid;
 END;
-
-INSERT INTO auth (user_id, token) VALUES (1, 'adsfasdf');
-
-SELECT * FROM auth;

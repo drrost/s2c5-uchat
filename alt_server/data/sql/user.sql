@@ -28,9 +28,6 @@ VALUES ('John', 'Smith', 'user', 'yHib133sIzhCU');
 INSERT INTO user (first_name, last_name, login, password)
 VALUES ('Mary', 'Hopkins', 'lady', 'yH0gEKEZemiTc');
 
-SELECT * FROM user;
-
-
 -- CREATE TRIGGER AutoGenerateGUID_user
 --     AFTER INSERT
 --     ON user
