@@ -59,7 +59,6 @@ static void mx_go_register(t_info *info) {
     gtk_widget_show(info->widgets->s_register->register_window);
     gtk_widget_hide(info->widgets->s_signin->login_window);
     gtk_widget_hide(info->widgets->s_chat_window->window_main_chat);
-    gtk_main();
 }
 
 void mx_signin_handler(t_info *info) {
