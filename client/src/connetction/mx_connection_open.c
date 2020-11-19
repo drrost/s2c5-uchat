@@ -3,6 +3,34 @@
 //
 
 #include <mx_connection.h>
+#include <mx_log.h>
+
+static int set_address(t_connection *connection, struct sockaddr_in *serv_addr) {
+    serv_addr->sin_family = AF_INET;
+    serv_addr->sin_port = htons(connection->port);
+
+    int rc = inet_pton(AF_INET, connection->ip, &(serv_addr->sin_addr));
+    if (rc <= 0) {
+        connection->error_message =
+            mx_strdup("Invalid address/Address not supported");
+        mx_log_e("UCHAT", connection->error_message);
+    }
+
+    return rc <= 0;
+}
+
+static void do_connect(t_connection *connection,
+                       const struct sockaddr *serv_addr) {
+    int rc = connect(connection->socket, serv_addr, sizeof(*serv_addr));
+    if (rc < 0) {
+        connection->error_message = mx_strdup(
+            "Connection failed");
+        mx_log_e("UCHAT", "Can't connect to the server, `connect()'"
+                          " function returned %d", rc);
+        close(connection->socket);
+        connection->socket = 0;
+    }
+}
 
 static void connect_socket(t_connection *connection) {
     struct sockaddr_in serv_addr;
@@ -13,20 +41,10 @@ static void connect_socket(t_connection *connection) {
         return;
     }
 
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(connection->port);
-
-    if (inet_pton(AF_INET, connection->ip, &serv_addr.sin_addr) <= 0) {
-        connection->error_message =
-            mx_strdup("Invalid address/Address not supported");
+    if (set_address(connection, &serv_addr))
         return;
-    }
 
-    if (connect(connection->socket, (struct sockaddr *)&serv_addr,
-                sizeof(serv_addr)) < 0) {
-        connection->error_message = mx_strdup("Connection failed");
-        return;
-    }
+    do_connect(connection, (struct sockaddr *)&serv_addr);
 }
 
 static void send_mock(t_connection *this,
@@ -41,6 +59,13 @@ static void send_mock(t_connection *this,
 static void mx_send(t_connection *this,
                     t_request *request,
                     void (*completion)(e_connection_code, t_response *)) {
+    if (this->socket == 0) {
+        if (this->error_message) {
+            mx_printerr(
+                "Can't call 'mx_send` because connection is not opened\n");
+        }
+        return;
+    }
 
     struct iovec message = mx_request_to_iovec(request);
     send(this->socket, message.iov_base, message.iov_len, 0);
