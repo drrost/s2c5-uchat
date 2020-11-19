@@ -11,8 +11,8 @@
 
 // Test
 //
-char *mx_run_login(t_connection *connection);
-void mx_run_message_send(t_connection *connection);
+char *mx_run_login();
+void mx_run_message_send(char *token);
 
 // Utils
 //
