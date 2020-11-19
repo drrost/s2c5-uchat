@@ -17,10 +17,9 @@ t_info *chat_info(t_info *in) {
     return info;
 }
 
-
 static void set_preferences(GtkWidget *label) {
     gtk_label_set_line_wrap(GTK_LABEL(label), TRUE);
-    gtk_label_set_line_wrap_mode(GTK_LABEL(label), PANGO_WRAP_CHAR);
+    gtk_label_set_line_wrap_mode(GTK_LABEL(label), PANGO_WRAP_WORD_CHAR);
     gtk_label_set_max_width_chars (GTK_LABEL (label), 30); 
 //                                     //MX_MSGWIDTH(msg), msgheight / 4);
         // gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
@@ -33,6 +32,7 @@ static void set_preferences(GtkWidget *label) {
 //     gtk_widget_set_size_request(new->widgets->s_chat_window->entry_text_message,
 //                                 MX_MSGWIDTH(msg), msgheight / 4);
 }
+
 char *gs_response_body(char *in) {
     static char *body = 0;
 
@@ -43,18 +43,15 @@ char *gs_response_body(char *in) {
     return body;
 }
 
-
 void mx_send_message(t_info *info) {
     info = chat_info(GET);
     t_request *request = gs_request(GET);
     t_connection *connection = gs_connection(GET);
     const char *message = gtk_entry_get_text(
         GTK_ENTRY(info->widgets->s_chat_window->entry_text_message));
-    gtk_label_set_line_wrap(GTK_LABEL(info->widgets->s_chat_window->entry_text_message), TRUE);
-    gtk_label_set_max_width_chars (GTK_LABEL(info->widgets->s_chat_window->entry_text_message), 30); 
     char *auth_token = "mTetZt2VaeZLUcxfjKyOZAJbaeo6x";
 
-    if (mx_strlen(message)) {
+    if (mx_strlen(message) && mx_check_for_spaces(message)) {
         time_t t;
         time(&t);
 
@@ -62,8 +59,6 @@ void mx_send_message(t_info *info) {
         message_send->chat_id = 44;
         message_send->message = mx_strdup(message);
         GtkWidget *row, *label1, *general_box, *box_left, *box_right, *login, *time;
-
-
 
         request = mx_request_message_send(auth_token, message_send);
         connection->send(connection, request, message_send_completion);
