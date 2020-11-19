@@ -79,6 +79,7 @@ static void mx_send(t_connection *this,
     message.iov_len = size;
     t_response *response = mx_response_from_raw_data(&message);
     completion(E_CONNECTION_CODE_OK, response);
+    request->response = response;
 
     mx_strdel(&buffer);
 }

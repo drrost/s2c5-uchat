@@ -8,6 +8,7 @@ t_response *mx_response_from_raw_data(struct iovec *message) {
     t_response *response = mx_response_new();
 
     response->body = mx_strdup(message->iov_base);
+    response->jsonNode = json_decode(response->body);
 
     return response;
 }

@@ -5,6 +5,8 @@
 #include <mx_messeging.h>
 
 void mx_response_delete(t_response **response) {
+    t_response *instance = *response;
+    json_delete(instance->jsonNode);
     mx_strdel(&((*response)->body));
     free(*response);
     *response = 0;

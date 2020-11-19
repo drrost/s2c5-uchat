@@ -11,7 +11,7 @@
 
 // Test
 //
-void mx_run_login(t_connection *connection);
+char *mx_run_login(t_connection *connection);
 void mx_run_message_send(t_connection *connection);
 
 // Utils
