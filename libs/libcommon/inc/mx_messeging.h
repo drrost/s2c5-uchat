@@ -20,12 +20,6 @@ typedef enum {
     E_MSGTYPE_MESSAGE_SEND
 } e_msg_type;
 
-typedef struct {
-    e_msg_type type;
-    char *body;
-    JsonNode *json;
-} t_request;
-
 typedef enum {
     E_STATUS_CODE_NONE = 0,
     E_STATUS_CODE_OK = 200,
@@ -39,7 +33,15 @@ typedef struct {
     e_msg_type type;
     e_status_code code;
     char *body;
+    JsonNode *jsonNode;
 } t_response;
+
+typedef struct {
+    e_msg_type type;
+    char *body;
+    JsonNode *json;
+    t_response *response;
+} t_request;
 
 // Requests
 //

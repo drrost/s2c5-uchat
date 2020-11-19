@@ -28,19 +28,12 @@ INSERT INTO message (text, chat_id, user_id)
 VALUES ('some text', 1, 1);
 
 -- R
-SELECT *
-FROM message
-ORDER BY creation_date
-LIMIT 10 OFFSET 0;
+SELECT * FROM message ORDER BY creation_date LIMIT 10 OFFSET 0;
 -- pages count (limit 10)
-SELECT round((21 + (10 - 1)) / 10);
+-- SELECT round((21 + (10 - 1)) / 10);
 
 -- U
 -- -
 
 -- D
-DELETE
-FROM message
-WHERE message_id = 13;
-
-SELECT creation_date, datetime(creation_date, 'unixepoch') h_time FROM message;
+-- DELETE FROM message WHERE message_id = 13;

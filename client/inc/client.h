@@ -64,6 +64,7 @@ char *gs_response_body(char *in);
 bool mx_register_validation(t_register *regist);
 void mx_register_clear_input(t_register *regist);
 void mx_login_clear_input(t_signin *win);
+bool mx_check_for_spaces(const char *message);
 
 //Remove
 void message_send_completion(e_connection_code code, t_response *response);

@@ -6,6 +6,7 @@
 
 void mx_request_delete(t_request **request) {
     t_request *instance = *request;
+    mx_response_delete(&(instance->response));
     mx_strdel(&(instance->body));
     if (instance->json)
         json_delete(instance->json);

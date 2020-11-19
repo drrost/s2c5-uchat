@@ -1,39 +1,36 @@
-#ifndef SERVER_H
-#define SERVER_H
+//
+// Created by Rostyslav Druzhchenko on 10.11.2020.
+//
 
-#include <signal.h>
-#include <string.h>
-#include <ctype.h>
-#include <stdio.h>
-#include <unistd.h>
+#ifndef INC_05_UCHAT_SERVER_H
+#define INC_05_UCHAT_SERVER_H
+
 #include <stdlib.h>
-#include <stdbool.h>
-#include <fcntl.h>
-#include <sys/socket.h>
-#include <sys/select.h>
-#include <math.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <netinet/in.h>
-#include <pthread.h>
-#include "libmx.h"
-//#include <gtk/gtk.h>
-//#include <gtk/gtkx.h>
+#include <unistd.h>
 
-typedef struct catalog_sockets {
-	int sock_fd;
-	struct catalog_sockets *neo;
-} t_list_client;
+#include <mx_server_messaging.h>
+#include <mx_server_db.h>
 
 typedef struct {
-	fd_set descriptor;
-	t_list_client base;
-} t_environment_server;
+    struct sockaddr_in address;
+    int fd;
+} t_socket_connection;
 
+// Connection
+//
+t_socket_connection mx_open_socket_to_listen(int port);
+void mx_accept_from_socket(t_socket_connection connection);
 
-int  mx_listening_socket(int port);
-void launch_deamon(void);
-int adding_sockets(t_list_client *base, int socket_new);
-int mx_connection_descriptor(fd_set descriptor, t_list_client *pack);
+// Endpoints
+//
+t_response *mx_handle_request(t_request *request);
 
-#endif
+t_response *mx_handle_login(t_request *request);
+t_response *mx_handle_message(t_request *request);
+
+// Crypt
+//
+char *mx_hash(const char *s);
+
+#endif //INC_05_UCHAT_SERVER_H
