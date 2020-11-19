@@ -20,7 +20,7 @@ t_info *chat_info(t_info *in) {
 
 static void set_preferences(GtkWidget *label) {
     gtk_label_set_line_wrap(GTK_LABEL(label), TRUE);
-    gtk_label_set_line_wrap_mode(GTK_LABEL(label), PANGO_WRAP_CHAR);
+    gtk_label_set_line_wrap_mode(GTK_LABEL(label), PANGO_WRAP_WORD);
     gtk_label_set_max_width_chars (GTK_LABEL (label), 30); 
 //                                     //MX_MSGWIDTH(msg), msgheight / 4);
         // gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
