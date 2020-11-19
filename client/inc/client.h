@@ -1,7 +1,6 @@
 #ifndef CLIENT_H
 #define CLIENT_H
-#define MX_MSGHEIGHT(msg) (strlen(msg) + 20 * 10)
-#define MX_MSGWIDTH(msg) (strlen(msg) * 4 > 400 ? 400 : strlen(msg) * 4)
+
 
 #include <sys/types.h>
 #include <signal.h>
@@ -76,6 +75,8 @@ void mx_css_connect_light(void);
 void mx_css_connect_dark(void);
 
 //Build
+void mx_sticker(t_info *info);
+
 void mx_init_widgets(t_window_widgets *widgets);
 void mx_set_settings_default(t_window_widgets *widgets);
 //Callback handlers
@@ -117,6 +118,9 @@ struct s_chat_window {
     GtkWidget *stickers_button;
     GtkWidget *theme_switch;
     GtkWidget *msg_bt;
+
+    GtkWidget *win_stick;
+    
 };
 
 struct s_register {
