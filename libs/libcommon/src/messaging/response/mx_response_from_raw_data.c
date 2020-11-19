@@ -10,5 +10,9 @@ t_response *mx_response_from_raw_data(struct iovec *message) {
     response->body = mx_strdup(message->iov_base);
     response->jsonNode = json_decode(response->body);
 
+    JsonNode *node_code = json_find_member(response->jsonNode, "code");
+    if (node_code)
+        response->code = node_code->number_;
+
     return response;
 }
