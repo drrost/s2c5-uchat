@@ -7,6 +7,7 @@
 
 #include <sqlite3.h>
 #include <libmx.h>
+#include <mx_data.h>
 
 typedef struct s_db_connection {
     sqlite3 *db;
@@ -32,6 +33,7 @@ char *mx_db_path();
 
 int mx_user_id_for_credentials(const char *login, const char *password);
 int mx_save_token_to_db(const char *token, int user_id);
+t_user *mx_user_for_token(const char *token);
 
 // Messages
 

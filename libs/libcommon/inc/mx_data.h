@@ -11,10 +11,11 @@
 #include <json.h>
 
 typedef struct s_user {
-    char *id;
+    int id;
     char *login;
     char *first_name;
     char *last_name;
+    int creation_time;
 
     void (*print)(struct s_user*);
 } t_user;

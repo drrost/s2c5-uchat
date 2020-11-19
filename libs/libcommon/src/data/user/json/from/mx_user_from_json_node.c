@@ -6,7 +6,7 @@
 
 t_user *mx_user_from_json_node(JsonNode *node) {
     t_user *user = mx_user_new();
-    user->id = mx_strdup(json_find_member(node, "id")->string_);
+    user->id = json_find_member(node, "id")->number_;
     user->login = mx_strdup(json_find_member(node, "login")->string_);
     user->first_name = mx_strdup(
         json_find_member(node, "first_name")->string_);

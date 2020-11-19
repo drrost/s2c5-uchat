@@ -7,16 +7,6 @@
 
 // TODO: Move to an appropriate folder/file
 
-t_user *mx_user_for_token(const char *token) {
-    // TODO: call the data base
-    // SELECT user_id FROM auth WHERE token = '?'
-    // SELECT u.* FROM user u WHERE user_id = ?
-    // and JOIN
-    //
-    t_user *user = mx_user_new();
-    return user;
-}
-
 int mx_save_message_to_db(t_message *message) {
     // INSERT INTO message
     return 0;
@@ -35,7 +25,6 @@ t_response *mx_handle_message(t_request *request) {
         token = node_token->string_;
 
     int rc = 0;
-    // TODO: Check authentication
     t_user *user = mx_user_for_token(token);
     if (!user)
         response = mx_response_401_wrong_lp(E_MSGTYPE_MESSAGE_SEND);
