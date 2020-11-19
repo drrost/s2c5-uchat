@@ -2,7 +2,7 @@
 
 int main() {
     char *token = mx_run_login();
-    mx_run_message_send("aaa");
+    mx_run_message_send(token);
 
     mx_strdel(&token);
 

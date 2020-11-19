@@ -19,6 +19,7 @@ void mx_run_message_send(char *token) {
     char *text = "Hi there!";
     t_message *message = mx_message_new();
     message->chat_id = 44;
+    message->sender_id = 1;
     message->message = mx_strdup(text);
 
     t_request *request = mx_request_message_send(token, message);
