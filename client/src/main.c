@@ -39,7 +39,6 @@ void login_completion(e_connection_code code, t_response *response) {
         mx_printline("Connection error");
     else if (response->code == E_STATUS_CODE_OK)
         mx_printline("Logged in successfully");
-    mx_response_delete(&response);
 }
 
 int main(int argc, char *argv[]) {

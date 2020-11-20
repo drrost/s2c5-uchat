@@ -10,6 +10,4 @@ void message_send_completion(e_connection_code code, t_response *response) {
         mx_printline("Message sent");
     else
         print_error(response);
-
-    mx_response_delete(&response);
 }
