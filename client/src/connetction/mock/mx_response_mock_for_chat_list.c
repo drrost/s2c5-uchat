@@ -12,7 +12,7 @@ static t_list *random_participants() {
 
     for (int i = 0; i < size; i++) {
         t_user *user = mx_user_new();
-        user->id = rd_random_str();
+        user->id = rd_random_int(2, 140);
         user->first_name = rd_random_str();
         user->last_name = rd_random_str();
         user->login = rd_random_str();

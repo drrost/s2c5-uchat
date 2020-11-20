@@ -9,7 +9,7 @@ JsonNode *mx_user_to_json_node(t_user *user) {
 
     JsonNode *node_first_name = json_mkstring(user->first_name);
     JsonNode *node_last_name = json_mkstring(user->last_name);
-    JsonNode *node_id = json_mkstring(user->id);
+    JsonNode *node_id = json_mknumber(user->id);
     JsonNode *node_login = json_mkstring(user->login);
 
     json_append_member(node_user, "first_name", node_first_name);
