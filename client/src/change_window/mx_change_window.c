@@ -75,7 +75,6 @@ chat_list_completion(e_connection_code code, t_response *response) {
     else
         print_error(response);
     response->body = 0;
-    mx_response_delete(&response);
 }
 
 void show_signin_page(t_window_widgets *widgets) { //segfault
