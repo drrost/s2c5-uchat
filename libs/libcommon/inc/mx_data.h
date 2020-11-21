@@ -53,8 +53,8 @@ t_message *mx_message_from_json(const char *json);
 // Chat
 //
 typedef struct s_chat {
+    int id;
     char *name;
-    char *id;
     t_list *participants; // t_user
 
     void (*print)(struct s_chat *);
