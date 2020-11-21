@@ -11,15 +11,15 @@ static t_user *user_from(sqlite3_stmt *stmt) {
     if (sqlite3_step(stmt) != SQLITE_DONE) {
         user = mx_user_new();
         user->id = sqlite3_column_int(stmt, 0);
-        user->first_name = sqlite3_column_text(stmt, 1);
-        user->last_name = sqlite3_column_text(stmt, 2);
-        user->login = sqlite3_column_text(stmt, 3);
+        user->first_name = (char *)sqlite3_column_text(stmt, 1);
+        user->last_name = (char *)sqlite3_column_text(stmt, 2);
+        user->login = (char *)sqlite3_column_text(stmt, 3);
         user->creation_time = sqlite3_column_int(stmt, 5);
     }
     return user;
 }
 
-static int run_sql(sqlite3 *db, const char *token) {
+static t_user *run_sql(sqlite3 *db, const char *token) {
     char *sql =
         "SELECT u.* from auth a LEFT JOIN user u on a.user_id = u.user_id "
         "WHERE token = '%s'";

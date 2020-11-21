@@ -144,7 +144,7 @@ int main() {
     mx_request_delete(&request);
 
     // Message list
-    char *chat_id = "KasSKeIVWjPR82xB5QNGYt4jH2lZVR";
+    int chat_id = 44;
     request = mx_request_message_list(auth_token, chat_id);
     connection->send(connection, request, message_list_completion);
     mx_request_delete(&request);

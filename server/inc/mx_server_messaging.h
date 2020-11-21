@@ -18,5 +18,6 @@ t_response *mx_response_server_error(
 
 t_response *mx_response_login(const char *token);
 t_response *mx_response_message_send(t_message *message);
+t_response *mx_response_message_list(t_list *list);
 
 #endif //SERVER_MX_SERVER_MESSAGING_H

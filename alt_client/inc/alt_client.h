@@ -13,6 +13,7 @@
 //
 char *mx_run_login();
 void mx_run_message_send(char *token);
+void mx_run_message_list(char *token);
 
 // Utils
 //

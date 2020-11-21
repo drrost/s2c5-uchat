@@ -37,7 +37,7 @@ t_user *mx_user_for_token(const char *token);
 
 // Messages
 
-t_list *mx_db_message_list(int offset, int limit, int chat_id);
+int mx_db_message_list(int offset, int limit, int chat_id, t_list **list);
 int mx_save_message_to_db(t_message *message);
 
 // Stmt

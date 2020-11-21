@@ -28,7 +28,10 @@ INSERT INTO message (text, chat_id, user_id)
 VALUES ('some text', 1, 1);
 
 -- R
-SELECT * FROM message ORDER BY creation_date LIMIT 10 OFFSET 0;
+SELECT * FROM message WHERE chat_id = 44 ORDER BY creation_date
+LIMIT 1000 OFFSET 0;
+
+SELECT * FROM message;
 -- pages count (limit 10)
 -- SELECT round((21 + (10 - 1)) / 10);
 

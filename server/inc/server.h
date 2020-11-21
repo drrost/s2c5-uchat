@@ -28,6 +28,7 @@ t_response *mx_handle_request(t_request *request);
 
 t_response *mx_handle_login(t_request *request);
 t_response *mx_handle_message(t_request *request);
+t_response *mx_handle_message_list(t_request *request);
 
 // Crypt
 //

@@ -54,12 +54,14 @@ struct iovec mx_request_to_iovec(t_request *request);
 t_request *mx_request_login(const char *login, const char *password);
 t_request *mx_request_chat_list(char *auth_token);
 t_request *mx_request_chat_messages(char *auth_token, char *chat_id);
-t_request *mx_request_message_list(char *auth_token, char *chat_id);
+t_request *mx_request_message_list(char *auth_token, int chat_id);
 
 t_request *mx_request_login_from_node(JsonNode *node_root);
 t_request *mx_request_message_send_from_node(JsonNode *node_root);
 
 t_request *mx_request_message_send(char *auth_token, t_message *message);
+
+t_request *mx_request_message_list_from_node(JsonNode *node_root);
 
 // Responses
 //
