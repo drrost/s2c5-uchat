@@ -45,6 +45,4 @@ SELECT * FROM chat_user;
 SELECT c.* FROM chat_user cu LEFT JOIN chat c ON c.chat_id = cu.chat_id WHERE cu.user_id = 1;
 
 -- Chat's participants
-SELECT *
-FROM chat_user
-WHERE chat_id = 3;
+SELECT u.* FROM chat_user cu LEFT JOIN user u on u.user_id = cu.user_id WHERE chat_id = 3;

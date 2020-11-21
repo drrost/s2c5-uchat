@@ -48,5 +48,6 @@ int mx_db_chat_list(int user_id, t_list **list);
 //
 t_message *mx_message_from(sqlite3_stmt *stmt);
 t_chat *mx_chat_from(sqlite3_stmt *stmt);
+t_user *mx_user_from(sqlite3_stmt *stmt);
 
 #endif //SERVER_MX_SERVER_DB_H
