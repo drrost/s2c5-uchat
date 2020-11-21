@@ -68,5 +68,4 @@ void mx_run_message_list(char *token) {
     mx_request_delete(&request);
 
     mx_connection_close(&connection);
-
 }
