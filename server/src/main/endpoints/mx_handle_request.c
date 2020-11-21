@@ -11,8 +11,9 @@ t_response *mx_handle_request(t_request *request) {
         return mx_handle_message(request);
     if (request->type == E_MSGTYPE_MESSAGE_LIST)
         return mx_handle_message_list(request);
+//    if (request->type == E_MSGTYPE_CHAT_LIST)
+//        return mx_handle_chat_list(request);
 
-    // TODO: Generate error response
-    // {"error":404 ... }
-    return 0;
+    return mx_response_error(E_MSGTYPE_UNKNOWN, E_STATUS_CODE_NOT_FOUND,
+                             "Endpoint not found");
 }

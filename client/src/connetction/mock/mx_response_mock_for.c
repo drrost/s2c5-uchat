@@ -8,7 +8,7 @@
 t_response *mx_response_mock_for(t_request *request) {
     if (request->type == E_MSGTYPE_LOGIN)
         return mx_response_mock_for_login(request);
-    if (request->type == E_MSGTYPE_CHATLIST)
+    if (request->type == E_MSGTYPE_CHAT_LIST)
         return mx_response_mock_for_chat_list(request);
     if (request->type == E_MSGTYPE_MESSAGE_LIST)
         return mx_response_mock_chat_messages_list(request);
