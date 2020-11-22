@@ -56,7 +56,7 @@ void mx_init_gtk(t_info *info);
 GtkWidget *mx_name_mess_to(char *user);
 GtkWidget *mx_time_mess_to(char *data);
 void mx_set_chat_settings(t_chat_window *chat);
-void mx_show_window(t_info *info, t_connection *connection);
+void mx_show_window(t_info *info);
 void show_signin_page(t_window_widgets *widgets);
 t_request *gs_request(t_request *in);
 t_connection *gs_connection(t_connection *in);
@@ -65,6 +65,8 @@ bool mx_register_validation(t_register *regist);
 void mx_register_clear_input(t_register *regist);
 void mx_login_clear_input(t_signin *win);
 bool mx_check_for_spaces(const char *message);
+void mx_run_chat_list(char *token);
+t_info *gs_info(t_info *in);
 
 //Remove
 void message_send_completion(e_connection_code code, t_response *response);
