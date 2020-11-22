@@ -17,6 +17,13 @@ static void chat_list_del(t_list **list) {
     }
 }
 
+void mx_expand_user() {
+    printf("clicked on user\n");
+    //find user/chat id
+    //clear chat scrolled window
+    //print chat history
+}
+
 void mx_append_and_print(t_chat *chat, t_window_widgets *widgets) {
     GtkWidget *row, *login, *box;
     t_list *list = chat->participants;
@@ -33,6 +40,9 @@ void mx_append_and_print(t_chat *chat, t_window_widgets *widgets) {
         gtk_box_set_spacing(GTK_BOX(box), 40);
         gtk_container_add(
             GTK_CONTAINER(widgets->s_chat_window->scrolled_chats_list), row);
+        gtk_list_box_insert(GTK_LIST_BOX(widgets->s_chat_window->scrolled_chats_list), row, -1);
+        g_signal_connect(GTK_WIDGET(row), 
+            "button_press_event", G_CALLBACK(mx_expand_user), NULL);
         gtk_widget_set_name(row, "contact_row");
         gtk_widget_show_all(row);
         list = list->next;
