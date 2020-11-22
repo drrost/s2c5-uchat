@@ -17,16 +17,6 @@ t_info *chat_info(t_info *in) {
     return info;
 }
 
-char *gs_response_body(char *in) {
-    static char *body = 0;
-
-    if (in == GET) {
-        return body;
-    }
-    body = in;
-    return body;
-}
-
 void mx_send_message(t_info *info) {
     info = chat_info(GET);
     const char *message = gtk_entry_get_text(
@@ -41,48 +31,12 @@ void mx_send_message(t_info *info) {
     
 }
 
-
 gboolean mx_send_message_key(__attribute__((unused)) GtkWidget *widget,
                              GdkEventKey *event,
                              __attribute__((unused)) gpointer data) {
     switch (event->keyval) {
         case GDK_KEY_Return:
             mx_send_message(NULL);
-            break;
-    }
-    return FALSE;
-}
-
-void mx_find_contact(void) {
-    t_info *info = chat_info(GET);
-    const char *contact = gtk_entry_get_text(
-        GTK_ENTRY(info->widgets->s_chat_window->fiend_entry));
-
-    if (mx_strlen(contact) && mx_check_for_spaces(contact)) {
-        char *body = gs_response_body(GET);
-        t_list *list = mx_chat_list_from_json(body);
-        
-        while (list) {
-            t_chat *chat = (t_chat *)list->data;
-            t_list *list_participants = chat->participants;
-            t_user *user = (t_user *)list_participants->data;
-            if (!mx_strcmp(user->login, contact)) {
-                printf("found\n"); //open chat window with this user,render history
-                break;
-            }
-            list = list->next;
-        }
-    }
-    gtk_entry_set_text(
-        GTK_ENTRY(info->widgets->s_chat_window->fiend_entry), "");
-}
-
-gboolean mx_find_clicked(__attribute__((unused)) GtkWidget *widget,
-                             GdkEventKey *event,
-                             __attribute__((unused)) gpointer data) {
-    switch (event->keyval) {
-        case GDK_KEY_Return:
-            mx_find_contact();
             break;
     }
     return FALSE;

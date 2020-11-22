@@ -8,7 +8,7 @@
 
 #define GET (void *)-1
 
-static void chat_list_del(t_list **list) {
+void chat_list_del(t_list **list) {
     while (*list) {
         t_chat *chat = (t_chat *)(*list)->data;
 
@@ -17,7 +17,13 @@ static void chat_list_del(t_list **list) {
     }
 }
 
-void mx_expand_user() {
+void mx_expand_user(t_info *info) {
+    info = gs_info(GET);
+    GtkListBoxRow *selected = gtk_list_box_get_selected_row(GTK_LIST_BOX(info->widgets->s_chat_window->scrolled_corespondent_list));
+
+    const char *text = gtk_label_get_text(
+        GTK_LABEL(selected));
+    printf("%s\n", text);
     printf("clicked on user\n");
     //find user/chat id
     //clear chat scrolled window
@@ -61,7 +67,6 @@ void mx_show_conversation_list(t_list *list) {
 
 static void
 chat_list_completion(e_connection_code code, t_response *response) {
-    gs_response_body(response->body);
     
     if (code != E_CONNECTION_CODE_OK)
         mx_printline("Connection error");
@@ -72,7 +77,6 @@ chat_list_completion(e_connection_code code, t_response *response) {
     }
     else
         print_error(response);
-    response->body = 0;
 }
 
 

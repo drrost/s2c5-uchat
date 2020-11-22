@@ -59,20 +59,23 @@ GtkWidget *mx_time_mess_to(char *data);
 void mx_set_chat_settings(t_chat_window *chat);
 void mx_show_window(t_info *info);
 void show_signin_page(t_window_widgets *widgets);
-char *gs_response_body(char *in);
 bool mx_register_validation(t_register *regist);
 void mx_register_clear_input(t_register *regist);
 void mx_login_clear_input(t_signin *win);
 bool mx_check_for_spaces(const char *text);
 void mx_run_chat_list(char *token);
 t_info *gs_info(t_info *in);
+t_info *chat_info(t_info *in);
 char *mx_run_login();
 void mx_print_error(t_response *response);
 void mx_run_message_send(char *token, const char *text);
 void mx_run_message_list(char *token);
 void mx_set_preferences(GtkWidget *label);
 void mx_render_user_message(const char *message, int time, t_info *info);
-
+void chat_list_del(t_list **list);
+gboolean mx_find_clicked(__attribute__((unused)) GtkWidget *widget,
+                             GdkEventKey *event,
+                             __attribute__((unused)) gpointer data);
 //Remove
 void print_error(t_response *response);
 
