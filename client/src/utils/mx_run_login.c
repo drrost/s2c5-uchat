@@ -10,7 +10,6 @@ void mx_print_error(t_response *response) {
     mx_error_del(&error);
 }
 
-
 static void login_completion(e_connection_code code, t_response *response) {
     if (code != E_CONNECTION_CODE_OK)
         mx_printline("Connection error");

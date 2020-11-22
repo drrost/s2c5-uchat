@@ -5,26 +5,6 @@
 #include <client.h>
 #include <mx_log.h>
 
-#define GET (void *)-1
-
-t_request *gs_request(t_request *in) {
-    static t_request *request = 0;
-
-    if (in == GET)
-        return request;
-    request = in;
-    return request;
-}
-
-t_connection *gs_connection(t_connection *in) {
-    static t_connection *connection = 0;
-
-    if (in == GET)
-        return connection;
-    connection = in;
-    return connection;
-}
-
 void mx_init(t_info **info) {
     // pthread_t thread_listen;
     // pthread_t thread_send;

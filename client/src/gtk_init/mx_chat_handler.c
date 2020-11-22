@@ -35,25 +35,16 @@ char *gs_response_body(char *in) {
 
 void mx_send_message(t_info *info) {
     info = chat_info(GET);
-    t_request *request = gs_request(GET);
-    t_connection *connection = gs_connection(GET);
     const char *message = gtk_entry_get_text(
         GTK_ENTRY(info->widgets->s_chat_window->entry_text_message)); 
 
-    char *auth_token = "mTetZt2VaeZLUcxfjKyOZAJbaeo6x";
-
     if (mx_strlen(message) && mx_check_for_spaces(message)) {
         time_t t;
+
         time(&t);
+        mx_run_message_send(info->token, message);
 
-        t_message *message_send = mx_message_new();
-        message_send->chat_id = 44;
-        message_send->message = mx_strdup(message);
         GtkWidget *row, *label1, *general_box, *box_left, *box_right, *login, *time;
-
-        request = mx_request_message_send(auth_token, message_send);
-        connection->send(connection, request, message_send_completion);
-        mx_message_del(&message_send);
 
         row = gtk_list_box_row_new();
         gtk_widget_set_halign(row, GTK_ALIGN_END);
