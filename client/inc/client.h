@@ -43,6 +43,7 @@ typedef struct s_window_widgets {
 typedef struct s_info {
     int sock;
     int port;
+    char *token;
     char *ip;
     t_user_info *user_info;
     t_window_widgets *widgets;
