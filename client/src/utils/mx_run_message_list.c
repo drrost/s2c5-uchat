@@ -10,7 +10,7 @@ void mx_message_print(void *data) {
     t_message *message = (t_message *)data;
     t_info *info = gs_info(GET);
 
-    mx_render_user_message(message->message, info);
+    mx_render_user_message(message->message, message->time, info);
 
     // mx_printline("Message:");
     // mx_printstr("  id: ");

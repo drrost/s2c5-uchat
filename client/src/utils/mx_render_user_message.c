@@ -4,9 +4,14 @@
 
 #include <client.h>
 
-void mx_render_user_message(const char *message, t_info *info) {
+void mx_render_user_message(const char *message, int message_time, t_info *info) {
+
     time_t t;
-    time(&t);
+    if (message_time == 0) {
+        time(&t);
+    }
+    else
+        t = message_time;
 
     GtkWidget *row, *label1, *general_box, *box_left, *box_right, *login, *time;
 
