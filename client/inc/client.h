@@ -63,7 +63,7 @@ char *gs_response_body(char *in);
 bool mx_register_validation(t_register *regist);
 void mx_register_clear_input(t_register *regist);
 void mx_login_clear_input(t_signin *win);
-bool mx_check_for_spaces(const char *message);
+bool mx_check_for_spaces(const char *text);
 void mx_run_chat_list(char *token);
 t_info *gs_info(t_info *in);
 char *mx_run_login();

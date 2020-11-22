@@ -17,12 +17,6 @@ t_info *chat_info(t_info *in) {
     return info;
 }
 
-void mx_set_preferences(GtkWidget *label) {
-    gtk_label_set_line_wrap(GTK_LABEL(label), TRUE);
-    gtk_label_set_line_wrap_mode(GTK_LABEL(label), PANGO_WRAP_WORD_CHAR);
-    gtk_label_set_max_width_chars (GTK_LABEL (label), 30); 
-}
-
 char *gs_response_body(char *in) {
     static char *body = 0;
 
@@ -64,7 +58,7 @@ void mx_find_contact(void) {
     const char *contact = gtk_entry_get_text(
         GTK_ENTRY(info->widgets->s_chat_window->fiend_entry));
 
-    if (mx_strlen(contact)) {
+    if (mx_strlen(contact) && mx_check_for_spaces(contact)) {
         char *body = gs_response_body(GET);
         t_list *list = mx_chat_list_from_json(body);
         
@@ -73,7 +67,7 @@ void mx_find_contact(void) {
             t_list *list_participants = chat->participants;
             t_user *user = (t_user *)list_participants->data;
             if (!mx_strcmp(user->login, contact)) {
-                printf("found\n");
+                printf("found\n"); //open chat window with this user,render history
                 break;
             }
             list = list->next;
