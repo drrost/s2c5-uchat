@@ -70,6 +70,7 @@ char *mx_run_login();
 void mx_print_error(t_response *response);
 void mx_run_message_send(char *token, const char *text);
 void mx_run_message_list(char *token);
+void mx_set_preferences(GtkWidget *label);
 
 //Remove
 void print_error(t_response *response);

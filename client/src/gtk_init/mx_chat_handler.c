@@ -17,7 +17,7 @@ t_info *chat_info(t_info *in) {
     return info;
 }
 
-static void set_preferences(GtkWidget *label) {
+void mx_set_preferences(GtkWidget *label) {
     gtk_label_set_line_wrap(GTK_LABEL(label), TRUE);
     gtk_label_set_line_wrap_mode(GTK_LABEL(label), PANGO_WRAP_WORD_CHAR);
     gtk_label_set_max_width_chars (GTK_LABEL (label), 30); 
@@ -52,7 +52,7 @@ void mx_send_message(t_info *info) {
         gtk_list_box_row_set_selectable(GTK_LIST_BOX_ROW(row), FALSE);
 
         label1 = gtk_label_new(message);
-        set_preferences(label1);
+        mx_set_preferences(label1);
         
         general_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, FALSE);// created boxes
         box_right = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, FALSE);
