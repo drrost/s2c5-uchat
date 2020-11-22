@@ -31,11 +31,11 @@ static void show_register_page(t_window_widgets *widgets) {
     gtk_main();
 }
 
-static void show_chat_page(t_window_widgets *widgets, const char *login) {
+static void show_chat_page(t_window_widgets *widgets, const char *login, char *token) {
 
-    char *auth_token = "mTetZt2VaeZLUcxfjKyOZAJbaeo6x";
+    printf("token %s\n", token);
 
-    mx_run_chat_list(auth_token);
+    mx_run_chat_list(token);
     gtk_label_set_text(GTK_LABEL(widgets->s_chat_window->label_user_name),
                        login);
     gtk_widget_show(widgets->s_chat_window->window_main_chat);
@@ -53,7 +53,7 @@ mx_change_window(t_info *info, int window) {
     else if (window == MX_REGISTER_WINDOW)
         show_register_page(info->widgets);
     else if (window == MX_CHAT_WINDOW)
-        show_chat_page(info->widgets,info->user_info->login);
+        show_chat_page(info->widgets,info->user_info->login, info->token);
     return 0;
 }
 
