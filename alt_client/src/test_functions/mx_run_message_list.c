@@ -34,9 +34,9 @@ void mx_list_foreach(t_list *list, void (*f)(void *)) {
     }
 }
 
-static void print_list(t_list *list, void (*printer)(void *)) {
-    mx_list_foreach(list, printer);
-}
+//static void print_list(t_list *list, void (*printer)(void *)) {
+//    mx_list_foreach(list, printer);
+//}
 
 static void message_list_del(t_list **list) {
     while (*list) {
