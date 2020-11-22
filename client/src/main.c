@@ -4,6 +4,7 @@
 
 #include <client.h>
 //#include <mx_connection.h>
+#include <mx_log.h>
 
 #define GET (void *)-1
 
@@ -42,6 +43,8 @@ void login_completion(e_connection_code code, t_response *response) {
 }
 
 int main(int argc, char *argv[]) {
+    mx_log_d("CLIENT", "Enter to the app");
+
     t_info *info = 0;
     info = mx_validate_args(argc, argv);
 
@@ -56,6 +59,8 @@ int main(int argc, char *argv[]) {
     mx_request_delete(&request);
     gs_request(request);
     gs_connection(connection);
+
+    mx_log_d("CLIENT", "About to start UI %s", "some text here");
     gtk_main();
     mx_show_window(info, connection);
     mx_connection_close(&connection);

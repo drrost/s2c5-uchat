@@ -52,7 +52,7 @@ static void message_list_completion(e_connection_code code, t_response *response
     else if (response->code == E_STATUS_CODE_OK) {
         t_list *list = mx_message_list_from_json(response->body);
 
-        print_list(list, mx_message_print);
+//        print_list(list, mx_message_print);
         message_list_del(&list);
     }
     else
@@ -63,7 +63,7 @@ void mx_run_message_list(char *token) {
 
     t_connection *connection = mx_connection_open("127.0.0.1", 7766);
 
-    t_request *request = mx_request_message_list(token, 44);
+    t_request *request = mx_request_message_list(token, 1);
     connection->send(connection, request, message_list_completion);
     mx_request_delete(&request);
 

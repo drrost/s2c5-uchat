@@ -9,6 +9,7 @@ CREATE TABLE message
     chat_id       INTEGER NOT NULL,
     user_id       INTEGER NOT NULL,
     creation_date INTEGER NULL,
+    type          INTEGER,
     FOREIGN KEY (user_id) REFERENCES user (user_id)
 );
 
@@ -24,11 +25,14 @@ BEGIN
 END;
 
 -- C
-INSERT INTO message (text, chat_id, user_id)
-VALUES ('some text', 1, 1);
+INSERT INTO message (text, chat_id, user_id, type)
+VALUES ('some text', 1, 1, 1);
 
 -- R
-SELECT * FROM message WHERE chat_id = 44 ORDER BY creation_date
+SELECT *
+FROM message
+WHERE chat_id = 44
+ORDER BY creation_date
 LIMIT 1000 OFFSET 0;
 
 SELECT * FROM message;

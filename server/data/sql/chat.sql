@@ -28,6 +28,8 @@ INSERT INTO chat_user (chat_id, user_id)
 VALUES (1, 1);
 INSERT INTO chat_user (chat_id, user_id)
 VALUES (1, 2);
+INSERT INTO chat_user (chat_id, user_id)
+VALUES (1, 3);
 
 INSERT INTO chat_user (chat_id, user_id)
 VALUES (2, 1);

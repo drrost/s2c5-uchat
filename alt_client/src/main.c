@@ -7,7 +7,7 @@ int main() {
 
     // An example how to send a message.
     //
-    // mx_run_message_send(token);
+    mx_run_message_send(token);
 
     // An example how to obtain messages list.
     //

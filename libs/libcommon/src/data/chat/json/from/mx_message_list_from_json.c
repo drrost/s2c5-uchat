@@ -5,7 +5,8 @@
 #include <mx_data.h>
 
 t_list *mx_message_list_from_json(const char *json) {
-    JsonNode *node_array = json_decode(json);
+    JsonNode *node_root = json_decode(json);
+    JsonNode *node_array = json_find_member(node_root, "messages");
 
     t_list *list = 0;
 
@@ -15,7 +16,7 @@ t_list *mx_message_list_from_json(const char *json) {
         mx_push_back(&list, message);
     }
 
-    json_delete(node_array);
+    json_delete(node_root);
 
     return list;
 }

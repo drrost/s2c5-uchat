@@ -9,15 +9,22 @@ t_response *mx_response_message_list(t_list *list) {
     response->type = E_MSGTYPE_MESSAGE_LIST;
     response->code = E_STATUS_CODE_OK;
 
-    JsonNode *node_root = json_mkarray();
+    JsonNode *node_root = json_mkobject();
+    JsonNode *node_type = json_mknumber(response->type);
+    JsonNode *node_code = json_mknumber(response->code);
+    json_append_member(node_root, "code", node_code);
+    json_append_member(node_root, "type", node_type);
+
+    JsonNode *node_messages_arr = json_mkarray();
 
     while (list) {
         t_message *message = (t_message *)list->data;
         JsonNode *node_message = mx_message_to_json_node(message);
-        json_append_element(node_root, node_message);
+        json_append_element(node_messages_arr, node_message);
         list = list->next;
     }
 
+    json_append_member(node_root, "messages", node_messages_arr);
     response->body = json_encode(node_root);
     json_delete(node_root);
 

@@ -17,7 +17,7 @@ typedef struct s_user {
     char *last_name;
     int creation_time;
 
-    void (*print)(struct s_user*);
+    void (*print)(struct s_user *);
 } t_user;
 
 t_user *mx_user_new(void);
@@ -29,6 +29,14 @@ JsonNode *mx_user_to_json_node(t_user *user);
 t_list *mx_user_list_from_json_node(JsonNode *node);
 t_user *mx_user_from_json_node(JsonNode *node);
 
+typedef enum {
+    E_MESSAGE_TYPE_NONE = 0,
+    E_MESSAGE_TYPE_TEXT,
+    E_MESSAGE_TYPE_TEXT_UPDATE,
+    E_MESSAGE_TYPE_TEXT_DELETE,
+    E_MESSAGE_TYPE_STICKER
+} e_message_type;
+
 // Messages
 //
 typedef struct {
@@ -37,10 +45,11 @@ typedef struct {
     int sender_id;
     int chat_id;
     char *message;
+    e_message_type type;
 } t_message;
 
 t_message *mx_message_new(void);
-void mx_message_del(t_message  **message);
+void mx_message_del(t_message **message);
 
 char *mx_message_list_to_json(t_list *list);
 JsonNode *mx_message_list_to_json_node(t_list *list);
