@@ -68,6 +68,7 @@ void mx_login_clear_input(t_signin *win);
 bool mx_check_for_spaces(const char *message);
 void mx_run_chat_list(char *token);
 t_info *gs_info(t_info *in);
+char *mx_run_login();
 
 //Remove
 void message_send_completion(e_connection_code code, t_response *response);
