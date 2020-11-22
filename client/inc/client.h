@@ -137,8 +137,10 @@ struct s_register {
     GtkWidget *register_username;
     GtkWidget *register_password;
     GtkWidget *register_password_confirm;
-    GtkWidget *register_layout;
+    GtkWidget *register_layout1;
+    GtkWidget *register_layout2;
     GtkWidget *register_register_button;
+    GtkWidget *register_back_button;
     GtkWidget *register_status_label;
 };
 
