@@ -3,17 +3,12 @@
 //
 
 #include <server.h>
+#include <private/mx_response_private.h>
 
 t_response *mx_response_message_list(t_list *list) {
-    t_response *response = mx_response_new();
-    response->type = E_MSGTYPE_MESSAGE_LIST;
-    response->code = E_STATUS_CODE_OK;
-
-    JsonNode *node_root = json_mkobject();
-    JsonNode *node_type = json_mknumber(response->type);
-    JsonNode *node_code = json_mknumber(response->code);
-    json_append_member(node_root, "code", node_code);
-    json_append_member(node_root, "type", node_type);
+    t_response *response =
+        mx_response_with_filled_header(E_MSGTYPE_MESSAGE_LIST);
+    JsonNode *node_root = response->jsonNode;
 
     JsonNode *node_messages_arr = json_mkarray();
 
