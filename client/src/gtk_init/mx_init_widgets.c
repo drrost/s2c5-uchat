@@ -52,8 +52,12 @@ static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
 
     chat->window_text_message_scrolled = mx_build(builder,
                                                   "window_text_message_scrolled");
+    gtk_widget_set_name(chat->window_text_message_scrolled,
+        "window_text_message_scrolled");
     chat->window_text_message_scrolled_atribut = mx_build(builder,
                                                           "window_text_message_scrolled_atribut");
+    gtk_widget_set_name(chat->window_text_message_scrolled_atribut,
+        "window_text_message_scrolled_atribut");
     chat->entry_text_message = mx_build(builder, "entry_text_message");
     gtk_widget_set_name(chat->entry_text_message, "entry_text_message");
     chat->scrolled_window_corespondent = mx_build(builder,

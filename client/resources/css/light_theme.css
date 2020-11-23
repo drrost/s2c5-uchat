@@ -64,7 +64,7 @@
 
 #scrolled_corespondent_list {
     background-color: rgba(255,255,255, 0.6);
-    border: 1px solid white;
+    border: 1px solid transparent;
     border-radius: 10px;
 }
 
@@ -101,7 +101,15 @@ button {
     box-shadow: none;
 }
 
+#window_text_message_scrolled_atribut {
+    border: 1px solid transparent;
+}
+#window_text_message_scrolled {
+    border: 1px solid transparent;
+}
+
 #entry_text_message {
+    border: 1px solid transparent;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.8);
 }
