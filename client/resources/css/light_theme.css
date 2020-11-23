@@ -20,21 +20,40 @@
 }
 
 #label_user_name, #user_message, #fiend_entry, #entry_text_message, 
-#contact_row, #time, #user {
-    font-size: 15px;
+#contact_row, #user {
+    font-size: 16px;
+}
+
+#time {
+    font-size: 14px;
+    color: grey;
 }
 
 #label_user_name {
     color: black;
 }
 
-#fiend_entry {
-    /*background: #F2F2F2;
-    color: #C8C8C8;*/
+#username_entry {
+    background-color: rgba(255,255,255, 0.9);
 }
 
+#password_entry {
+    background-color: rgba(255,255,255, 0.9);
+}
+
+#fiend_entry {
+    border-bottom: 1px solid white;
+    border-radius: 10px;
+    background-color: rgba(255,255,255, 0.6);
+}
+
+#fiend_entry:focus {
+    border-color: white;
+}
+
+
 #scrolled_window_chats {
-    border: 1px solid grey;
+    border: 1px solid transparent;
     border-radius: 10px;
 }
 
@@ -43,13 +62,21 @@
     border-radius: 10px;
 }
 
+#scrolled_corespondent_list {
+    background-color: rgba(255,255,255, 0.6);
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
 #contact_row {
     border-bottom: 1px solid white;
+    border-radius: 10px;
+    background-color: rgba(255,255,255, 0.6);
     padding: 8px;
 }
 
 #user_message {
-    background: rgb(115,167,207);
+    background-color: rgba(115,167,207, 0.8);
     border-radius: 8px;
     padding: 10px;
     margin: 6px 12px 6px 0;
@@ -72,6 +99,23 @@ button {
     border-radius: 5px;
     border-width: 0px;
     box-shadow: none;
+}
+
+#window_text_message_scrolled_atribut {
+    border: 1px solid transparent;
+}
+#window_text_message_scrolled {
+    border: 1px solid transparent;
+}
+
+#entry_text_message {
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+#entry_text_message:focus {
+    border-color: white;
 }
 
 #register_button, #register_register_button, #register_back_button {

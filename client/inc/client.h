@@ -25,6 +25,7 @@ typedef struct s_user_info {
     char *password;
     char *login;
     bool logged;
+    bool to_login;
     bool regist; //clicked sign up button/register
     char *name;
     char *first_name;
@@ -32,6 +33,8 @@ typedef struct s_user_info {
 }              t_user_info;
 
 typedef struct s_window_widgets {
+    
+
     GtkBuilder *builder;
     GtkBuilder *builder_window2;
     GtkBuilder *builder_window3; 
@@ -69,13 +72,18 @@ t_info *chat_info(t_info *in);
 char *mx_run_login();
 void mx_print_error(t_response *response);
 void mx_run_message_send(char *token, const char *text);
+void mx_run_sticker_send(char *token, const char *text);
 void mx_run_message_list(char *token);
 void mx_set_preferences(GtkWidget *label);
-void mx_render_user_message(const char *message, int time, t_info *info);
+void mx_render_user_message(const char *message, 
+    int message_time, int message_type, t_info *info);
 void chat_list_del(t_list **list);
 gboolean mx_find_clicked(__attribute__((unused)) GtkWidget *widget,
                              GdkEventKey *event,
                              __attribute__((unused)) gpointer data);
+int
+mx_change_window(t_info *info, int window);
+
 //Remove
 void print_error(t_response *response);
 
@@ -84,7 +92,11 @@ void mx_css_connect_light(void);
 void mx_css_connect_dark(void);
 
 //Build
-void mx_sticker(t_info *info);
+void mx_create_sticker_1(GtkWidget *box);
+void mx_create_sticker();
+void mx_send_message(t_info *info);
+void mx_sticker();
+void mx_send_sticker_to(GtkWidget *click_butt);
 
 void mx_init_widgets(t_window_widgets *widgets);
 void mx_set_settings_default(t_window_widgets *widgets);
@@ -127,6 +139,8 @@ struct s_chat_window {
     GtkWidget *stickers_button;
     GtkWidget *theme_switch;
     GtkWidget *msg_bt;
+
+
 
     GtkWidget *win_stick;
     

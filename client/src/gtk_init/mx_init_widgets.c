@@ -16,7 +16,9 @@ static void mx_init_signin_window(GtkBuilder *builder, t_signin *signin) {
 
     signin->login_grid = mx_build(builder, "login_grid");
     signin->username_entry = mx_build(builder, "username_entry");
+    gtk_widget_set_name(signin->username_entry, "username_entry");
     signin->password_entry = mx_build(builder, "password_entry");
+    gtk_widget_set_name(signin->password_entry, "password_entry");
     signin->login_layout = mx_build(builder, "login_layout");
     signin->register_button = mx_build(builder, "register_button");
     signin->login_button = mx_build(builder, "login_button");
@@ -50,8 +52,12 @@ static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
 
     chat->window_text_message_scrolled = mx_build(builder,
                                                   "window_text_message_scrolled");
+    gtk_widget_set_name(chat->window_text_message_scrolled,
+        "window_text_message_scrolled");
     chat->window_text_message_scrolled_atribut = mx_build(builder,
                                                           "window_text_message_scrolled_atribut");
+    gtk_widget_set_name(chat->window_text_message_scrolled_atribut,
+        "window_text_message_scrolled_atribut");
     chat->entry_text_message = mx_build(builder, "entry_text_message");
     gtk_widget_set_name(chat->entry_text_message, "entry_text_message");
     chat->scrolled_window_corespondent = mx_build(builder,
@@ -59,9 +65,13 @@ static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
     gtk_widget_set_name(chat->scrolled_window_corespondent, "scrolled_window_corespondent");
     chat->scrolled_window_corespondent_atribut = mx_build(builder,
                                                           "scrolled_window_corespondent_atribut");
+    gtk_widget_set_name(chat->scrolled_window_corespondent_atribut,
+        "scrolled_window_corespondent_atribut");
     chat->scrolled_corespondent_list = mx_build(builder,
                                                 "scrolled_corespondent_list");
 
+    gtk_widget_set_name(chat->scrolled_corespondent_list,
+     "scrolled_corespondent_list");
     chat->send_button = mx_build(builder, "send_button");
     chat->stickers_button = mx_build(builder, "stickers_button");
     gtk_widget_set_name(chat->send_button, "send_button");
