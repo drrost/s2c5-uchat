@@ -8,6 +8,7 @@ static void print(t_user *this) {
     mx_printline("User:");
     mx_printstr("id: ");
     mx_printint(this->id);
+    mx_printline("");
     mx_printstr("login: ");
     mx_printline(this->login);
     mx_printstr("first_name: ");

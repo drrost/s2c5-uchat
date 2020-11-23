@@ -12,14 +12,15 @@ static int run_sql(sqlite3 *db, const char *token, int user_id) {
     sprintf(resolved, sql, user_id, token);
     char *error_message = 0;
     int rc = sqlite3_exec(db, resolved, 0, 0, &error_message);
-    mx_strdel(&resolved);
 
     if (rc != SQLITE_OK) {
-        mx_log_e("DB", "Can't run SQL \"%s\"", sql);
+        mx_log_e("DB", "Can't run SQL \"%s\"", resolved);
         sqlite3_free(error_message);
     }
     else
         mx_log_i("DB", "Saved token to data base \"%s\"", token);
+
+    mx_strdel(&resolved);
 
     return rc;
 }

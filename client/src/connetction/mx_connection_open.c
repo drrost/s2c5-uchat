@@ -73,12 +73,13 @@ static void mx_send(t_connection *this,
 
     char *buffer = mx_strnew(1024);
     int size = recv(this->socket, buffer, 1024, 0);
-    fprintf(stdout, "%s\n", buffer);
+    fprintf(stdout, "CLIENT: mx_send: Data received:\n%s\n", buffer);
 
     message.iov_base = buffer;
     message.iov_len = size;
     t_response *response = mx_response_from_raw_data(&message);
-    completion(E_CONNECTION_CODE_OK, response);
+    if (completion)
+        completion(E_CONNECTION_CODE_OK, response);
     request->response = response;
 
     mx_strdel(&buffer);
