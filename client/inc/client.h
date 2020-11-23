@@ -32,6 +32,8 @@ typedef struct s_user_info {
 }              t_user_info;
 
 typedef struct s_window_widgets {
+    
+
     GtkBuilder *builder;
     GtkBuilder *builder_window2;
     GtkBuilder *builder_window3; 
@@ -65,6 +67,7 @@ bool mx_register_validation(t_register *regist);
 void mx_register_clear_input(t_register *regist);
 void mx_login_clear_input(t_signin *win);
 bool mx_check_for_spaces(const char *message);
+t_info *chat_info(t_info *in);
 
 //Remove
 void message_send_completion(e_connection_code code, t_response *response);
@@ -75,7 +78,11 @@ void mx_css_connect_light(void);
 void mx_css_connect_dark(void);
 
 //Build
-void mx_sticker(t_info *info);
+void mx_create_sticker_1(GtkWidget *box);
+void mx_create_sticker();
+void mx_send_message(t_info *info);
+void mx_sticker();
+void mx_send_sticker_to(void);
 
 void mx_init_widgets(t_window_widgets *widgets);
 void mx_set_settings_default(t_window_widgets *widgets);
@@ -118,6 +125,8 @@ struct s_chat_window {
     GtkWidget *stickers_button;
     GtkWidget *theme_switch;
     GtkWidget *msg_bt;
+
+
 
     GtkWidget *win_stick;
     
