@@ -6,7 +6,6 @@
 
 void mx_chat_del(t_chat **chat) {
     t_chat *instance = *chat;
-    mx_strdel(&(instance->id));
     mx_strdel((&instance->name));
 
     t_list *list = instance->participants;

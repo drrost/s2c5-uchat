@@ -37,11 +37,17 @@ t_user *mx_user_for_token(const char *token);
 
 // Messages
 
-t_list *mx_db_message_list(int offset, int limit, int chat_id);
+int mx_db_message_list(int offset, int limit, int chat_id, t_list **list);
 int mx_save_message_to_db(t_message *message);
+
+// Chat
+//
+int mx_db_chat_list(int user_id, t_list **list);
 
 // Stmt
 //
 t_message *mx_message_from(sqlite3_stmt *stmt);
+t_chat *mx_chat_from(sqlite3_stmt *stmt);
+t_user *mx_user_from(sqlite3_stmt *stmt);
 
 #endif //SERVER_MX_SERVER_DB_H

@@ -4,9 +4,9 @@
 
 #include <client.h>
 
-bool mx_check_for_spaces(const char *message) {
-    for (int i = 0; i <= mx_strlen(message); i++) {
-        if (mx_isalpha(message[i]) || mx_isdigit(message[i]))
+bool mx_check_for_spaces(const char *text) {
+    for (int i = 0; i <= mx_strlen(text); i++) {
+        if (mx_isalpha(text[i]) || mx_isdigit(text[i]))
             return true;
     }
     return false;

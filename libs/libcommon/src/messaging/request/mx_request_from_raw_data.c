@@ -28,11 +28,24 @@ t_request *mx_request_from_raw_data(const char *buff, int size) {
         return unknown_request((void *)buff, size);
     }
 
-    if (node_type->number_ == 1)
-        request = mx_request_login_from_node(node_root);
+    switch ((int)node_type->number_) {
+        case E_MSGTYPE_LOGIN:
+            request = mx_request_login_from_node(node_root);
+            break;
+        case E_MSGTYPE_MESSAGE_SEND:
+            request = mx_request_message_send_from_node(node_root);
+            break;
+        case E_MSGTYPE_MESSAGE_LIST:
+            request = mx_request_message_list_from_node(node_root);
+            break;
+        case E_MSGTYPE_CHAT_LIST:
+            request = mx_request_chat_list_from_node(node_root);
+            break;
+        default:
+            request = mx_request_unknown(node_root);
+    }
 
-    if (node_type->number_ == E_MSGTYPE_MESSAGE_SEND)
-        request = mx_request_message_send_from_node(node_root);
+
 
     request->json = node_root;
 

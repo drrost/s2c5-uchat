@@ -79,7 +79,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLayout" id="register_layout">
+          <object class="GtkLayout" id="register_layout1">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <child>
@@ -100,9 +100,21 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="register_status_label">
+          <object class="GtkLayout" id="register_layout2">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <child>
+              <object class="GtkButton" id="register_back_button">
+                <property name="label" translatable="yes">Login page</property>
+                <property name="width-request">80</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+              </object>
+              <packing>
+                <property name="x">32</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="left-attach">1</property>

@@ -45,6 +45,7 @@ typedef struct s_window_widgets {
 typedef struct s_info {
     int sock;
     int port;
+    char *token;
     char *ip;
     t_user_info *user_info;
     t_window_widgets *widgets;
@@ -58,19 +59,26 @@ void mx_init_gtk(t_info *info);
 GtkWidget *mx_name_mess_to(char *user);
 GtkWidget *mx_time_mess_to(char *data);
 void mx_set_chat_settings(t_chat_window *chat);
-void mx_show_window(t_info *info, t_connection *connection);
+void mx_show_window(t_info *info);
 void show_signin_page(t_window_widgets *widgets);
-t_request *gs_request(t_request *in);
-t_connection *gs_connection(t_connection *in);
-char *gs_response_body(char *in);
 bool mx_register_validation(t_register *regist);
 void mx_register_clear_input(t_register *regist);
 void mx_login_clear_input(t_signin *win);
-bool mx_check_for_spaces(const char *message);
+bool mx_check_for_spaces(const char *text);
+void mx_run_chat_list(char *token);
+t_info *gs_info(t_info *in);
 t_info *chat_info(t_info *in);
-
+char *mx_run_login();
+void mx_print_error(t_response *response);
+void mx_run_message_send(char *token, const char *text);
+void mx_run_message_list(char *token);
+void mx_set_preferences(GtkWidget *label);
+void mx_render_user_message(const char *message, int time, t_info *info);
+void chat_list_del(t_list **list);
+gboolean mx_find_clicked(__attribute__((unused)) GtkWidget *widget,
+                             GdkEventKey *event,
+                             __attribute__((unused)) gpointer data);
 //Remove
-void message_send_completion(e_connection_code code, t_response *response);
 void print_error(t_response *response);
 
 //Change theme
@@ -140,8 +148,10 @@ struct s_register {
     GtkWidget *register_username;
     GtkWidget *register_password;
     GtkWidget *register_password_confirm;
-    GtkWidget *register_layout;
+    GtkWidget *register_layout1;
+    GtkWidget *register_layout2;
     GtkWidget *register_register_button;
+    GtkWidget *register_back_button;
     GtkWidget *register_status_label;
 };
 

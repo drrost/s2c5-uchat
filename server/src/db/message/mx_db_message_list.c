@@ -15,14 +15,15 @@ static t_list *message_list_from(sqlite3_stmt *stmt) {
     return list;
 }
 
-static sqlite3_stmt *run_sql(sqlite3 *db, int offset, int limit) {
+static sqlite3_stmt *run_sql(sqlite3 *db, int offset, int limit, int chat_id) {
     sqlite3_stmt *stmt = 0;
 
     char *sql =
-        "SELECT * FROM message ORDER BY creation_date LIMIT %i OFFSET %i";
+        "SELECT * FROM message WHERE chat_id = %d "
+        "ORDER BY creation_date LIMIT %d OFFSET %d";
     int size = mx_strlen(sql);
     char *resolved = mx_strnew(size * 2);
-    sprintf(resolved, sql, limit, offset);
+    sprintf(resolved, sql, chat_id, limit, offset);
     int rc = sqlite3_prepare_v2(db, resolved, -1, &stmt, 0);
     mx_strdel(&resolved);
 
@@ -32,17 +33,17 @@ static sqlite3_stmt *run_sql(sqlite3 *db, int offset, int limit) {
     return stmt;
 }
 
-t_list *mx_db_message_list(int offset, int limit, int chat_id) {
+int mx_db_message_list(int offset, int limit, int chat_id, t_list **list) {
     t_db_connection *db_connection =
         mx_db_connection_setget((t_db_connection *)-1);
 
-    sqlite3_stmt *stmt = run_sql(db_connection->db, offset, limit);
+    sqlite3_stmt *stmt = run_sql(db_connection->db, offset, limit, chat_id);
 
     if (!stmt)
-        return 0;
+        return 1;
 
-    t_list *list = message_list_from(stmt);
+    *list = message_list_from(stmt);
     sqlite3_finalize(stmt);
 
-    return list;
+    return 0;
 }

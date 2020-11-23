@@ -7,9 +7,13 @@
 static void print(t_chat *this) {
     mx_printline("Chat:");
     mx_printstr("id: ");
-    mx_printline(this->id);
+    mx_printint(this->id);
+    mx_printstr("\n");
     mx_printstr("name: ");
-    mx_printline(this->name);
+    if (this->name)
+        mx_printline(this->name);
+    else
+        mx_printline("NULL");
 
     t_list *list = this->participants;
     while (list) {

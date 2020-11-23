@@ -12,6 +12,11 @@
 #include <mx_server_messaging.h>
 #include <mx_server_db.h>
 
+#include <mx_log.h>
+
+#define LOG_CATEGORY_DB "DB"
+#define LOG_CATEGORY_SERVER "SERVER"
+
 typedef struct {
     struct sockaddr_in address;
     int fd;
@@ -28,6 +33,8 @@ t_response *mx_handle_request(t_request *request);
 
 t_response *mx_handle_login(t_request *request);
 t_response *mx_handle_message(t_request *request);
+t_response *mx_handle_message_list(t_request *request);
+t_response *mx_handle_chat_list(t_request *request);
 
 // Crypt
 //

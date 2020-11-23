@@ -25,7 +25,7 @@ static t_list *random_participants() {
 static t_chat *random_chat() {
     t_chat *chat = mx_chat_new();
     chat->name = rd_random_str();
-    chat->id = rd_random_str();
+    chat->id = rd_random_int(1, 200);
     chat->participants = random_participants();
     return chat;
 }

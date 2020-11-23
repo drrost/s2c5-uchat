@@ -11,6 +11,7 @@ t_message *mx_message_from(sqlite3_stmt *stmt) {
     message->chat_id = sqlite3_column_int(stmt, 2);
     message->sender_id = sqlite3_column_int(stmt, 3);
     message->time = sqlite3_column_int(stmt, 4);
+    message->type = sqlite3_column_int(stmt, 5);
 
     return message;
 }

@@ -1,8 +1,7 @@
-//
-// Created by Rostyslav Druzhchenko on 18.11.2020.
+// Created by Karina Barinova on 22.11.2020.
 //
 
-#include <alt_client.h>
+#include <client.h>
 
 static void message_send_completion(e_connection_code code, t_response *response) {
     if (code != E_CONNECTION_CODE_OK)
@@ -13,14 +12,14 @@ static void message_send_completion(e_connection_code code, t_response *response
         mx_print_error(response);
 }
 
-void mx_run_message_send(char *token) {
+void mx_run_message_send(char *token, const char *text) {
     t_connection *connection = mx_connection_open("127.0.0.1", 7766);
 
-    char *text = "Hi there!";
     t_message *message = mx_message_new();
-    message->chat_id = 44;
+    message->chat_id = 1;
     message->sender_id = 1;
     message->message = mx_strdup(text);
+    message->type = E_MESSAGE_TYPE_TEXT;
 
     t_request *request = mx_request_message_send(token, message);
     connection->send(connection, request, message_send_completion);
