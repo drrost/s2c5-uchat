@@ -21,18 +21,16 @@ void show_signin_page(t_window_widgets *widgets) {
     gtk_widget_show(widgets->s_signin->login_window);
     gtk_widget_hide(widgets->s_register->register_window);
     gtk_widget_hide(widgets->s_chat_window->window_main_chat);
-    gtk_main();
 }
 
 static void show_register_page(t_window_widgets *widgets) {
     gtk_widget_show(widgets->s_register->register_window);
     gtk_widget_hide(widgets->s_signin->login_window);
     gtk_widget_hide(widgets->s_chat_window->window_main_chat);
-    gtk_main();
 }
 
-static void show_chat_page(t_window_widgets *widgets, const char *login, char *token) {
-    
+static void show_chat_page(t_window_widgets *widgets, 
+    const char *login, char *token) {
     mx_run_chat_list(token);
     mx_run_message_list(token);
     gtk_label_set_text(GTK_LABEL(widgets->s_chat_window->label_user_name),
@@ -44,7 +42,7 @@ static void show_chat_page(t_window_widgets *widgets, const char *login, char *t
     gtk_main();
 }
 
-static int
+int
 mx_change_window(t_info *info, int window) {
     gs_info(info);
     if (window == MX_SIGNIN_WINDOW)
