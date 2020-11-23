@@ -16,7 +16,9 @@ static void mx_init_signin_window(GtkBuilder *builder, t_signin *signin) {
 
     signin->login_grid = mx_build(builder, "login_grid");
     signin->username_entry = mx_build(builder, "username_entry");
+    gtk_widget_set_name(signin->username_entry, "username_entry");
     signin->password_entry = mx_build(builder, "password_entry");
+    gtk_widget_set_name(signin->password_entry, "password_entry");
     signin->login_layout = mx_build(builder, "login_layout");
     signin->register_button = mx_build(builder, "register_button");
     signin->login_button = mx_build(builder, "login_button");

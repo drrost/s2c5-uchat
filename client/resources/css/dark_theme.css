@@ -14,12 +14,12 @@
 #contact_row {
     border-bottom: 1px solid white;
     border-radius: 10px;
-    background-color: rgba(255,255,255, 0.6);
+    background-color: rgba(255, 255, 255, 0.6);
     padding: 8px;
 }
 
 #user_message {
-    background: rgb(0,33,50);
+    background-color: rgba(0, 33, 50, 0.8);
     border-radius: 8px;
     padding: 10px;
     margin: 6px 12px 6px 0;
@@ -51,7 +51,26 @@
 
 }
 
+#fiend_entry {
+    border-bottom: 1px solid white;
+    border-radius: 10px;
+    background-color: rgba(255,255,255, 0.6);
+}
+
+#fiend_entry:focus {
+    border-color: white;
+}
+
 #contact_row {
     border-bottom: 1px solid grey;
     padding: 8px;
+}
+
+#entry_text_message {
+    border-radius: 10px;
+    background-color: rgba(255,255,255, 0.8);
+}
+
+#entry_text_message:focus {
+    border-color: white;
 }
