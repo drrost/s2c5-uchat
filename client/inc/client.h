@@ -96,7 +96,7 @@ void mx_create_sticker_1(GtkWidget *box);
 void mx_create_sticker();
 void mx_send_message(t_info *info);
 void mx_sticker();
-void mx_send_sticker_to(void);
+void mx_send_sticker_to(GtkWidget *click_butt);
 
 void mx_init_widgets(t_window_widgets *widgets);
 void mx_set_settings_default(t_window_widgets *widgets);

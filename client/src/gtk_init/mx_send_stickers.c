@@ -9,11 +9,12 @@ void set_preferences_a(GtkWidget *label) {
 
 }
   
-void mx_send_sticker_to(void) {
-    char *path = "resources/media/stickers/b3.png"; //temporary, 
-    //we should receive a string with the path to a sticketr
-	t_info *info = chat_info(GET);
+void mx_send_sticker_to(GtkWidget *click_butt) {
+    
+    char *path = g_object_get_data(G_OBJECT(click_butt), "path");
+    t_info *info = chat_info(GET);
     mx_run_sticker_send(info->token, path);
+    
 
     time_t t;
     time(&t);
@@ -25,11 +26,10 @@ void mx_send_sticker_to(void) {
     gtk_list_box_row_set_activatable(GTK_LIST_BOX_ROW(row), TRUE);
     gtk_list_box_row_set_selectable(GTK_LIST_BOX_ROW(row), FALSE);
 
-    GtkWidget *image = gtk_image_new_from_file(
-        "resources/media/stickers/b3.png");
+    GtkWidget *image = gtk_image_new_from_file(path);
     button = gtk_button_new();
     GdkPixbuf *pb;
-    pb = gdk_pixbuf_new_from_file_at_scale("resources/media/stickers/b3.png", 200, 200, 1, NULL);
+    pb = gdk_pixbuf_new_from_file_at_scale(path, 200, 200, 1, NULL);
     gtk_image_set_from_pixbuf(GTK_IMAGE(image), pb);
     gtk_button_set_image(GTK_BUTTON(button), image);
      
