@@ -59,9 +59,13 @@ static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
     gtk_widget_set_name(chat->scrolled_window_corespondent, "scrolled_window_corespondent");
     chat->scrolled_window_corespondent_atribut = mx_build(builder,
                                                           "scrolled_window_corespondent_atribut");
+    gtk_widget_set_name(chat->scrolled_window_corespondent_atribut,
+        "scrolled_window_corespondent_atribut");
     chat->scrolled_corespondent_list = mx_build(builder,
                                                 "scrolled_corespondent_list");
 
+    gtk_widget_set_name(chat->scrolled_corespondent_list,
+     "scrolled_corespondent_list");
     chat->send_button = mx_build(builder, "send_button");
     chat->stickers_button = mx_build(builder, "stickers_button");
     gtk_widget_set_name(chat->send_button, "send_button");

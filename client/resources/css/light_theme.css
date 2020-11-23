@@ -43,6 +43,12 @@
     border-radius: 10px;
 }
 
+#scrolled_corespondent_list {
+    background-color: rgba(255,255,255, 0.6);
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
 #contact_row {
     border-bottom: 1px solid white;
     border-radius: 10px;
