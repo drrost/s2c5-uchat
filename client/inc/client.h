@@ -25,6 +25,7 @@ typedef struct s_user_info {
     char *password;
     char *login;
     bool logged;
+    bool to_login;
     bool regist; //clicked sign up button/register
     char *name;
     char *first_name;

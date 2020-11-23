@@ -19,6 +19,7 @@ t_info *register_info(t_info *in) {
 void mx_back(t_info *info) {
     info = register_info(GET);
 
+    info->user_info->to_login = true;
     gtk_widget_show(info->widgets->s_signin->login_window);
     gtk_widget_hide(info->widgets->s_register->register_window);
     gtk_widget_hide(info->widgets->s_chat_window->window_main_chat);
