@@ -4,7 +4,9 @@
 
 #include <client.h>
 
-void mx_render_user_message(const char *message, int message_time, t_info *info) {
+void mx_render_user_message(const char *message, 
+    int message_time, int message_type, t_info *info) {
+
     time_t t;
     if (message_time == 0) {
         time(&t);
@@ -13,15 +15,29 @@ void mx_render_user_message(const char *message, int message_time, t_info *info)
         t = message_time;
 
     GtkWidget *row, *label1,*box_in, *general_box, *box_left, *box_right, *login, *time;
-
+    GtkWidget *button;
+    if (message_type == E_MESSAGE_TYPE_TEXT) {
+        label1 = gtk_label_new(message);
+        mx_set_preferences(label1);
+        button = NULL;
+    }
+    else {
+        button = gtk_button_new();
+        GtkWidget *image = gtk_image_new_from_file(
+        message);
+        GdkPixbuf *pb;
+        pb = gdk_pixbuf_new_from_file_at_scale(message, 200, 200, 1, NULL);
+        gtk_image_set_from_pixbuf(GTK_IMAGE(image), pb);
+        gtk_button_set_image(GTK_BUTTON(button), image);
+        label1 = NULL;
+    }
+     
+    ///
     row = gtk_list_box_row_new();
     gtk_widget_set_halign(row, GTK_ALIGN_END);
     gtk_list_box_row_set_activatable(GTK_LIST_BOX_ROW(row), TRUE);
     gtk_list_box_row_set_selectable(GTK_LIST_BOX_ROW(row), FALSE);
 
-    label1 = gtk_label_new(message);
-    mx_set_preferences(label1);
-     
     box_in = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, FALSE);   
     general_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, FALSE);// created boxes
     box_right = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, FALSE);
@@ -32,7 +48,11 @@ void mx_render_user_message(const char *message, int message_time, t_info *info)
 
     gtk_box_pack_start(GTK_BOX(box_right), time, 0, 1, 1);// snap to left or top side, leaving space on right or bottom
     gtk_box_pack_end(GTK_BOX(box_left), login, 0, 0, 1); // snap to right or bottom side, leaving space on left or top
-    gtk_box_pack_start(GTK_BOX(box_left), label1, 1, 1, 1);
+    if (message_type == E_MESSAGE_TYPE_TEXT)
+        gtk_box_pack_start(GTK_BOX(box_left), label1, 1, 1, 1);
+    else if (message_type == E_MESSAGE_TYPE_STICKER)
+        gtk_box_pack_start(GTK_BOX(box_left), button, 1, 1, 1);
+    //gtk_box_pack_start(GTK_BOX(box_left), label1, 1, 1, 1);
     gtk_box_pack_start(GTK_BOX(general_box), box_left, 1, 1, 1);
 
     gtk_container_add_with_properties (GTK_CONTAINER (box_in), general_box, "expand", TRUE, NULL); //placing widgets in a container
@@ -40,6 +60,7 @@ void mx_render_user_message(const char *message, int message_time, t_info *info)
     gtk_container_add(GTK_CONTAINER(row), box_in);
     gtk_container_add(GTK_CONTAINER(
         info->widgets->s_chat_window->scrolled_corespondent_list), row);
-    gtk_widget_set_name(label1, "user_message");
+    if (message_type == E_MESSAGE_TYPE_TEXT)
+        gtk_widget_set_name(label1, "user_message");
     gtk_widget_show_all(row);
 }

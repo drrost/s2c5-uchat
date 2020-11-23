@@ -3,18 +3,17 @@
 
 t_info *chat_info(t_info *in);
 
-
 void set_preferences_a(GtkWidget *label) {
     gtk_label_set_line_wrap(GTK_LABEL(label), TRUE);
     gtk_label_set_line_wrap_mode(GTK_LABEL(label), PANGO_WRAP_WORD_CHAR);
 
 }
   
-
-
 void mx_send_sticker_to(void) {
-    printf("clicked\n");
+    char *path = "resources/media/stickers/b3.png"; //temporary, 
+    //we should receive a string with the path to a sticketr
 	t_info *info = chat_info(GET);
+    mx_run_sticker_send(info->token, path);
 
     time_t t;
     time(&t);

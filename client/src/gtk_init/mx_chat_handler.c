@@ -21,7 +21,7 @@ void mx_send_message(t_info *info) {
 
     if (mx_strlen(message) && mx_check_for_spaces(message)) {
         mx_run_message_send(info->token, message);
-        mx_render_user_message(message, 0, info);
+        mx_render_user_message(message, 0, E_MESSAGE_TYPE_TEXT, info);
     }
     gtk_entry_set_text(
         GTK_ENTRY(info->widgets->s_chat_window->entry_text_message), "");

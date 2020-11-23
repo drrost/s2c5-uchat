@@ -7,8 +7,8 @@ gboolean mx_send_message_key(__attribute__((unused)) GtkWidget *widget,
                              __attribute__((unused)) gpointer data);
 
 static void create(GtkWidget *b1, char *name_file, GtkWidget *box) {
-GdkPixbuf *b1_img;
-GtkWidget *b1_icon;
+    GdkPixbuf *b1_img;
+    GtkWidget *b1_icon;
 
 
     b1 = gtk_button_new();

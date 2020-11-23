@@ -72,9 +72,11 @@ t_info *chat_info(t_info *in);
 char *mx_run_login();
 void mx_print_error(t_response *response);
 void mx_run_message_send(char *token, const char *text);
+void mx_run_sticker_send(char *token, const char *text);
 void mx_run_message_list(char *token);
 void mx_set_preferences(GtkWidget *label);
-void mx_render_user_message(const char *message, int time, t_info *info);
+void mx_render_user_message(const char *message, 
+    int message_time, int message_type, t_info *info);
 void chat_list_del(t_list **list);
 gboolean mx_find_clicked(__attribute__((unused)) GtkWidget *widget,
                              GdkEventKey *event,
