@@ -46,8 +46,8 @@ static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
                                              "scrolled_window_message");
     chat->image_user = mx_build(builder, "image_user");
     GdkPixbuf *pb1;
-    pb1 = gdk_pixbuf_new_from_file("resources/media/default_user_photo.png", NULL);
-    pb1 = gdk_pixbuf_scale_simple(pb1, 50, 50, GDK_INTERP_BILINEAR);
+    pb1 = gdk_pixbuf_new_from_file_at_scale("resources/media/default_user_photo.png",
+    50, 50, 1, NULL);
     gtk_image_set_from_pixbuf(GTK_IMAGE(chat->image_user), pb1);
 
     chat->window_text_message_scrolled = mx_build(builder,
@@ -79,8 +79,8 @@ static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
     gtk_widget_set_name(chat->theme_switch, "theme_switch");
     GtkWidget *image = gtk_image_new_from_file("resources/media/right-arrow.png");
     GdkPixbuf *pb;
-    pb = gdk_pixbuf_new_from_file("resources/media/right-arrow.png", NULL);
-    pb = gdk_pixbuf_scale_simple(pb, 50, 50, GDK_INTERP_BILINEAR);
+    pb = gdk_pixbuf_new_from_file_at_scale("resources/media/right-arrow.png",
+    50, 50, 1, NULL);
     gtk_image_set_from_pixbuf(GTK_IMAGE(image), pb);
     gtk_button_set_image(GTK_BUTTON(chat->send_button), image);
     gtk_entry_set_placeholder_text(GTK_ENTRY(chat->entry_text_message),

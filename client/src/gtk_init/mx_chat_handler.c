@@ -24,8 +24,7 @@ void mx_send_message(t_info *info) {
         mx_render_user_message(message, 0, E_MESSAGE_TYPE_TEXT, info);
     }
     gtk_entry_set_text(
-        GTK_ENTRY(info->widgets->s_chat_window->entry_text_message), "");
-    
+        GTK_ENTRY(info->widgets->s_chat_window->entry_text_message), ""); 
 }
 
 gboolean mx_send_message_key(__attribute__((unused)) GtkWidget *widget,
@@ -45,7 +44,6 @@ void mx_change_theme(GtkSwitch *button) {
     else
         mx_css_connect_light();
 }
-
 
 void mx_chat_handler(t_info *info) {
     chat_info(info);

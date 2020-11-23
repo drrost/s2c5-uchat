@@ -1,7 +1,5 @@
 #include <client.h>
 
-
-
 gboolean mx_send_message_key(__attribute__((unused)) GtkWidget *widget,
                              GdkEventKey *event,
                              __attribute__((unused)) gpointer data);
@@ -10,7 +8,6 @@ static void create(GtkWidget *b1, char *name_file, GtkWidget *box) {
     GdkPixbuf *b1_img;
     GtkWidget *b1_icon;
     
-
     b1 = gtk_button_new();
    
     b1_img = gdk_pixbuf_new_from_file(name_file, NULL);
@@ -24,8 +21,6 @@ static void create(GtkWidget *b1, char *name_file, GtkWidget *box) {
     gtk_widget_set_can_focus(b1, FALSE);
     g_object_set_data(G_OBJECT(b1), "path", name_file);
     g_signal_connect (b1, "clicked", (GCallback)mx_send_sticker_to, b1);
-    
-
 }
 
  void mx_create_sticker_1( GtkWidget *box) {
