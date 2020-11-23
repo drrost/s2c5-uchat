@@ -20,8 +20,13 @@
 }
 
 #label_user_name, #user_message, #fiend_entry, #entry_text_message, 
-#contact_row, #time, #user {
+#contact_row, #user {
     font-size: 16px;
+}
+
+#time {
+    font-size: 14px;
+    color: grey;
 }
 
 #label_user_name {
