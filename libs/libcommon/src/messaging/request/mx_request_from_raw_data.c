@@ -45,8 +45,6 @@ t_request *mx_request_from_raw_data(const char *buff, int size) {
             request = mx_request_unknown(node_root);
     }
 
-
-
     request->json = node_root;
 
     return request;

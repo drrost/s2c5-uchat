@@ -37,6 +37,7 @@ int mx_user_id_for_credentials(const char *login, const char *password) {
         mx_db_connection_setget((t_db_connection *)-1);
     char *hash = mx_hash(password);
     int user_id = run_sql(db_connection->db, login, hash);
+    mx_strdel(&hash);
 
     return user_id;
 }

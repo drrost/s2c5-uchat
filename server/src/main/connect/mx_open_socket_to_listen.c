@@ -60,5 +60,6 @@ void mx_accept_from_socket(t_socket_connection connection) {
     char **s = (char **)&(message.iov_base);
     mx_strdel(s);
 
+    mx_response_delete(&response);
     mx_strdel(&buffer);
 }

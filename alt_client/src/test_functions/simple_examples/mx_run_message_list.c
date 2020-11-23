@@ -61,7 +61,7 @@ static void message_list_completion(e_connection_code code, t_response *response
 
 void mx_run_message_list(char *token) {
 
-    t_connection *connection = mx_connection_open("127.0.0.1", 7766);
+    t_connection *connection = mx_connection_open(SERVER_IP, SERVER_PORT);
 
     t_request *request = mx_request_message_list(token, 1);
     connection->send(connection, request, message_list_completion);

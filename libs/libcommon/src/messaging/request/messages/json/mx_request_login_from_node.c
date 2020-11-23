@@ -6,9 +6,9 @@
 
 t_request *mx_request_login_from_node(JsonNode *node_root) {
     JsonNode *node_user = json_find_member(node_root, "login");
-    char *user = mx_strdup(node_user->string_);
+    char *user = node_user->string_;
     JsonNode *node_pass = json_find_member(node_root, "password");
-    char *password = mx_strdup(node_pass->string_);
+    char *password = node_pass->string_;
 
     return mx_request_login(user, password);
 }

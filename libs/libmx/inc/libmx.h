@@ -47,7 +47,8 @@ int mx_bubble_sort(char **arr, int size);
 int mx_quicksort(char **arr, int left, int right);
 int mx_nbrlen(int nbr);
 
-void mx_check_leaks();
+void mx_check_leaks(void);
+void mx_reset_leacks(void);
 
 // String pack
 //

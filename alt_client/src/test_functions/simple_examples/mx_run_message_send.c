@@ -14,7 +14,7 @@ static void message_send_completion(e_connection_code code, t_response *response
 }
 
 void mx_run_message_send(char *token) {
-    t_connection *connection = mx_connection_open("127.0.0.1", 7766);
+    t_connection *connection = mx_connection_open(SERVER_IP, SERVER_PORT);
 
     char *text = "Hi there!";
     t_message *message = mx_message_new();

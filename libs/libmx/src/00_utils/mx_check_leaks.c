@@ -26,13 +26,22 @@ static void print_allocs();
 
 // ================================== PUBLIC ==================================
 
-void mx_check_leaks() {
+void mx_check_leaks(void) {
     if (malloc_counter != 0) {
         int total = total_leaks_size();
         fprintf(stderr,
                 "\nLEAKS: there are %d leaks. TOTAL size: %d bytes\n\n",
                 malloc_counter, total);
         print_allocs();
+    }
+}
+
+void mx_reset_leacks(void) {
+    malloc_counter = 0;
+    for (int i = 0; i < array_size; i++) {
+        allocs_array[i].address = 0;
+        allocs_array[i].size = 0;
+        allocs_array[i].line[0] = '\0';
     }
 }
 

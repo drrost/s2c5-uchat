@@ -5,16 +5,11 @@
 #include <alt_client.h>
 #include <test_lib.h>
 
-char *obtain_token(void) {
-    char *token = mx_run_login();
-    return token;
-}
-
 // Run `./recreate_db.sh` before run this test
 //
 void mx_test_chat_list(void) {
     // run login to obtain a token
-    char *token = obtain_token();
+    char *token = mx_run_login();
 
     // run chat list request
     t_list *list = mx_chat_list(token, 0);
