@@ -25,6 +25,7 @@ typedef struct s_user_info {
     char *password;
     char *login;
     bool logged;
+    bool to_login;
     bool regist; //clicked sign up button/register
     char *name;
     char *first_name;
@@ -78,6 +79,9 @@ void chat_list_del(t_list **list);
 gboolean mx_find_clicked(__attribute__((unused)) GtkWidget *widget,
                              GdkEventKey *event,
                              __attribute__((unused)) gpointer data);
+int
+mx_change_window(t_info *info, int window);
+
 //Remove
 void print_error(t_response *response);
 

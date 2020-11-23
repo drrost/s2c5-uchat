@@ -57,9 +57,8 @@ static void mx_go_register(t_info *info) {
 
     info->user_info->regist = true;
     mx_register_clear_input(info->widgets->s_register);
-    gtk_widget_show(info->widgets->s_register->register_window);
-    gtk_widget_hide(info->widgets->s_signin->login_window);
-    gtk_widget_hide(info->widgets->s_chat_window->window_main_chat);
+    mx_change_window(info, MX_REGISTER_WINDOW);
+    info->user_info->regist = false;
 }
 
 void mx_signin_handler(t_info *info) {

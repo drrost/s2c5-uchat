@@ -17,6 +17,7 @@ t_user_info *mx_create_user(void) { //t_info *info
     user->first_name = 0;
     user->login = 0;
     user->logged = false;
+    user->to_login = false;
     user->password = 0;
     user->last_name = 0;
     user->id = 0;
