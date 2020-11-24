@@ -14,6 +14,11 @@ static void message_send_completion(e_connection_code code, t_response *response
 }
 
 void mx_run_message_send(char *token) {
+    if (!token) {
+        mx_printerr("Auth token is NULL, won't send 'message_send' request\n");
+        return;
+    }
+
     t_connection *connection = mx_connection_open(SERVER_IP, SERVER_PORT);
 
     char *text = "Hi there!";

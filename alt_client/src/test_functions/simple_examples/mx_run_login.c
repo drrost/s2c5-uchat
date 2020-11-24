@@ -20,10 +20,12 @@ char *mx_run_login() {
     t_request *request = mx_request_login("user", "password");
     connection->send(connection, request, login_completion);
     char *token = 0;
-    JsonNode *node_token = json_find_member(
-        request->response->jsonNode, "token");
-    if (node_token && node_token->string_)
-        token = mx_strdup(node_token->string_);
+    if (request->response && request->response->code == E_STATUS_CODE_OK) {
+        JsonNode *node_token = json_find_member(
+            request->response->jsonNode, "token");
+        if (node_token && node_token->string_)
+            token = mx_strdup(node_token->string_);
+    }
     mx_request_delete(&request);
 
     mx_connection_close(&connection);
