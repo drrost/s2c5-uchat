@@ -15,8 +15,10 @@ t_response *mx_handle_login(t_request *request) {
     if (user_id > 0) {
         char *token = rd_random_strn(30);
         mx_save_token_to_db(token, user_id);
-        response = mx_response_login(token);
+        t_user *user = mx_user_for_token(token);
+        response = mx_response_login(token, user);
         mx_strdel(&token);
+        mx_user_del(&user);
     }
     else
         response = mx_response_401_wrong_lp(E_MSGTYPE_LOGIN);
