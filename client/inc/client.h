@@ -73,7 +73,7 @@ char *mx_run_login();
 void mx_print_error(t_response *response);
 void mx_run_message_send(char *token, const char *text);
 void mx_run_sticker_send(char *token, const char *text);
-void mx_run_message_list(char *token);
+void mx_run_message_list(char *token, int id);
 void mx_set_preferences(GtkWidget *label);
 void mx_render_user_message(const char *message, 
     int message_time, int message_type, t_info *info);

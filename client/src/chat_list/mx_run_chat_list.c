@@ -30,13 +30,13 @@ void mx_clear_history(t_info *info) {
 
 void mx_expand_chat_history(GtkWidget *row) {
     t_info *info = gs_info(GET);
-    //Clear history DONE
+    //Clear history
     mx_clear_history(info);
-    char *id = g_object_get_data(G_OBJECT(row), "chat_id");
-    printf("CHAT ID is %s\n", id);
-    
     //find chat id that was clicked
+    char *id = g_object_get_data(G_OBJECT(row), "chat_id");
     //print chat history for this chat
+    mx_run_message_list(info->token, atoi(id));
+    //mx_strdel(&id);
 }
 
 void mx_append_and_print(t_chat *chat, t_window_widgets *widgets) {

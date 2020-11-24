@@ -32,7 +32,7 @@ static void show_register_page(t_window_widgets *widgets) {
 static void show_chat_page(t_window_widgets *widgets, 
     const char *login, char *token) {
     mx_run_chat_list(token);
-    mx_run_message_list(token);
+    mx_run_message_list(token, 1);
     gtk_label_set_text(GTK_LABEL(widgets->s_chat_window->label_user_name),
                        login);
     gtk_widget_show(widgets->s_chat_window->window_main_chat);
