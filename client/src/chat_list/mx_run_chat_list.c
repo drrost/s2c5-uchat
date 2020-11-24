@@ -34,8 +34,9 @@ void mx_expand_chat_history(GtkWidget *row) {
     mx_clear_history(info);
     //find chat id that was clicked
     char *id = g_object_get_data(G_OBJECT(row), "chat_id");
+    info->user_info->id = atoi(id);
     //print chat history for this chat
-    mx_run_message_list(info->token, atoi(id));
+    mx_run_message_list(info->token, info->user_info->id);
     //mx_strdel(&id);
 }
 

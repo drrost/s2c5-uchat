@@ -12,11 +12,11 @@ static void message_send_completion(e_connection_code code, t_response *response
         mx_print_error(response);
 }
 
-void mx_run_message_send(char *token, const char *text) {
+void mx_run_message_send(char *token, const char *text, int id) {
     t_connection *connection = mx_connection_open("127.0.0.1", 7766);
 
     t_message *message = mx_message_new();
-    message->chat_id = 1;
+    message->chat_id = id;
     message->sender_id = 1;
     message->message = mx_strdup(text);
     message->type = E_MESSAGE_TYPE_TEXT;
