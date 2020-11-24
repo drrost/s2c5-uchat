@@ -7,10 +7,10 @@ CREATE TABLE chat
     name    TEXT
 );
 
-INSERT INTO chat (name)
-VALUES (NULL);
-SELECT *
-FROM chat;
+INSERT INTO chat (name) VALUES (NULL);
+INSERT INTO chat (name) VALUES (NULL);
+INSERT INTO chat (name) VALUES (NULL);
+SELECT * FROM chat;
 
 -- Chat list
 
@@ -30,6 +30,9 @@ INSERT INTO chat_user (chat_id, user_id)
 VALUES (1, 2);
 INSERT INTO chat_user (chat_id, user_id)
 VALUES (1, 3);
+INSERT INTO chat_user (chat_id, user_id)
+VALUES (1, 15);
+
 
 INSERT INTO chat_user (chat_id, user_id)
 VALUES (2, 1);
