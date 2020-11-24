@@ -10,6 +10,7 @@ CREATE TABLE chat
 INSERT INTO chat (name) VALUES ('Explorers');
 INSERT INTO chat (name) VALUES (NULL);
 INSERT INTO chat (name) VALUES (NULL);
+INSERT INTO chat (name) VALUES (NULL);
 SELECT * FROM chat;
 
 -- Chat list
@@ -33,7 +34,6 @@ VALUES (1, 3);
 INSERT INTO chat_user (chat_id, user_id)
 VALUES (1, 15);
 
-
 INSERT INTO chat_user (chat_id, user_id)
 VALUES (2, 1);
 INSERT INTO chat_user (chat_id, user_id)
@@ -43,6 +43,13 @@ INSERT INTO chat_user (chat_id, user_id)
 VALUES (3, 1);
 INSERT INTO chat_user (chat_id, user_id)
 VALUES (3, 4);
+
+INSERT INTO chat_user (chat_id, user_id)
+VALUES (4, 1);
+INSERT INTO chat_user (chat_id, user_id)
+VALUES (4, 4);
+INSERT INTO chat_user (chat_id, user_id)
+VALUES (4, 6);
 
 SELECT * FROM chat_user;
 
