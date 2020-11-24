@@ -21,7 +21,6 @@ t_response *mx_response_chat_list(t_list *list) {
 
     json_append_member(node_root, "body", node_chat_arr);
     response->body = json_encode(node_root);
-    json_delete(node_root);
 
     return response;
 }
