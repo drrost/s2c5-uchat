@@ -21,7 +21,6 @@ t_response *mx_response_message_list(t_list *list) {
 
     json_append_member(node_root, "messages", node_messages_arr);
     response->body = json_encode(node_root);
-    json_delete(node_root);
 
     return response;
 }
