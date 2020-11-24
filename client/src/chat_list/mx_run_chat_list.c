@@ -19,12 +19,14 @@ void chat_list_del(t_list **list) {
 
 void mx_expand_user(t_info *info) {
     info = gs_info(GET);
-    GtkListBoxRow *selected = gtk_list_box_get_selected_row(GTK_LIST_BOX(info->widgets->s_chat_window->scrolled_corespondent_list));
-
-    const char *text = gtk_label_get_text(
-        GTK_LABEL(selected));
-    printf("%s\n", text);
+    gtk_container_remove(GTK_CONTAINER(
+        info->widgets->s_chat_window->scrolled_window_corespondent_atribut), 
+    info->widgets->s_chat_window->scrolled_corespondent_list);
     printf("clicked on user\n");
+    gtk_container_add(GTK_CONTAINER(
+        info->widgets->s_chat_window->scrolled_window_corespondent_atribut), 
+    info->widgets->s_chat_window->scrolled_corespondent_list);
+    gtk_widget_show_all(info->widgets->s_chat_window->window_main_chat);
     //find user/chat id
     //clear chat scrolled window
     //print chat history
@@ -35,11 +37,16 @@ void mx_append_and_print(t_chat *chat, t_window_widgets *widgets) {
     t_list *list = chat->participants;
 
     while (list) {
+        char *name = 0;
         t_user *user = (t_user *)list->data;
+
+        mx_str_append(&name, user->first_name);
+        mx_str_append(&name, " ");
+        mx_str_append(&name, user->last_name);
         
         row = gtk_list_box_new();
         box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-        login = gtk_label_new(user->login);
+        login = gtk_label_new(name);
         gtk_container_add(GTK_CONTAINER(row), box);
         gtk_box_pack_start(GTK_BOX(box), login, FALSE, FALSE,
                            15); //TRUE adds spacing
