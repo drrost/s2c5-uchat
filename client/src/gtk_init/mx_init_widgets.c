@@ -73,16 +73,25 @@ static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
     gtk_widget_set_name(chat->scrolled_corespondent_list,
      "scrolled_corespondent_list");
     chat->send_button = mx_build(builder, "send_button");
-    chat->stickers_button = mx_build(builder, "stickers_button");
     gtk_widget_set_name(chat->send_button, "send_button");
     chat->theme_switch = mx_build(builder, "theme_switch");
     gtk_widget_set_name(chat->theme_switch, "theme_switch");
-    GtkWidget *image = gtk_image_new_from_file("resources/media/right-arrow.png");
+    GtkWidget *send_image = gtk_image_new_from_file(
+        "resources/media/right-arrow.png");
     GdkPixbuf *pb;
     pb = gdk_pixbuf_new_from_file_at_scale("resources/media/right-arrow.png",
     50, 50, 1, NULL);
-    gtk_image_set_from_pixbuf(GTK_IMAGE(image), pb);
-    gtk_button_set_image(GTK_BUTTON(chat->send_button), image);
+    gtk_image_set_from_pixbuf(GTK_IMAGE(send_image), pb);
+    gtk_button_set_image(GTK_BUTTON(chat->send_button), send_image);
+    chat->stickers_button = mx_build(builder, "stickers_button");
+    gtk_widget_set_name(chat->stickers_button, "stickers_button");
+    GtkWidget *sticker_image = gtk_image_new_from_file(
+        "resources/media/sticker_button.png");
+    GdkPixbuf *pb2;
+    pb2 = gdk_pixbuf_new_from_file_at_scale("resources/media/sticker_button.png",
+    50, 50, 1, NULL);
+    gtk_image_set_from_pixbuf(GTK_IMAGE(sticker_image), pb2);
+    gtk_button_set_image(GTK_BUTTON(chat->stickers_button), sticker_image);
     gtk_entry_set_placeholder_text(GTK_ENTRY(chat->entry_text_message),
                                    "Start typing...");
 }
