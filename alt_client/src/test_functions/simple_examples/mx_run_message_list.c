@@ -63,7 +63,8 @@ void mx_run_message_list(char *token) {
 
     t_connection *connection = mx_connection_open(SERVER_IP, SERVER_PORT);
 
-    t_request *request = mx_request_message_list(token, 1);
+    int chat_id = 1;
+    t_request *request = mx_request_message_list(token, chat_id);
     connection->send(connection, request, message_list_completion);
     mx_request_delete(&request);
 

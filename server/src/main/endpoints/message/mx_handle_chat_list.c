@@ -5,6 +5,14 @@
 #include <server.h>
 #include <mx_log.h>
 
+void chat_list_del(t_list **list) {
+    while (*list) {
+        t_chat *chat = (t_chat *)(*list)->data;
+        mx_pop_front(list);
+        mx_chat_del(&chat);
+    }
+}
+
 t_response *mx_handle_chat_list(t_request *request) {
     t_response *response = 0;
 
@@ -28,7 +36,10 @@ t_response *mx_handle_chat_list(t_request *request) {
             response = mx_response_server_error(
                 request->type, "Can't read chat list");
         }
+        chat_list_del(&list);
     }
+
+    mx_user_del(&user);
 
     return response;
 }
