@@ -20,9 +20,9 @@ void mx_run_simple_examples(void) {
     // An example how to obtain messages list.
     //
     mx_run_message_list(token);
-//
-//    // An example how to obtain chat list
-//    mx_run_chat_list(token);
+
+    // An example how to obtain chat list
+    mx_run_chat_list(token);
 
     mx_strdel(&token);
 }

@@ -33,5 +33,8 @@ t_response *mx_handle_message(t_request *request) {
         }
     }
 
+    mx_message_del(&message);
+    mx_user_del(&user);
+
     return response;
 }

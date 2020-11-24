@@ -407,7 +407,8 @@ char *json_stringify(const JsonNode *node, const char *space)
 void mx_json_delete(JsonNode **jsonNode) {
     if (jsonNode == 0 || *jsonNode == 0)
         return;
-    json_delete(*jsonNode);
+    JsonNode *instance = *jsonNode;
+    json_delete(instance);
     *jsonNode = 0;
 }
 
