@@ -25,8 +25,10 @@ char *mx_run_login() {
     t_request *request = mx_request_login("user", "password");
     connection->send(connection, request, login_completion);
     char *token = 0;
+    JsonNode *node_body = json_find_member(
+        request->response->jsonNode, "body");
     JsonNode *node_token = json_find_member(
-        request->response->jsonNode, "token");
+        node_body, "token");
     if (node_token && node_token->string_)
         token = mx_strdup(node_token->string_);
     mx_request_delete(&request);

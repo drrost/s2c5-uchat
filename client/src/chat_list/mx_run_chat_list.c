@@ -17,9 +17,7 @@ void chat_list_del(t_list **list) {
     }
 }
 
-void mx_expand_user(t_info *info) {
-    info = gs_info(GET);
-    //Clear history DONE
+void mx_clear_history(t_info *info) {
     GList *head = gtk_container_get_children(GTK_CONTAINER(
         info->widgets->s_chat_window->scrolled_corespondent_list));
     GList *node = head;
@@ -28,6 +26,15 @@ void mx_expand_user(t_info *info) {
         node = g_list_next(node);
     }
     g_list_free(head);
+}
+
+void mx_expand_chat_history(GtkWidget *row) {
+    t_info *info = gs_info(GET);
+    //Clear history DONE
+    mx_clear_history(info);
+    char *id = g_object_get_data(G_OBJECT(row), "chat_id");
+    printf("CHAT ID is %s\n", id);
+    
     //find chat id that was clicked
     //print chat history for this chat
 }
@@ -45,8 +52,9 @@ void mx_append_and_print(t_chat *chat, t_window_widgets *widgets) {
     gtk_container_add(
         GTK_CONTAINER(widgets->s_chat_window->scrolled_chats_list), row);
     gtk_list_box_insert(GTK_LIST_BOX(widgets->s_chat_window->scrolled_chats_list), row, -1);
+    g_object_set_data(G_OBJECT(row), "chat_id", mx_itoa(chat->id));
     g_signal_connect(GTK_WIDGET(row), 
-        "button_press_event", G_CALLBACK(mx_expand_user), NULL);
+        "button_press_event", G_CALLBACK(mx_expand_chat_history), row);
     gtk_widget_set_name(row, "contact_row");
     gtk_widget_show_all(row);
 }
