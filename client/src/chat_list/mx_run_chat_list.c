@@ -34,32 +34,21 @@ void mx_expand_user(t_info *info) {
 
 void mx_append_and_print(t_chat *chat, t_window_widgets *widgets) {
     GtkWidget *row, *login, *box;
-    t_list *list = chat->participants;
-
-    while (list) {
-        char *name = 0;
-        t_user *user = (t_user *)list->data;
-
-        mx_str_append(&name, user->first_name);
-        mx_str_append(&name, " ");
-        mx_str_append(&name, user->last_name);
         
-        row = gtk_list_box_new();
-        box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-        login = gtk_label_new(name);
-        gtk_container_add(GTK_CONTAINER(row), box);
-        gtk_box_pack_start(GTK_BOX(box), login, FALSE, FALSE,
-                           15); //TRUE adds spacing
-        gtk_box_set_spacing(GTK_BOX(box), 40);
-        gtk_container_add(
-            GTK_CONTAINER(widgets->s_chat_window->scrolled_chats_list), row);
-        gtk_list_box_insert(GTK_LIST_BOX(widgets->s_chat_window->scrolled_chats_list), row, -1);
-        g_signal_connect(GTK_WIDGET(row), 
-            "button_press_event", G_CALLBACK(mx_expand_user), NULL);
-        gtk_widget_set_name(row, "contact_row");
-        gtk_widget_show_all(row);
-        list = list->next;
-    }
+    row = gtk_list_box_new();
+    box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    login = gtk_label_new(chat->name);
+    gtk_container_add(GTK_CONTAINER(row), box);
+    gtk_box_pack_start(GTK_BOX(box), login, FALSE, FALSE,
+           15); //TRUE adds spacing
+    gtk_box_set_spacing(GTK_BOX(box), 40);
+    gtk_container_add(
+        GTK_CONTAINER(widgets->s_chat_window->scrolled_chats_list), row);
+    gtk_list_box_insert(GTK_LIST_BOX(widgets->s_chat_window->scrolled_chats_list), row, -1);
+    g_signal_connect(GTK_WIDGET(row), 
+        "button_press_event", G_CALLBACK(mx_expand_user), NULL);
+    gtk_widget_set_name(row, "contact_row");
+    gtk_widget_show_all(row);
 }
 
 void mx_show_conversation_list(t_list *list) {
