@@ -7,7 +7,7 @@ CREATE TABLE chat
     name    TEXT
 );
 
-INSERT INTO chat (name) VALUES (NULL);
+INSERT INTO chat (name) VALUES ('Explorers');
 INSERT INTO chat (name) VALUES (NULL);
 INSERT INTO chat (name) VALUES (NULL);
 SELECT * FROM chat;
