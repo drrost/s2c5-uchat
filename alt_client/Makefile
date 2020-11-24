@@ -8,7 +8,7 @@ LIBS = -L../libs/libmx -lmx -L../libs/libcommon -lcommon
 SRC=src
 OBJ=obj
 
-BINARY = uchat
+BINARY = alt_client
 
 CFILES = $(wildcard src/*.c) $(wildcard src/*/*.c) $(wildcard src/*/*/*.c) \
 		 $(wildcard src/*/*/*/*.c) \

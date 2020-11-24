@@ -11,9 +11,8 @@ int main(int argc, char **argv) {
     mx_log_i("SRV: Start", "on port %d", port);
     mx_db_init();
 
-    mx_reset_leacks();
-
     while (1) {
+        mx_reset_leacks();
         mx_accept_from_socket(connection);
         mx_check_leaks();
     }
