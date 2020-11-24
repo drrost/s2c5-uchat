@@ -5,6 +5,14 @@
 #include <server.h>
 #include <mx_log.h>
 
+static void message_list_del(t_list **list) {
+    while (*list) {
+        t_message *message = (t_message *)(*list)->data;
+        mx_pop_front(list);
+        mx_message_del(&message);
+    }
+}
+
 t_response *mx_handle_message_list(t_request *request) {
     t_response *response = 0;
 
@@ -32,7 +40,10 @@ t_response *mx_handle_message_list(t_request *request) {
             response = mx_response_server_error(
                 E_MSGTYPE_MESSAGE_SEND, "Can't read message list");
         }
+        message_list_del(&list);
     }
+
+    mx_user_del(&user);
 
     return response;
 }
