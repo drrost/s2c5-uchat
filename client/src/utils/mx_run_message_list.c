@@ -11,7 +11,7 @@ void mx_message_print(void *data) {
     t_info *info = gs_info(GET);
 
     mx_render_user_message(message->message, message->time, message->type, info);
-
+    g_timeout_add(200, mx_scroll_down, info);
     // mx_printline("Message:");
     // mx_printstr("  id: ");
     // mx_printint(message->id);

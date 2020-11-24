@@ -83,6 +83,7 @@ gboolean mx_find_clicked(__attribute__((unused)) GtkWidget *widget,
                              __attribute__((unused)) gpointer data);
 int
 mx_change_window(t_info *info, int window);
+gint mx_scroll_down(gpointer data);
 
 //Remove
 void print_error(t_response *response);
