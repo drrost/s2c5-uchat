@@ -404,6 +404,13 @@ char *json_stringify(const JsonNode *node, const char *space)
 	return sb_finish(&sb);
 }
 
+void mx_json_delete(JsonNode **jsonNode) {
+    if (jsonNode == 0 || *jsonNode == 0)
+        return;
+    json_delete(*jsonNode);
+    *jsonNode = 0;
+}
+
 void json_delete(JsonNode *node)
 {
 	if (node != NULL) {

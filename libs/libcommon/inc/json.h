@@ -73,6 +73,7 @@ char       *json_encode         (const JsonNode *node);
 char       *json_encode_string  (const char *str);
 char       *json_stringify      (const JsonNode *node, const char *space);
 void        json_delete         (JsonNode *node);
+void mx_json_delete(JsonNode **jsonNode);
 
 bool        json_validate       (const char *json);
 
