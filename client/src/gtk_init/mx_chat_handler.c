@@ -21,7 +21,8 @@ void mx_send_message(t_info *info) {
 
     if (mx_strlen(message) && mx_check_for_spaces(message)) {
         mx_run_message_send(info->token, message, info->user_info->id);
-        mx_render_user_message(message, 0, E_MESSAGE_TYPE_TEXT, info);
+        mx_clear_history(info);
+        mx_run_message_list(info->token, info->user_info->id);
         g_timeout_add(200, mx_scroll_down, info);
     }
     gtk_entry_set_text(
