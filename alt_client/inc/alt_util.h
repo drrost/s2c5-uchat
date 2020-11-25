@@ -8,5 +8,6 @@
 #include <mx_data.h>
 
 void mx_chat_list_del(t_list **list);
+void mx_message_list_del(t_list **list);
 
 #endif //CLIENT_ALT_UTIL_H

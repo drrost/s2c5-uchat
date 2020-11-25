@@ -28,6 +28,7 @@ void mx_send_million_messages(void);
 
 void mx_run_message_related(void);
 t_message *mx_message_send(char *token, const char *text);
+t_list *mx_message_list(char *token);
 
 // Utils
 //

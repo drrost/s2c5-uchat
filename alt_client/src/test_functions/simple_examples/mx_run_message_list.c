@@ -38,14 +38,6 @@ void mx_list_foreach(t_list *list, void (*f)(void *)) {
 //    mx_list_foreach(list, printer);
 //}
 
-static void message_list_del(t_list **list) {
-    while (*list) {
-        t_message *message = (t_message *)(*list)->data;
-        mx_pop_front(list);
-        mx_message_del(&message);
-    }
-}
-
 static void message_list_completion(e_connection_code code, t_response *response) {
     if (code != E_CONNECTION_CODE_OK)
         mx_printline("Connection error");
@@ -53,7 +45,7 @@ static void message_list_completion(e_connection_code code, t_response *response
         t_list *list = mx_message_list_from_json(response->body);
 
 //        print_list(list, mx_message_print);
-        message_list_del(&list);
+        mx_message_list_del(&list);
     }
     else
         mx_print_error(response);
