@@ -48,6 +48,11 @@ void mx_change_theme(GtkSwitch *button) {
         mx_css_connect_light();
 }
 
+void mx_message_selected(void) {
+    // GtkWidget *list = GTK_WIDGET(data);
+    printf("message clicked\n");
+}
+
 void mx_chat_handler(t_info *info) {
     chat_info(info);
     t_chat_window *chat = info->widgets->s_chat_window;
@@ -63,6 +68,8 @@ void mx_chat_handler(t_info *info) {
                      (GCallback)mx_find_clicked, NULL);
     g_signal_connect(GTK_WIDGET(chat->stickers_button), "clicked",
                     (GCallback)mx_create_sticker, NULL);
+    g_signal_connect(GTK_WIDGET(chat->scrolled_corespondent_list),
+        "row-selected", mx_message_selected, NULL);
 }
 
 

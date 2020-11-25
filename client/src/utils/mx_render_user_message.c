@@ -38,7 +38,7 @@ void mx_render_user_message(t_message *message, t_info *info) {
     else
         gtk_widget_set_halign(row, GTK_ALIGN_START);
     gtk_list_box_row_set_activatable(GTK_LIST_BOX_ROW(row), TRUE);
-    gtk_list_box_row_set_selectable(GTK_LIST_BOX_ROW(row), FALSE); 
+    gtk_list_box_row_set_selectable(GTK_LIST_BOX_ROW(row), TRUE); 
 
     box_in = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, FALSE);   
     general_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, FALSE);// created boxes
