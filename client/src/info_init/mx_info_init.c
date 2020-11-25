@@ -20,7 +20,8 @@ t_user_info *mx_create_user(void) { //t_info *info
     user->to_login = false;
     user->password = 0;
     user->last_name = 0;
-    user->id = 0;
+    user->chat_id = 0;
+    user->user_id = 0;
     return user;
 }
 

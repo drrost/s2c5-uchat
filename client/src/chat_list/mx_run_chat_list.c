@@ -21,8 +21,8 @@ void mx_expand_chat_history(GtkWidget *row) {
     t_info *info = gs_info(GET);
     mx_clear_history(info);
     char *id = g_object_get_data(G_OBJECT(row), "chat_id");
-    info->user_info->id = atoi(id);
-    mx_run_message_list(info->token, info->user_info->id);
+    info->user_info->chat_id = atoi(id);
+    mx_run_message_list(info->token, info->user_info->chat_id);
 }
 
 void mx_append_and_print(t_chat *chat, t_window_widgets *widgets, char *active_login) {

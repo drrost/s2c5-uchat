@@ -20,9 +20,10 @@ void mx_send_message(t_info *info) {
         GTK_ENTRY(info->widgets->s_chat_window->entry_text_message)); 
 
     if (mx_strlen(message) && mx_check_for_spaces(message)) {
-        mx_run_message_send(info->token, message, info->user_info->id);
+        mx_run_message_send(info->token,
+         message, info->user_info->chat_id, info->user_info->user_id);
         mx_clear_history(info);
-        mx_run_message_list(info->token, info->user_info->id);
+        mx_run_message_list(info->token, info->user_info->chat_id);
         g_timeout_add(200, mx_scroll_down, info);
     }
     gtk_entry_set_text(

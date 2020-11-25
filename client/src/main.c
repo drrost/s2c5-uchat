@@ -22,9 +22,7 @@ int main(int argc, char *argv[]) {
 
     gtk_init(&argc, &argv);
     mx_init(&info);
-
-    info->token = mx_run_login();
-
+    info->token = mx_run_login(&info->user_info->user_id);
     mx_log_d("CLIENT", "About to start UI %s", "some text here");
     gtk_main();
     mx_show_window(info);
