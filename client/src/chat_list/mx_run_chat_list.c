@@ -34,7 +34,11 @@ void mx_append_and_print(t_chat *chat, t_window_widgets *widgets) {
         
     row = gtk_list_box_new();
     box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    login = gtk_label_new(chat->name);
+    if (chat->name)
+        login = gtk_label_new(chat->name);
+    else
+        login = gtk_label_new("Unnamed");
+
     gtk_container_add(GTK_CONTAINER(row), box);
     gtk_box_pack_start(GTK_BOX(box), login, FALSE, FALSE,
            15); //TRUE adds spacing
