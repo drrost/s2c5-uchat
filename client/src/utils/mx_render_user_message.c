@@ -3,7 +3,7 @@
 //
 
 #include <client.h>
-
+//Need to pass user->login here
 void mx_render_user_message(t_message *message, t_info *info) {
 
     time_t t;
@@ -33,7 +33,10 @@ void mx_render_user_message(t_message *message, t_info *info) {
      
     ///
     row = gtk_list_box_row_new();
-    gtk_widget_set_halign(row, GTK_ALIGN_END);
+    if (message->sender_id == info->user_info->user_id)
+        gtk_widget_set_halign(row, GTK_ALIGN_END);
+    else
+        gtk_widget_set_halign(row, GTK_ALIGN_START);
     gtk_list_box_row_set_activatable(GTK_LIST_BOX_ROW(row), TRUE);
     gtk_list_box_row_set_selectable(GTK_LIST_BOX_ROW(row), FALSE);
 
@@ -42,7 +45,10 @@ void mx_render_user_message(t_message *message, t_info *info) {
     box_right = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, FALSE);
     box_left = gtk_box_new (GTK_ORIENTATION_VERTICAL, FALSE);
 
-    login = mx_name_mess_to(info->user_info->login);
+    if (message->sender_id == info->user_info->user_id)
+        login = mx_name_mess_to(info->user_info->login);
+    else
+        login = mx_name_mess_to("other user");
     time = mx_time_mess_to(ctime(&t));
 
     gtk_box_pack_start(GTK_BOX(box_right), time, 0, 1, 1);// snap to left or top side, leaving space on right or bottom
