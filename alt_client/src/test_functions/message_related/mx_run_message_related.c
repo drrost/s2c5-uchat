@@ -18,18 +18,27 @@ t_message *get_last_message(t_list *list) {
 void mx_run_message_related(void) {
     char *token = mx_run_login();
 
+    // ------------ Send
+    //
     char *text = rd_random_strn(25);
     t_message *message = mx_message_send(token, text);
     ASSERT_EQUALS_STR(message->message, text);
     ASSERT_TRUE(message->type == E_MESSAGE_TYPE_TEXT);
 
     t_list *list = mx_message_list(token);
+//    int size = mx_list_size(list);
     t_message *last_message = get_last_message(list);
     ASSERT_EQUALS_STR(last_message->message, text);
 
-    // Check the message on the list
+    // ------------ Update
+    //
+    message->type = E_MESSAGE_TYPE_UPDATE;
+    mx_strdel(&(message->message));
+    message->message = rd_random_strn(10);
+//    mx_message_update(token, message);
 
-//    mx_message_update();
+    // ------------ Delete
+// mx_message_delete(token, message);
 
     mx_message_list_del(&list);
     mx_message_del(&message);
