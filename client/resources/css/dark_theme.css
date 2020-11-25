@@ -57,6 +57,11 @@
     border-radius: 10px;
 }
 
+#scrolled_corespondent_list > *:selected{
+    background-color: transparent;
+    color: black;
+}
+
 #scrolled_window_chats {
     border: 1px solid transparent;
     border-radius: 10px;

@@ -68,6 +68,11 @@
     border-radius: 10px;
 }
 
+#scrolled_corespondent_list > *:selected{
+    background-color: transparent;
+    color: black;
+}
+
 #contact_row {
     border-bottom: 1px solid white;
     border-radius: 10px;
