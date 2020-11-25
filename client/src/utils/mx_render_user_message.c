@@ -3,7 +3,10 @@
 //
 
 #include <client.h>
-//Need to pass user->login here
+// void mx_message_clicked(void) {
+//     printf("message clicked\n");
+// }
+
 void mx_render_user_message(t_message *message, t_info *info) {
 
     time_t t;
@@ -12,7 +15,6 @@ void mx_render_user_message(t_message *message, t_info *info) {
     }
     else
         t = message->time;
-
     GtkWidget *row, *label1,*box_in, *general_box, *box_left, *box_right, *login, *time;
     GtkWidget *button;
     if (message->type == E_MESSAGE_TYPE_TEXT) {
@@ -30,15 +32,13 @@ void mx_render_user_message(t_message *message, t_info *info) {
         gtk_button_set_image(GTK_BUTTON(button), image);
         label1 = NULL;
     }
-     
-    ///
     row = gtk_list_box_row_new();
     if (message->sender_id == info->user_info->user_id)
         gtk_widget_set_halign(row, GTK_ALIGN_END);
     else
         gtk_widget_set_halign(row, GTK_ALIGN_START);
-    gtk_list_box_row_set_activatable(GTK_LIST_BOX_ROW(row), TRUE);
-    gtk_list_box_row_set_selectable(GTK_LIST_BOX_ROW(row), FALSE);
+    gtk_list_box_row_set_activatable(GTK_LIST_BOX_ROW(row), FALSE);
+    gtk_list_box_row_set_selectable(GTK_LIST_BOX_ROW(row), TRUE);
 
     box_in = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, FALSE);   
     general_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, FALSE);// created boxes
@@ -71,5 +71,9 @@ void mx_render_user_message(t_message *message, t_info *info) {
     else if (message->type == E_MESSAGE_TYPE_TEXT
         && message->sender_id != info->user_info->user_id)
         gtk_widget_set_name(label1, "sender_message");
+    g_object_set_data(G_OBJECT(row), "message_id", mx_itoa(message->id));
+    //g_signal_connect(GTK_WIDGET(row), 
+        //"row-selected", G_CALLBACK(mx_message_clicked), NULL);
+
     gtk_widget_show_all(row);
 }

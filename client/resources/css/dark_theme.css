@@ -39,6 +39,10 @@
     color: white;
 }
 
+#general_button {
+    background: transparent;
+}
+
 #theme_switch {
     background-image: linear-gradient(rgba(0, 0, 0, 0.521), rgba(0, 0, 0, 1));
 }

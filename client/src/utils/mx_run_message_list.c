@@ -12,21 +12,6 @@ void mx_message_print(void *data) {
 
     mx_render_user_message(message, info);
     g_timeout_add(200, mx_scroll_down, info);
-    // mx_printline("Message:");
-    // mx_printstr("  id: ");
-    // mx_printint(message->id);
-    // mx_printline("");
-    // mx_printstr("  message:");
-    // mx_printline(message->message);
-    // mx_printstr("  chat_id: ");
-    // mx_printint(message->chat_id);
-    // mx_printline("");
-    // mx_printstr("  sender_id: ");
-    // mx_printint(message->sender_id);
-    // mx_printline("");
-    // mx_printstr("  time: ");
-    // mx_printint(message->time);
-    // mx_printstr("\n");
 }
 
 void mx_list_foreach(t_list *list, void (*f)(void *)) {
