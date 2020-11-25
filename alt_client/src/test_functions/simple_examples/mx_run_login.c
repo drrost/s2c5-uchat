@@ -31,5 +31,10 @@ char *mx_run_login() {
 
     mx_connection_close(&connection);
 
+    if (!token) {
+        mx_printerr("Token is NULL, most likely the server is down\n");
+        exit(1);
+    }
+
     return token;
 }

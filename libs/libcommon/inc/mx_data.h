@@ -32,8 +32,8 @@ t_user *mx_user_from_json_node(JsonNode *node);
 typedef enum {
     E_MESSAGE_TYPE_NONE = 0,
     E_MESSAGE_TYPE_TEXT,
-    E_MESSAGE_TYPE_TEXT_UPDATE,
-    E_MESSAGE_TYPE_TEXT_DELETE,
+    E_MESSAGE_TYPE_UPDATE,
+    E_MESSAGE_TYPE_DELETE,
     E_MESSAGE_TYPE_STICKER
 } e_message_type;
 

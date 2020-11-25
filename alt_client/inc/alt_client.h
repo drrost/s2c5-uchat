@@ -26,6 +26,9 @@ void mx_run_simple_examples(void);
 void mx_test_chat_list(void);
 void mx_send_million_messages(void);
 
+void mx_run_message_related(void);
+t_message *mx_message_send(char *token, const char *text);
+
 // Utils
 //
 void mx_print_error(t_response *response);
