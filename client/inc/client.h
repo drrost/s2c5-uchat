@@ -21,7 +21,8 @@ typedef struct s_register t_register;
 
 
 typedef struct s_user_info {
-    char id;
+    char chat_id;
+    int user_id;
     char *password;
     char *login;
     bool logged;
@@ -69,14 +70,13 @@ bool mx_check_for_spaces(const char *text);
 void mx_run_chat_list(char *token);
 t_info *gs_info(t_info *in);
 t_info *chat_info(t_info *in);
-char *mx_run_login();
+char *mx_run_login(int *user_id);
 void mx_print_error(t_response *response);
-void mx_run_message_send(char *token, const char *text);
+void mx_run_message_send(char *token, const char *text, int chat_id, int user_id);
 void mx_run_sticker_send(char *token, const char *text);
-void mx_run_message_list(char *token);
+void mx_run_message_list(char *token, int chat_id);
 void mx_set_preferences(GtkWidget *label);
-void mx_render_user_message(const char *message, 
-    int message_time, int message_type, t_info *info);
+void mx_render_user_message(t_message *message, t_info *info);
 void chat_list_del(t_list **list);
 gboolean mx_find_clicked(__attribute__((unused)) GtkWidget *widget,
                              GdkEventKey *event,
@@ -84,6 +84,7 @@ gboolean mx_find_clicked(__attribute__((unused)) GtkWidget *widget,
 int
 mx_change_window(t_info *info, int window);
 gint mx_scroll_down(gpointer data);
+void mx_clear_history(t_info *info);
 
 //Remove
 void print_error(t_response *response);

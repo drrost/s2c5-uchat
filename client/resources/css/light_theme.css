@@ -19,7 +19,7 @@
     font-weight: 500;
 }
 
-#label_user_name, #user_message, #fiend_entry, #entry_text_message, 
+#label_user_name, #user_message, #sender_message, #fiend_entry, #entry_text_message, 
 #contact_row, #user {
     font-size: 16px;
 }
@@ -68,19 +68,36 @@
     border-radius: 10px;
 }
 
+#scrolled_corespondent_list > *:selected{
+    background-color: transparent;
+    color: black;
+}
+
 #contact_row {
     border-bottom: 1px solid white;
     border-radius: 10px;
-    background-color: rgba(255,255,255, 0.6);
+    background-color: rgba(255, 255, 255, 0.6);
     padding: 8px;
 }
 
 #user_message {
-    background-color: rgba(115,167,207, 0.8);
+    background-color: rgba(115, 167, 207, 0.8);
     border-radius: 8px;
     padding: 10px;
     margin: 6px 12px 6px 0;
     color: white;
+}
+
+#sender_message {
+    background-color: rgba(60, 105, 157, 0.8);
+    border-radius: 8px;
+    padding: 10px;
+    margin: 6px 12px 6px 0;
+    color: white;
+}
+
+#general_button {
+    background: transparent;
 }
 
 #theme_switch {

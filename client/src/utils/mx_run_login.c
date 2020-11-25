@@ -19,18 +19,27 @@ static void login_completion(e_connection_code code, t_response *response) {
         mx_print_error(response);
 }
 
-char *mx_run_login() {
+char *mx_run_login(int *user_id) {
     t_connection *connection = mx_connection_open("127.0.0.1", 7766);
 
     t_request *request = mx_request_login("user", "password");
     connection->send(connection, request, login_completion);
     char *token = 0;
+    //int id = 0;
     JsonNode *node_body = json_find_member(
         request->response->jsonNode, "body");
     JsonNode *node_token = json_find_member(
         node_body, "token");
+    JsonNode *node_user = json_find_member(
+        node_body, "user");
+    JsonNode *node_id = json_find_member(
+        node_user, "id");
     if (node_token && node_token->string_)
         token = mx_strdup(node_token->string_);
+    if (node_id && node_id->number_) {
+        *user_id = node_id->number_;
+    }
+
     mx_request_delete(&request);
 
     mx_connection_close(&connection);

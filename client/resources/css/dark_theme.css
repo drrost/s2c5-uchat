@@ -2,7 +2,7 @@
     background-image: linear-gradient(rgba(59, 54, 50, 0.521), rgba(0, 33, 50, 1));
 }
 
-#label_user_name, #user_message, #fiend_entry, #entry_text_message, 
+#label_user_name, #user_message, #sender_message, #fiend_entry, #entry_text_message, 
 #contact_row, #user {
     font-size: 16px;
 }
@@ -31,6 +31,18 @@
     color: white;
 }
 
+#sender_message {
+    background-color: rgba(72, 123, 166, 0.8);
+    border-radius: 8px;
+    padding: 10px;
+    margin: 6px 12px 6px 0;
+    color: white;
+}
+
+#general_button {
+    background: transparent;
+}
+
 #theme_switch {
     background-image: linear-gradient(rgba(0, 0, 0, 0.521), rgba(0, 0, 0, 1));
 }
@@ -43,6 +55,11 @@
     background-color: rgba(255,255,255, 0.6);
     border: 1px solid white;
     border-radius: 10px;
+}
+
+#scrolled_corespondent_list > *:selected{
+    background-color: transparent;
+    color: black;
 }
 
 #scrolled_window_chats {

@@ -14,15 +14,10 @@ void mx_search_conversation_list(t_list *list) {
     if (mx_strlen(contact) && mx_check_for_spaces(contact))
         while (list) {
             t_chat *chat = (t_chat *)list->data;
-            t_list *list_participants = chat->participants;
-
-            while (list_participants) {
-            t_user *user = (t_user *)list_participants->data;
-                if (!mx_strcmp(user->login, contact)) {
-                    printf("Match :%s\n", user->login);
-                    break;
-                }
-                list_participants = list_participants->next;
+            if (!mx_strcmp(chat->name, contact)) {
+                mx_clear_history(info);
+                mx_run_message_list(info->token, chat->id);
+                break;
             }
             list = list->next;
         }
