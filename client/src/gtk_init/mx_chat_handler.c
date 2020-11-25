@@ -54,6 +54,8 @@ void mx_message_selected(void) {
         GTK_LIST_BOX(info->widgets->s_chat_window->scrolled_corespondent_list));
     char *id = g_object_get_data(G_OBJECT(row), "message_id");//for editing and deleting messages probably
     printf("Message ID: %s\n", id);
+    gtk_list_box_unselect_row(GTK_LIST_BOX(
+        info->widgets->s_chat_window->scrolled_corespondent_list), GTK_LIST_BOX_ROW(row));
 }
 
 void mx_chat_handler(t_info *info) {
