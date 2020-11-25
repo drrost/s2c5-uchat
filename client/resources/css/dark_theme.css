@@ -2,7 +2,7 @@
     background-image: linear-gradient(rgba(59, 54, 50, 0.521), rgba(0, 33, 50, 1));
 }
 
-#label_user_name, #user_message, #fiend_entry, #entry_text_message, 
+#label_user_name, #user_message, #sender_message, #fiend_entry, #entry_text_message, 
 #contact_row, #user {
     font-size: 16px;
 }
@@ -25,6 +25,14 @@
 
 #user_message {
     background-color: rgba(0, 33, 50, 0.8);
+    border-radius: 8px;
+    padding: 10px;
+    margin: 6px 12px 6px 0;
+    color: white;
+}
+
+#sender_message {
+    background-color: rgba(72, 123, 166, 0.8);
     border-radius: 8px;
     padding: 10px;
     margin: 6px 12px 6px 0;

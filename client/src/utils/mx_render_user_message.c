@@ -65,7 +65,11 @@ void mx_render_user_message(t_message *message, t_info *info) {
     gtk_container_add(GTK_CONTAINER(row), box_in);
     gtk_container_add(GTK_CONTAINER(
         info->widgets->s_chat_window->scrolled_corespondent_list), row);
-    if (message->type == E_MESSAGE_TYPE_TEXT)
+    if (message->type == E_MESSAGE_TYPE_TEXT
+        && message->sender_id == info->user_info->user_id)
         gtk_widget_set_name(label1, "user_message");
+    else if (message->type == E_MESSAGE_TYPE_TEXT
+        && message->sender_id != info->user_info->user_id)
+        gtk_widget_set_name(label1, "sender_message");
     gtk_widget_show_all(row);
 }
