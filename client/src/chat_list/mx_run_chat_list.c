@@ -19,29 +19,41 @@ void chat_list_del(t_list **list) {
 
 void mx_expand_chat_history(GtkWidget *row) {
     t_info *info = gs_info(GET);
-    //Clear history
     mx_clear_history(info);
-    //find chat id that was clicked
     char *id = g_object_get_data(G_OBJECT(row), "chat_id");
     info->user_info->id = atoi(id);
-    //print chat history for this chat
     mx_run_message_list(info->token, info->user_info->id);
-    //mx_strdel(&id);
 }
 
-void mx_append_and_print(t_chat *chat, t_window_widgets *widgets) {
+void mx_append_and_print(t_chat *chat, t_window_widgets *widgets, char *active_login) {
     GtkWidget *row, *login, *box;
+    login = NULL;
+    int participants_size = mx_list_size(chat->participants);
         
     row = gtk_list_box_new();
     box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    if (chat->name)
+    if (participants_size == 2) {
+        t_list *list = chat->participants;
+        while (list) {
+            t_user *user = (t_user *)list->data;
+            if (mx_strcmp(user->login, active_login)) {
+                char *s = 0;
+                mx_str_append(&s, user->first_name);
+                mx_str_append(&s, " ");
+                mx_str_append(&s, user->last_name);
+                login = gtk_label_new(s);
+                break;
+            }
+            list = list->next;
+        }    
+    }
+    else if (participants_size > 2 && chat->name)
         login = gtk_label_new(chat->name);
-    else
+    else if (participants_size > 2 && !chat->name)
         login = gtk_label_new("Unnamed");
-
     gtk_container_add(GTK_CONTAINER(row), box);
     gtk_box_pack_start(GTK_BOX(box), login, FALSE, FALSE,
-           15); //TRUE adds spacing
+       15);
     gtk_box_set_spacing(GTK_BOX(box), 40);
     gtk_container_add(
         GTK_CONTAINER(widgets->s_chat_window->scrolled_chats_list), row);
@@ -58,7 +70,7 @@ void mx_show_conversation_list(t_list *list) {
 
     while (list) {
         t_chat *chat = (t_chat *)list->data;
-        mx_append_and_print(chat, info->widgets);
+        mx_append_and_print(chat, info->widgets, info->user_info->login);
         list = list->next;
     }
 }
