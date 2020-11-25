@@ -49,8 +49,11 @@ void mx_change_theme(GtkSwitch *button) {
 }
 
 void mx_message_selected(void) {
-    // GtkWidget *list = GTK_WIDGET(data);
-    printf("message clicked\n");
+    t_info *info = chat_info(GET);
+    GtkListBoxRow *row = gtk_list_box_get_selected_row(
+        GTK_LIST_BOX(info->widgets->s_chat_window->scrolled_corespondent_list));
+    char *id = g_object_get_data(G_OBJECT(row), "message_id");//for editing and deleting messages probably
+    printf("Message ID: %s\n", id);
 }
 
 void mx_chat_handler(t_info *info) {

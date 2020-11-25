@@ -33,12 +33,16 @@ void mx_render_user_message(t_message *message, t_info *info) {
         label1 = NULL;
     }
     row = gtk_list_box_row_new();
-    if (message->sender_id == info->user_info->user_id)
+    if (message->sender_id == info->user_info->user_id) {
         gtk_widget_set_halign(row, GTK_ALIGN_END);
-    else
+        gtk_list_box_row_set_activatable(GTK_LIST_BOX_ROW(row), TRUE);
+        gtk_list_box_row_set_selectable(GTK_LIST_BOX_ROW(row), TRUE); 
+    }
+    else {
         gtk_widget_set_halign(row, GTK_ALIGN_START);
-    gtk_list_box_row_set_activatable(GTK_LIST_BOX_ROW(row), TRUE);
-    gtk_list_box_row_set_selectable(GTK_LIST_BOX_ROW(row), TRUE); 
+        gtk_list_box_row_set_activatable(GTK_LIST_BOX_ROW(row), FALSE);
+        gtk_list_box_row_set_selectable(GTK_LIST_BOX_ROW(row), FALSE); 
+    }
 
     box_in = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, FALSE);   
     general_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, FALSE);// created boxes
@@ -57,7 +61,6 @@ void mx_render_user_message(t_message *message, t_info *info) {
         gtk_box_pack_start(GTK_BOX(box_left), label1, 1, 1, 1);
     else if (message->type == E_MESSAGE_TYPE_STICKER)
         gtk_box_pack_start(GTK_BOX(box_left), button, 1, 1, 1);
-    //gtk_box_pack_start(GTK_BOX(box_left), label1, 1, 1, 1);
     gtk_box_pack_start(GTK_BOX(general_box), box_left, 1, 1, 1);
 
     gtk_container_add_with_properties (GTK_CONTAINER (box_in), general_box, "expand", TRUE, NULL); //placing widgets in a container
