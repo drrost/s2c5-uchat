@@ -8,10 +8,6 @@ void mx_run_simple_examples(void) {
     // An example how to obtain an authentication token.
     //
     char *token = mx_run_login();
-    if (!token) {
-        mx_printerr("Token is NULL, most likely the server is down\n");
-        exit(1);
-    }
 
     // An example how to send a message.
     //

@@ -5,6 +5,31 @@
 #include <server.h>
 #include <mx_log.h>
 
+t_response *handle_update_message(t_message *message) {
+    t_response *response = mx_response_server_error(
+        E_MSGTYPE_MESSAGE_SEND, "Not implemented yet");
+    return response;
+}
+
+t_response *handle_delete_message(t_message *message) {
+    t_response *response = mx_response_server_error(
+        E_MSGTYPE_MESSAGE_SEND, "Not implemented yet");
+    return response;
+}
+
+t_response *handle_as_text_message(t_message *message) {
+    t_response *response;
+    int rc = mx_save_message_to_db(message);
+    if (!rc)
+        response = mx_response_message_send(message);
+    else {
+        mx_log_e("DB", "Can't save message to DB");
+        response = mx_response_server_error(
+            E_MSGTYPE_MESSAGE_SEND, "Something went wrong");
+    }
+    return response;
+}
+
 t_response *mx_handle_message(t_request *request) {
     t_response *response = 0;
 
@@ -22,14 +47,16 @@ t_response *mx_handle_message(t_request *request) {
     if (!user)
         response = mx_response_401_wrong_lp(E_MSGTYPE_MESSAGE_SEND);
     else {
-        rc = mx_save_message_to_db(message);
-
-        if (!rc)
-            response = mx_response_message_send(message);
-        else {
-            mx_log_e("DB", "Can't save message to DB");
-            response = mx_response_server_error(
-                E_MSGTYPE_MESSAGE_SEND, "Something went wrong");
+        switch (message->type) {
+            case E_MESSAGE_TYPE_DELETE:
+                response = handle_delete_message(message);
+                break;
+            case E_MESSAGE_TYPE_UPDATE:
+                response = handle_update_message(message);
+                break;
+            default:
+                response = handle_as_text_message(message);
+                break;
         }
     }
 
