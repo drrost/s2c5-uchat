@@ -12,14 +12,16 @@
     color: rgb(59, 54, 50);
 }
 
-#label_user_name {
+#label_user_name, #user_message, #sender_message {
 	color: white;
 }
 
-#contact_row {
-    border-bottom: 1px solid white;
+#contact_row,  #scrolled_corespondent_list, #scrolled_window_chats,
+#scrolled_window_corespondent, #fiend_entry, #entry_text_message {
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.6);
+}
+
+#contact_row {
     padding: 8px;
 }
 
@@ -28,7 +30,6 @@
     border-radius: 8px;
     padding: 10px;
     margin: 6px 12px 6px 0;
-    color: white;
 }
 
 #sender_message {
@@ -36,11 +37,6 @@
     border-radius: 8px;
     padding: 10px;
     margin: 6px 12px 6px 0;
-    color: white;
-}
-
-#general_button {
-    background: transparent;
 }
 
 #theme_switch {
@@ -53,8 +49,6 @@
 
 #scrolled_corespondent_list {
     background-color: rgba(255,255,255, 0.6);
-    border: 1px solid white;
-    border-radius: 10px;
 }
 
 #scrolled_corespondent_list > *:selected{
@@ -62,20 +56,17 @@
     color: black;
 }
 
-#scrolled_window_chats {
+#scrolled_window_chats, #window_text_message_scrolled_atribut,
+#window_text_message_scrolled {
     border: 1px solid transparent;
-    border-radius: 10px;
 }
 
-#scrolled_window_corespondent {
+#scrolled_window_corespondent, #scrolled_corespondent_list {
     border: 1px solid white;
-    border-radius: 10px;
-
 }
 
-#fiend_entry {
+#fiend_entry, #contact_row {
     border-bottom: 1px solid white;
-    border-radius: 10px;
     background-color: rgba(255,255,255, 0.6);
 }
 
@@ -88,15 +79,7 @@
     padding: 8px;
 }
 
-#window_text_message_scrolled_atribut {
-    border: 1px solid transparent;
-}
-#window_text_message_scrolled {
-    border: 1px solid transparent;
-}
-
 #entry_text_message {
-    border-radius: 10px;
     background-color: rgba(255,255,255, 0.8);
 }
 

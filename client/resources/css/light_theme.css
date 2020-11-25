@@ -33,11 +33,7 @@
     color: black;
 }
 
-#username_entry {
-    background-color: rgba(255,255,255, 0.9);
-}
-
-#password_entry {
+#username_entry, #password_entry {
     background-color: rgba(255,255,255, 0.9);
 }
 
@@ -51,21 +47,21 @@
     border-color: white;
 }
 
-
+#scrolled_window_chats, #scrolled_window_corespondent, 
+#scrolled_corespondent_list, #contact_row {
+    border-radius: 10px;
+}
 #scrolled_window_chats {
     border: 1px solid transparent;
-    border-radius: 10px;
 }
 
 #scrolled_window_corespondent {
     border: 1px solid white;
-    border-radius: 10px;
 }
 
 #scrolled_corespondent_list {
     background-color: rgba(255,255,255, 0.6);
     border: 1px solid transparent;
-    border-radius: 10px;
 }
 
 #scrolled_corespondent_list > *:selected{
@@ -75,7 +71,6 @@
 
 #contact_row {
     border-bottom: 1px solid white;
-    border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.6);
     padding: 8px;
 }
@@ -96,19 +91,11 @@
     color: white;
 }
 
-#general_button {
-    background: transparent;
-}
-
 #theme_switch {
     background-image: linear-gradient(rgba(200, 200, 200, 0.521), rgba(200, 200, 200, 1));
 }
 
-#scrolled_chats_list { 
-    background: transparent;
-}
-
-#send_button, #stickers_button {
+#send_button, #stickers_button, #scrolled_chats_list {
 	background: transparent;
 }
 
@@ -118,15 +105,12 @@ button {
     box-shadow: none;
 }
 
-#window_text_message_scrolled_atribut {
-    border: 1px solid transparent;
-}
-#window_text_message_scrolled {
+#window_text_message_scrolled_atribut, #window_text_message_scrolled,
+#entry_text_message {
     border: 1px solid transparent;
 }
 
 #entry_text_message {
-    border: 1px solid transparent;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.8);
 }
