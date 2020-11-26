@@ -48,14 +48,15 @@ void mx_change_theme(GtkSwitch *button) {
         mx_css_connect_light();
 }
 
-void mx_message_selected(void) {
+void mx_message_selected( void) {
     t_info *info = chat_info(GET);
+    
     GtkListBoxRow *row = gtk_list_box_get_selected_row(
         GTK_LIST_BOX(info->widgets->s_chat_window->scrolled_corespondent_list));
-    char *id = g_object_get_data(G_OBJECT(row), "message_id");//for editing and deleting messages probably
-    printf("Message ID: %s\n", id);
-    gtk_list_box_unselect_row(GTK_LIST_BOX(
-        info->widgets->s_chat_window->scrolled_corespondent_list), GTK_LIST_BOX_ROW(row));
+     char *id = g_object_get_data(G_OBJECT(row), "message_id");//for editing and deleting messages probably
+     printf("Message ID: %s\n", id);
+     gtk_list_box_unselect_row(GTK_LIST_BOX(
+         info->widgets->s_chat_window->scrolled_corespondent_list), GTK_LIST_BOX_ROW(row));
 }
 
 void mx_chat_handler(t_info *info) {
@@ -74,7 +75,9 @@ void mx_chat_handler(t_info *info) {
     g_signal_connect(GTK_WIDGET(chat->stickers_button), "clicked",
                     (GCallback)mx_create_sticker, NULL);
     g_signal_connect(GTK_WIDGET(chat->scrolled_corespondent_list),
-        "row-selected", mx_message_selected, NULL);
+        "row-activated", mx_message_selected, NULL);
+    // g_signal_connect(GTK_WIDGET(chat->scrolled_chats_list),
+    //     "row-selected", mx_chat_selected, NULL);
 }
 
 

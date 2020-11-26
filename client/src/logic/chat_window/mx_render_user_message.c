@@ -4,6 +4,8 @@
 
 #include <client.h>
 
+#define GET (void *)-1
+
 void mx_render_user_message(t_message *message, t_info *info) {
 
     time_t t;
@@ -63,15 +65,17 @@ void mx_render_user_message(t_message *message, t_info *info) {
     gtk_container_add_with_properties (GTK_CONTAINER (box_in), general_box, "expand", TRUE, NULL); //placing widgets in a container
     gtk_container_add(GTK_CONTAINER(box_in), box_right);
     gtk_container_add(GTK_CONTAINER(row), box_in);
-    gtk_container_add(GTK_CONTAINER(
-        info->widgets->s_chat_window->scrolled_corespondent_list), row);
+    //gtk_container_add(GTK_CONTAINER(
+    //    info->widgets->s_chat_window->scrolled_corespondent_list), row);
     if (message->type == E_MESSAGE_TYPE_TEXT
         && message->sender_id == info->user_info->user_id) {
         gtk_widget_set_name(label1, "user_message");
-        g_object_set_data(G_OBJECT(row), "message_id", mx_itoa(message->id));//for editing and deleting messages probably
+        gtk_list_box_insert(GTK_LIST_BOX(info->widgets->s_chat_window->scrolled_corespondent_list), row, -1);
+        g_object_set_data(G_OBJECT(row), "message_id", mx_itoa(message->id));//for editing and deleting messages probably   
     }
     else if (message->type == E_MESSAGE_TYPE_TEXT
         && message->sender_id != info->user_info->user_id)
         gtk_widget_set_name(label1, "sender_message");
+    gtk_list_box_unselect_all(GTK_LIST_BOX(info->widgets->s_chat_window->scrolled_corespondent_list));
     gtk_widget_show_all(row);
 }
