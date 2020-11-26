@@ -58,20 +58,23 @@ t_info *mx_validate_args(int argc, char *argv[]);
 t_info *mx_info_new();
 void mx_info_init(t_info **info);
 void mx_init_gtk(t_info *info);
-GtkWidget *mx_name_mess_to(char *user);
-GtkWidget *mx_time_mess_to(char *data);
-void mx_set_chat_settings(t_chat_window *chat);
-void mx_show_window(t_info *info);
-void show_signin_page(t_window_widgets *widgets);
-bool mx_register_validation(t_register *regist);
-void mx_register_clear_input(t_register *regist);
-void mx_login_clear_input(t_signin *win);
 bool mx_check_for_spaces(const char *text);
-void mx_run_chat_list(char *token);
 t_info *gs_info(t_info *in);
 t_info *chat_info(t_info *in);
-char *mx_run_login(int *user_id);
 void mx_print_error(t_response *response);
+void chat_list_del(t_list **list);
+void print_error(t_response *response);
+//GTK INIT
+void mx_set_chat_settings(t_chat_window *chat);
+void mx_init_widgets(t_window_widgets *widgets);
+void mx_set_settings_default(t_window_widgets *widgets);
+void mx_signin_handler(t_info *info);
+void mx_chat_handler(t_info *info);
+void mx_register_handler(t_info *info);
+//Chat window
+GtkWidget *mx_name_mess_to(char *user);
+GtkWidget *mx_time_mess_to(char *data);
+void mx_run_chat_list(char *token);
 void mx_run_message_send(char *token, const char *text, 
     int chat_id, int user_id);
 void mx_run_sticker_send(char *token, const char *text,
@@ -80,35 +83,29 @@ void mx_run_message_list(char *token, int chat_id);
 void mx_set_preferences(GtkWidget *label);
 void mx_render_user_message(t_message *message, t_info *info);
 void mx_render_empty_user_message(t_info *info);
-void chat_list_del(t_list **list);
 gboolean mx_find_clicked(__attribute__((unused)) GtkWidget *widget,
-                             GdkEventKey *event,
-                             __attribute__((unused)) gpointer data);
-int
-mx_change_window(t_info *info, int window);
+    GdkEventKey *event, __attribute__((unused)) gpointer data);
 gint mx_scroll_down(gpointer data);
 void mx_clear_history(t_info *info);
-
-//Remove
-void print_error(t_response *response);
-
-//Change theme
+//--Change theme
 void mx_css_connect_light(void);
 void mx_css_connect_dark(void);
-
-//Build
+//--Stickers
 void mx_create_sticker_1(GtkWidget *box);
 void mx_create_sticker();
 void mx_send_message(t_info *info);
 void mx_sticker();
 void mx_send_sticker_to(GtkWidget *click_butt);
-
-void mx_init_widgets(t_window_widgets *widgets);
-void mx_set_settings_default(t_window_widgets *widgets);
-//Callback handlers
-void mx_signin_handler(t_info *info);
-void mx_chat_handler(t_info *info);
-void mx_register_handler(t_info *info);
+//Show window
+void mx_show_window(t_info *info);
+void show_signin_page(t_window_widgets *widgets);
+int mx_change_window(t_info *info, int window);
+//Registration window
+bool mx_register_validation(t_register *regist);
+void mx_register_clear_input(t_register *regist);
+void mx_login_clear_input(t_signin *win);
+//Login window
+char *mx_run_login(int *user_id);
 //Connection
 void mx_connect(t_info *info);
 int mx_socket(int port, char *ip);
@@ -144,11 +141,7 @@ struct s_chat_window {
     GtkWidget *stickers_button;
     GtkWidget *theme_switch;
     GtkWidget *msg_bt;
-
-
-
     GtkWidget *win_stick;
-    
 };
 
 struct s_register {
