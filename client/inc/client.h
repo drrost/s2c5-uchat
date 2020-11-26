@@ -79,6 +79,7 @@ void mx_run_sticker_send(char *token, const char *text,
 void mx_run_message_list(char *token, int chat_id);
 void mx_set_preferences(GtkWidget *label);
 void mx_render_user_message(t_message *message, t_info *info);
+void mx_render_empty_user_message(t_info *info);
 void chat_list_del(t_list **list);
 gboolean mx_find_clicked(__attribute__((unused)) GtkWidget *widget,
                              GdkEventKey *event,

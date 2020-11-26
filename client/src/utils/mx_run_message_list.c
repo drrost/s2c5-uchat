@@ -14,7 +14,18 @@ void mx_message_print(void *data) {
     g_timeout_add(200, mx_scroll_down, info);
 }
 
+void mx_empty_message_print(void *data) {
+    (void)data;
+    t_info *info = gs_info(GET);
+
+    mx_render_empty_user_message(info);
+}
+
 void mx_list_foreach(t_list *list, void (*f)(void *)) {
+
+    if (!list && f)
+        mx_empty_message_print(NULL);
+
     if (!list || !f)
         return;
 

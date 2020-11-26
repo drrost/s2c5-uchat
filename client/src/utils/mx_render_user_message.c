@@ -3,9 +3,6 @@
 //
 
 #include <client.h>
-// void mx_message_clicked(void) {
-//     printf("message clicked\n");
-// }
 
 void mx_render_user_message(t_message *message, t_info *info) {
 
