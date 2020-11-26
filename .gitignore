@@ -7,3 +7,4 @@ CMakeLists.txt
 .idea
 uchat_server
 uchat
+server/server
