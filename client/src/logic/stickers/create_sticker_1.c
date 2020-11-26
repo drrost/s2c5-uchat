@@ -31,7 +31,15 @@ static void create(GtkWidget *b1, char *name_file, GtkWidget *box) {
     GtkWidget *b5 = NULL;
     GtkWidget *b6 = NULL;
     GtkWidget *b7 = NULL;
-  
+    GtkWidget *b8 = NULL;
+    GtkWidget *b9 = NULL;
+    GtkWidget *b10 = NULL;
+    GtkWidget *b11 = NULL;
+    GtkWidget *b12 = NULL;
+    GtkWidget *b13 = NULL;
+    GtkWidget *b14 = NULL;
+    GtkWidget *b15 = NULL;
+
     create(b1, "resources/media/stickers/b1.png", box);
     create(b2, "resources/media/stickers/b2.png", box);
     create(b3, "resources/media/stickers/b3.png", box);
@@ -39,4 +47,12 @@ static void create(GtkWidget *b1, char *name_file, GtkWidget *box) {
     create(b5, "resources/media/stickers/b5.png", box);
     create(b6, "resources/media/stickers/b6.png", box);
     create(b7, "resources/media/stickers/b7.png", box);
+    create(b8, "resources/media/stickers/b8.png", box);
+    create(b9, "resources/media/stickers/b9.png", box);
+    create(b10, "resources/media/stickers/b10.png", box);
+    create(b11, "resources/media/stickers/b11.png", box);
+    create(b12, "resources/media/stickers/b12.png", box);
+    create(b13, "resources/media/stickers/b13.png", box);
+    create(b14, "resources/media/stickers/b14.png", box);
+    create(b15, "resources/media/stickers/b15.png", box);
 }
