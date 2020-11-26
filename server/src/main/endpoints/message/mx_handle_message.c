@@ -25,9 +25,8 @@ t_response *handle_update_message(t_message *message) {
 }
 
 t_response *handle_delete_message(t_message *message) {
-    t_response *response = mx_response_server_error(
-        E_MSGTYPE_MESSAGE_SEND, "Message deletion is not implemented yet");
-    return response;
+    return run_message_action(
+        message, mx_db_delete_message, "Can't delete message in DB");
 }
 
 t_response *handle_as_text_message(t_message *message) {

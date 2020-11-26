@@ -10,6 +10,7 @@ CREATE TABLE message
     user_id       INTEGER NOT NULL,
     creation_date INTEGER NULL,
     type          INTEGER,
+    is_deleted    INTEGER DEFAULT 0,
     FOREIGN KEY (user_id) REFERENCES user (user_id)
 );
 
@@ -43,4 +44,4 @@ SELECT * FROM message;
 UPDATE message SET text = 'NEW TEXT' WHERE message_id = 1;
 
 -- D
--- DELETE FROM message WHERE message_id = 13;
+UPDATE message SET is_deleted = 1 WHERE message_id = 1;

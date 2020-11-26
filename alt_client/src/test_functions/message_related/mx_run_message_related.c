@@ -40,11 +40,16 @@ void mx_run_message_related(void) {
 
     // ------------ Update
     //
+
+    // Given
     message->type = E_MESSAGE_TYPE_UPDATE;
     mx_strdel(&(message->message));
     message->message = rd_random_strn(10);
+
+    // When
     mx_message_update(token, message);
 
+    // Then
     list = mx_message_list(token);
     int size_updated = mx_list_size(list);
 
@@ -57,7 +62,17 @@ void mx_run_message_related(void) {
     mx_message_list_del(&list);
 
     // ------------ Delete
-// mx_message_delete(token, message);
+    // Given
+    message->type = E_MESSAGE_TYPE_DELETE;
+
+    // When
+    mx_message_delete(token, message);
+
+    // Then
+    list = mx_message_list(token);
+    int size_deleted = mx_list_size(list);
+    ASSERT_EQUALS(size_init, size_deleted);
+    mx_message_list_del(&list);
 
     mx_message_del(&message);
     mx_strdel(&token);

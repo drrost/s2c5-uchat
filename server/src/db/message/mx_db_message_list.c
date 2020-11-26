@@ -19,7 +19,7 @@ static sqlite3_stmt *run_sql(sqlite3 *db, int offset, int limit, int chat_id) {
     sqlite3_stmt *stmt = 0;
 
     char *sql =
-        "SELECT * FROM message WHERE chat_id = %d "
+        "SELECT * FROM message WHERE chat_id = %d AND is_deleted = 0 "
         "ORDER BY creation_date LIMIT %d OFFSET %d";
     int size = mx_strlen(sql);
     char *resolved = mx_strnew(size * 2);

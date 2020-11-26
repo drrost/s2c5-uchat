@@ -27,9 +27,12 @@ void mx_test_chat_list(void);
 void mx_send_million_messages(void);
 
 void mx_run_message_related(void);
+
 t_message *mx_message_send(char *token, const char *text);
-t_list *mx_message_list(char *token);
 void mx_message_update(char *token, t_message *message);
+void mx_message_delete(char *token, t_message *message);
+
+t_list *mx_message_list(char *token);
 
 // Utils
 //
