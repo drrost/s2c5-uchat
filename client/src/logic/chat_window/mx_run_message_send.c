@@ -30,12 +30,13 @@ void mx_run_message_send(char *token, const char *text,
     mx_connection_close(&connection);
 }
 
-void mx_run_sticker_send(char *token, const char *text) {
+void mx_run_sticker_send(char *token, const char *text,
+    int chat_id, int user_id) {
     t_connection *connection = mx_connection_open("127.0.0.1", 7766);
 
     t_message *message = mx_message_new();
-    message->chat_id = 1;
-    message->sender_id = 1;
+    message->chat_id = chat_id;
+    message->sender_id = user_id;
     message->message = mx_strdup(text);
     message->type = E_MESSAGE_TYPE_STICKER;
 
