@@ -10,10 +10,10 @@ void set_preferences_a(GtkWidget *label) {
 }
   
 void mx_send_sticker_to(GtkWidget *click_butt) {
-    
     char *path = g_object_get_data(G_OBJECT(click_butt), "path");
     t_info *info = chat_info(GET);
-    mx_run_sticker_send(info->token, path);
+    mx_run_sticker_send(info->token, path,
+        info->user_info->chat_id, info->user_info->user_id);
     
 
     time_t t;
