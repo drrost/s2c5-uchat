@@ -5,29 +5,34 @@
 #include <server.h>
 #include <mx_log.h>
 
-t_response *handle_update_message(t_message *message) {
-    t_response *response = mx_response_server_error(
-        E_MSGTYPE_MESSAGE_SEND, "Not implemented yet");
-    return response;
-}
-
-t_response *handle_delete_message(t_message *message) {
-    t_response *response = mx_response_server_error(
-        E_MSGTYPE_MESSAGE_SEND, "Not implemented yet");
-    return response;
-}
-
-t_response *handle_as_text_message(t_message *message) {
+t_response *run_message_action(
+    t_message *message, int (*f)(t_message *), char *err_text) {
     t_response *response;
-    int rc = mx_save_message_to_db(message);
+    int rc = f(message);
     if (!rc)
         response = mx_response_message_send(message);
     else {
-        mx_log_e("DB", "Can't save message to DB");
+        mx_log_e("DB", err_text);
         response = mx_response_server_error(
             E_MSGTYPE_MESSAGE_SEND, "Something went wrong");
     }
     return response;
+}
+
+t_response *handle_update_message(t_message *message) {
+    return run_message_action(
+        message, mx_db_update_message, "Can't update message in DB");
+}
+
+t_response *handle_delete_message(t_message *message) {
+    t_response *response = mx_response_server_error(
+        E_MSGTYPE_MESSAGE_SEND, "Message deletion is not implemented yet");
+    return response;
+}
+
+t_response *handle_as_text_message(t_message *message) {
+    return run_message_action(
+        message, mx_db_save_message, "Can't update message in DB");
 }
 
 t_response *mx_handle_message(t_request *request) {

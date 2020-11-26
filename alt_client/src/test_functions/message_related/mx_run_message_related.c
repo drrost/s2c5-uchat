@@ -20,27 +20,45 @@ void mx_run_message_related(void) {
 
     // ------------ Send
     //
+    t_list *list = mx_message_list(token);
+    int size_init = mx_list_size(list);
+    mx_message_list_del(&list);
+
     char *text = rd_random_strn(25);
     t_message *message = mx_message_send(token, text);
     ASSERT_EQUALS_STR(message->message, text);
     ASSERT_TRUE(message->type == E_MESSAGE_TYPE_TEXT);
 
-    t_list *list = mx_message_list(token);
-//    int size = mx_list_size(list);
+    list = mx_message_list(token);
+    int size = mx_list_size(list);
     t_message *last_message = get_last_message(list);
+    message->id = last_message->id;
     ASSERT_EQUALS_STR(last_message->message, text);
+    ASSERT_EQUALS(size_init + 1, size);
+    mx_message_list_del(&list);
+    last_message = 0;
 
     // ------------ Update
     //
     message->type = E_MESSAGE_TYPE_UPDATE;
     mx_strdel(&(message->message));
     message->message = rd_random_strn(10);
-//    mx_message_update(token, message);
+    mx_message_update(token, message);
+
+    list = mx_message_list(token);
+    int size_updated = mx_list_size(list);
+
+    ASSERT_EQUALS(size_init + 1, size_updated);
+
+    last_message = get_last_message(list);
+    ASSERT_EQUALS_STR(message->message, last_message->message);
+    ASSERT_EQUALS(size_init + 1, size);
+    ASSERT_EQUALS(message->id, last_message->id);
+    mx_message_list_del(&list);
 
     // ------------ Delete
 // mx_message_delete(token, message);
 
-    mx_message_list_del(&list);
     mx_message_del(&message);
     mx_strdel(&token);
     mx_strdel(&text);

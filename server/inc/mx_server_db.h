@@ -38,7 +38,11 @@ t_user *mx_user_for_token(const char *token);
 // Messages
 
 int mx_db_message_list(int offset, int limit, int chat_id, t_list **list);
-int mx_save_message_to_db(t_message *message);
+int mx_db_save_message(t_message *message);
+int mx_db_update_message(t_message *message);
+int mx_db_delete_message(t_message *message);
+
+int mx_db_fetch_last_message(sqlite3 *db, t_message *message);
 
 // Chat
 //

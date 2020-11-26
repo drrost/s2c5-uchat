@@ -40,7 +40,7 @@ SELECT * FROM message;
 -- SELECT round((21 + (10 - 1)) / 10);
 
 -- U
--- -
+UPDATE message SET text = 'NEW TEXT' WHERE message_id = 1;
 
 -- D
 -- DELETE FROM message WHERE message_id = 13;

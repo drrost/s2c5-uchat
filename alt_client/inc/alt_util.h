@@ -9,5 +9,6 @@
 
 void mx_chat_list_del(t_list **list);
 void mx_message_list_del(t_list **list);
+void mx_message_send_as_message(char *token, t_message *message);
 
 #endif //CLIENT_ALT_UTIL_H
