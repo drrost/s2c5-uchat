@@ -118,7 +118,7 @@ button {
     background-image: linear-gradient(rgba(200, 200, 200, 0.521), rgba(200, 200, 200, 1));
 }
 
-#send_button, #stickers_button, #scrolled_chats_list {
+#send_button, #stickers_button, #scrolled_chats_list, #refresh_button {
 	background: transparent;
     padding: 10px;
 }

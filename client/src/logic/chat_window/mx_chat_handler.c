@@ -69,6 +69,10 @@ void mx_expand_chat_history(void) {
     mx_run_message_list(info->token, info->user_info->chat_id);
 }
 
+void mx_refresh_message_list(void) {
+    printf("Refresh clicked\n");
+}
+
 void mx_chat_handler(t_info *info) {
     chat_info(info);
     t_chat_window *chat = info->widgets->s_chat_window;
@@ -88,6 +92,8 @@ void mx_chat_handler(t_info *info) {
         "row-activated", mx_message_selected, NULL);
     g_signal_connect(GTK_WIDGET(chat->scrolled_chats_list),
         "row-activated", mx_expand_chat_history, NULL);
+    g_signal_connect(GTK_WIDGET(chat->refresh_button), "clicked",
+                     (GCallback)mx_refresh_message_list, info);
 }
 
 
