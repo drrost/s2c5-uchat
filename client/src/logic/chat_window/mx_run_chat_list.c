@@ -17,14 +17,6 @@ void chat_list_del(t_list **list) {
     }
 }
 
-void mx_expand_chat_history(GtkWidget *row) {
-    t_info *info = gs_info(GET);
-    mx_clear_history(info);
-    char *id = g_object_get_data(G_OBJECT(row), "chat_id");
-    info->user_info->chat_id = atoi(id);
-    mx_run_message_list(info->token, info->user_info->chat_id);
-}
-
 void mx_append_and_print(t_chat *chat, t_window_widgets *widgets, char *active_login) {
     GtkWidget *row, *login, *box;
     login = NULL;
@@ -59,8 +51,8 @@ void mx_append_and_print(t_chat *chat, t_window_widgets *widgets, char *active_l
 //        GTK_CONTAINER(widgets->s_chat_window->scrolled_chats_list), row);
     gtk_list_box_insert(GTK_LIST_BOX(widgets->s_chat_window->scrolled_chats_list), row, -1);
     g_object_set_data(G_OBJECT(row), "chat_id", mx_itoa(chat->id));
-    g_signal_connect(GTK_WIDGET(row), 
-        "button_press_event", G_CALLBACK(mx_expand_chat_history), row);
+    // g_signal_connect(GTK_WIDGET(row), 
+    //     "button_press_event", G_CALLBACK(mx_expand_chat_history), row);
     gtk_widget_set_name(row, "contact_row");
     gtk_widget_show_all(row);
 }

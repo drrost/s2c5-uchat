@@ -59,6 +59,16 @@ void mx_message_selected( void) {
          info->widgets->s_chat_window->scrolled_corespondent_list), GTK_LIST_BOX_ROW(row));
 }
 
+void mx_expand_chat_history(void) {
+    t_info *info = gs_info(GET);
+    GtkListBoxRow *row = gtk_list_box_get_selected_row(
+        GTK_LIST_BOX(info->widgets->s_chat_window->scrolled_chats_list));
+    mx_clear_history(info);
+    char *id = g_object_get_data(G_OBJECT(row), "chat_id");
+    info->user_info->chat_id = atoi(id);
+    mx_run_message_list(info->token, info->user_info->chat_id);
+}
+
 void mx_chat_handler(t_info *info) {
     chat_info(info);
     t_chat_window *chat = info->widgets->s_chat_window;
@@ -76,8 +86,8 @@ void mx_chat_handler(t_info *info) {
                     (GCallback)mx_create_sticker, NULL);
     g_signal_connect(GTK_WIDGET(chat->scrolled_corespondent_list),
         "row-activated", mx_message_selected, NULL);
-    // g_signal_connect(GTK_WIDGET(chat->scrolled_chats_list),
-    //     "row-selected", mx_chat_selected, NULL);
+    g_signal_connect(GTK_WIDGET(chat->scrolled_chats_list),
+        "row-activated", mx_expand_chat_history, NULL);
 }
 
 

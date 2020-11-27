@@ -3,7 +3,7 @@
 }
 
 #label_user_name, #user_message, #sender_message, #fiend_entry, #entry_text_message, 
-#contact_row, #user {
+#contact_row, #user, #contact_row:selected {
     font-size: 16px;
 }
 
@@ -17,11 +17,11 @@
 }
 
 #contact_row,  #scrolled_corespondent_list, #scrolled_window_chats,
-#scrolled_window_corespondent, #fiend_entry, #entry_text_message {
+#scrolled_window_corespondent, #fiend_entry, #entry_text_message, #contact_row:selected {
     border-radius: 10px;
 }
 
-#contact_row {
+#contact_row, #contact_row:selected {
     padding: 8px;
 }
 
@@ -77,6 +77,11 @@
 #contact_row {
     border-bottom: 1px solid grey;
     padding: 8px;
+}
+
+#contact_row:selected {
+    background-color: rgba(72, 123, 166, 0.6);
+    border-bottom: 1px solid white;
 }
 
 #entry_text_message {
