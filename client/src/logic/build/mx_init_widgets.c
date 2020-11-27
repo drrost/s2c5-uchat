@@ -94,6 +94,15 @@ static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
     gtk_button_set_image(GTK_BUTTON(chat->stickers_button), sticker_image);
     gtk_entry_set_placeholder_text(GTK_ENTRY(chat->entry_text_message),
                                    "Start typing...");
+    chat->refresh_button = mx_build(builder, "refresh_button");
+    gtk_widget_set_name(chat->refresh_button, "refresh_button");
+    GtkWidget *refresh_image = gtk_image_new_from_file(
+        "resources/media/refresh.png");
+    GdkPixbuf *pb3;
+    pb3 = gdk_pixbuf_new_from_file_at_scale("resources/media/refresh.png",
+    15, 15, 1, NULL);
+    gtk_image_set_from_pixbuf(GTK_IMAGE(refresh_image), pb3);
+    gtk_button_set_image(GTK_BUTTON(chat->refresh_button), refresh_image);
 }
 
 static void mx_init_register_window(GtkBuilder *builder, t_register *regist) {

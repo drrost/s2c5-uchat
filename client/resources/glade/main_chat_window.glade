@@ -205,6 +205,21 @@
                 <property name="y">669</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkButton" id="refresh_button">
+                <property name="width-request">15</property>
+                <property name="height-request">15</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+              </object>
+              <packing>
+                <property name="x">640</property>
+                <property name="y">17</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">True</property>

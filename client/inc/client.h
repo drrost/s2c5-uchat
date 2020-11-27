@@ -142,6 +142,7 @@ struct s_chat_window {
     GtkWidget *theme_switch;
     GtkWidget *msg_bt;
     GtkWidget *win_stick;
+    GtkWidget *refresh_button;
 };
 
 struct s_register {
