@@ -34,8 +34,9 @@ static void mx_do_login(t_info *info) {
         info->user_info->logged = true;
         info->token = mx_run_login(&info->user_info->user_id,
          info->user_info->login, info->user_info->password);
-
-        gtk_main_quit();
+        printf("TOKEN %s\n", info->token);
+        if (info->token)
+            gtk_main_quit();
     }
     if (!login || !*login) {
         gtk_widget_grab_focus(info->widgets->s_signin->username_entry);
@@ -49,6 +50,14 @@ static void mx_do_login(t_info *info) {
         gtk_widget_grab_focus(info->widgets->s_signin->password_entry);
         gtk_label_set_text(GTK_LABEL(info->widgets->s_signin->status_label),
                            "Invalid password");
+        gtk_widget_set_name(info->widgets->s_signin->status_label,
+                            "status_label");
+        return;
+    }
+    else if (!info->token){
+        gtk_widget_grab_focus(info->widgets->s_signin->username_entry);
+        gtk_label_set_text(GTK_LABEL(info->widgets->s_signin->status_label),
+                           "Invalid login or password");
         gtk_widget_set_name(info->widgets->s_signin->status_label,
                             "status_label");
         return;
