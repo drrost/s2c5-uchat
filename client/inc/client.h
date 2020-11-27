@@ -105,7 +105,7 @@ bool mx_register_validation(t_register *regist);
 void mx_register_clear_input(t_register *regist);
 void mx_login_clear_input(t_signin *win);
 //Login window
-char *mx_run_login(int *user_id);
+char *mx_run_login(int *user_id, char *login, char *password);
 //Connection
 void mx_connect(t_info *info);
 int mx_socket(int port, char *ip);

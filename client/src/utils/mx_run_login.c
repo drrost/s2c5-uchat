@@ -19,10 +19,10 @@ static void login_completion(e_connection_code code, t_response *response) {
         mx_print_error(response);
 }
 
-char *mx_run_login(int *user_id) {
+char *mx_run_login(int *user_id, char *login, char *password) {
     t_connection *connection = mx_connection_open("127.0.0.1", 7766);
 
-    t_request *request = mx_request_login("user", "password");
+    t_request *request = mx_request_login(login, password);
     connection->send(connection, request, login_completion);
     char *token = 0;
     //int id = 0;
