@@ -30,7 +30,7 @@ void mx_append_and_print(t_chat *chat, t_window_widgets *widgets, char *active_l
     login = NULL;
     int participants_size = mx_list_size(chat->participants);
         
-    row = gtk_list_box_new();
+    row = gtk_list_box_row_new();
     box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     if (participants_size == 2) {
         t_list *list = chat->participants;
@@ -55,8 +55,8 @@ void mx_append_and_print(t_chat *chat, t_window_widgets *widgets, char *active_l
     gtk_box_pack_start(GTK_BOX(box), login, FALSE, FALSE,
        15);
     gtk_box_set_spacing(GTK_BOX(box), 40);
-    gtk_container_add(
-        GTK_CONTAINER(widgets->s_chat_window->scrolled_chats_list), row);
+//    gtk_container_add(
+//        GTK_CONTAINER(widgets->s_chat_window->scrolled_chats_list), row);
     gtk_list_box_insert(GTK_LIST_BOX(widgets->s_chat_window->scrolled_chats_list), row, -1);
     g_object_set_data(G_OBJECT(row), "chat_id", mx_itoa(chat->id));
     g_signal_connect(GTK_WIDGET(row), 

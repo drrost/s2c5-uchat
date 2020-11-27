@@ -20,5 +20,5 @@
     gtk_container_add(GTK_CONTAINER(GTK_WIDGET(window)), scrolled_window);
     gtk_widget_set_name(window, "window");  
     gtk_widget_show_all(window);
-    
+
 }

@@ -116,6 +116,7 @@ button {
 
 #send_button, #stickers_button, #scrolled_chats_list {
 	background: transparent;
+    padding: 10px;
 }
 
 #window_text_message_scrolled_atribut, #window_text_message_scrolled,
