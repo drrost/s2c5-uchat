@@ -31,12 +31,12 @@ static void mx_do_login(t_info *info) {
     if (mx_check_valid((char *)login, (char *)password)) {
         info->user_info->login = (char *)login;
         info->user_info->password = (char *)password;
-        info->user_info->logged = true;
         info->token = mx_run_login(&info->user_info->user_id,
          info->user_info->login, info->user_info->password);
-        printf("TOKEN %s\n", info->token);
-        if (info->token)
+        if (info->token) {
+            info->user_info->logged = true;
             gtk_main_quit();
+        }
     }
     if (!login || !*login) {
         gtk_widget_grab_focus(info->widgets->s_signin->username_entry);
