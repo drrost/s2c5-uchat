@@ -22,6 +22,7 @@ t_user_info *mx_create_user(void) { //t_info *info
     user->last_name = 0;
     user->chat_id = 0;
     user->user_id = 0;
+    user->find_sender = 0;
     return user;
 }
 

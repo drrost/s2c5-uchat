@@ -23,6 +23,7 @@ typedef struct s_register t_register;
 typedef struct s_user_info {
     char chat_id;
     int user_id;
+    int find_sender;
     char *password;
     char *login;
     bool logged;
@@ -87,6 +88,8 @@ gboolean mx_find_clicked(__attribute__((unused)) GtkWidget *widget,
     GdkEventKey *event, __attribute__((unused)) gpointer data);
 gint mx_scroll_down(gpointer data);
 void mx_clear_history(t_info *info);
+char *gs_sender(char *in);
+void mx_find_sender_login_by_id(int id);
 //--Change theme
 void mx_css_connect_light(void);
 void mx_css_connect_dark(void);

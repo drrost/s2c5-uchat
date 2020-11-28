@@ -50,8 +50,11 @@ void mx_render_user_message(t_message *message, t_info *info) {
 
     if (message->sender_id == info->user_info->user_id)
         login = mx_name_mess_to(info->user_info->login);
-    else
-        login = mx_name_mess_to("other user");
+    else {
+        mx_find_sender_login_by_id(message->sender_id);
+        char *sender = gs_sender(GET);
+        login = mx_name_mess_to(sender);
+    }
     time = mx_time_mess_to(ctime(&t));
 
     gtk_box_pack_start(GTK_BOX(box_right), time, 0, 1, 1);// snap to left or top side, leaving space on right or bottom
