@@ -12,7 +12,7 @@ char *gs_sender(char *in) {
     if (in == GET) {
         return user;
     }
-    user = in;
+    user = mx_strdup(in);
     return user;
 }
 

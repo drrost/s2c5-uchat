@@ -90,6 +90,8 @@ gint mx_scroll_down(gpointer data);
 void mx_clear_history(t_info *info);
 char *gs_sender(char *in);
 void mx_find_sender_login_by_id(int id);
+void mx_refresh_message_list(void);
+void mx_expand_chat_history(void);
 //--Change theme
 void mx_css_connect_light(void);
 void mx_css_connect_dark(void);
