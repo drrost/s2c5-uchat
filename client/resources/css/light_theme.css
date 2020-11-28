@@ -80,7 +80,7 @@ button {
     border: 1px solid white;
 }
 
-#scrolled_corespondent_list, #contact_row {
+#scrolled_corespondent_list {
     background-color: rgba(255,255,255, 0.6);
 }
 
@@ -89,9 +89,19 @@ button {
     color: black;
 }
 
-#contact_row, #contact_row:selected {
+#contact_row:selected {
     border-bottom: 1px solid white;
     padding: 8px;
+}
+
+#contact_row {
+    background-color: rgba(255,255,255, 0.6);
+    border-bottom: 1px solid white;
+    padding: 10px;
+}
+
+#contact_row, #contact_row + #contact_row {
+    margin-bottom: 10px;
 }
 
 #contact_row:selected {

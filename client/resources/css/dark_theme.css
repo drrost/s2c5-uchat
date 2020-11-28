@@ -75,8 +75,13 @@
 }
 
 #contact_row {
-    border-bottom: 1px solid grey;
-    padding: 8px;
+    background-color: rgba(255,255,255, 0.6);
+    border-bottom: 1px solid white;
+    padding: 10px;
+}
+
+#contact_row, #contact_row + #contact_row {
+    margin-bottom: 10px;
 }
 
 #contact_row:selected {
