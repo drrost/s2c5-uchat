@@ -32,7 +32,7 @@ static void mx_do_login(t_info *info) {
         info->user_info->login = (char *)login;
         info->user_info->password = (char *)password;
         info->token = mx_run_login(&info->user_info->user_id,
-         info->user_info->login, info->user_info->password);
+         info->user_info->login, info->user_info->password, info->ip, info->port);
         if (info->token) {
             info->user_info->logged = true;
             gtk_main_quit();

@@ -13,7 +13,7 @@ void mx_send_sticker_to(GtkWidget *click_butt) {
     char *path = g_object_get_data(G_OBJECT(click_butt), "path");
     t_info *info = chat_info(GET);
     mx_run_sticker_send(info->token, path,
-        info->user_info->chat_id, info->user_info->user_id);
+        info->user_info->chat_id, info->user_info->user_id, info->ip, info->port);
     
 
     time_t t;

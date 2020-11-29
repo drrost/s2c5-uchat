@@ -6,26 +6,23 @@
 
 #define GET (void *)-1
 
-void mx_message_print(void *data) {
+void mx_message_delete(void *data) {
+	printf("In mx_message_delete\n");
     t_message *message = (t_message *)data;
     t_info *info = gs_info(GET);
+    if (info->user_info->delete_id == message->id) {
+    	printf("Deleting message...\n");
+    	printf("In chat %d\n", info->user_info->chat_id);
+    	printf("Message text: %s\n", message->message);
+		mx_run_message_delete(info->token,
+            message->message, info->user_info->chat_id, info->user_info->user_id, info->ip, info->port);
+    }
 
-    mx_render_user_message(message, info);
-    g_timeout_add(200, mx_scroll_down, info);
+    // mx_render_user_message(message, info);
+    // g_timeout_add(200, mx_scroll_down, info);
 }
 
-void mx_empty_message_print(void *data) {
-    (void)data;
-    t_info *info = gs_info(GET);
-
-    mx_render_empty_user_message(info);
-}
-
-void mx_list_foreach(t_list *list, void (*f)(void *)) {
-
-    if (!list && f)
-        mx_empty_message_print(NULL);
-
+void mx_list_foreach_delete(t_list *list, void (*f)(void *)) {
     if (!list || !f)
         return;
 
@@ -36,7 +33,7 @@ void mx_list_foreach(t_list *list, void (*f)(void *)) {
 }
 
 static void print_list(t_list *list, void (*printer)(void *)) {
-   mx_list_foreach(list, printer);
+   mx_list_foreach_delete(list, printer);
 }
 
 static void message_list_del(t_list **list) {
@@ -53,14 +50,15 @@ static void message_list_completion(e_connection_code code, t_response *response
     else if (response->code == E_STATUS_CODE_OK) {
         t_list *list = mx_message_list_from_json(response->body);
 
-        print_list(list, mx_message_print);
+        print_list(list, mx_message_delete);
         message_list_del(&list);
     }
     else
         mx_print_error(response);
 }
 
-void mx_run_message_list(char *token, int id, char *ip, int port) {
+void mx_run_message_list_delete(char *token, int id, char *ip, int port) {
+	printf("In mx_run_message_list_delete\n");
 
     t_connection *connection = mx_connection_open(ip, port);
 
@@ -69,4 +67,11 @@ void mx_run_message_list(char *token, int id, char *ip, int port) {
     mx_request_delete(&request);
 
     mx_connection_close(&connection);
+}
+
+
+void mx_delete_message(int message_id, t_info *info) {
+	info->user_info->delete_id = message_id;
+	mx_run_message_list_delete(info->token, info->user_info->chat_id, info->ip, info->port);
+    
 }
