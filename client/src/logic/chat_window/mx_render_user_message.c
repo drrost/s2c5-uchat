@@ -49,6 +49,7 @@ void mx_render_user_message(t_message *message, t_info *info) {
     gtk_widget_set_name(trash, "sticker");
     gtk_widget_set_can_focus(trash, FALSE);
     g_object_set_data(G_OBJECT(trash), "path", "resources/media/trash.png");
+    g_object_set_data(G_OBJECT(trash), "message_id", mx_itoa(message->id));
     g_signal_connect (trash, "clicked", (GCallback)mx_trash, trash);
 // create edit button
 
@@ -64,6 +65,7 @@ void mx_render_user_message(t_message *message, t_info *info) {
     gtk_widget_set_name(edit, "sticker");
     gtk_widget_set_can_focus(edit, FALSE);
     g_object_set_data(G_OBJECT(edit), "path", "resources/media/edit.png");
+    g_object_set_data(G_OBJECT(edit), "message_id", mx_itoa(message->id));
     g_signal_connect (edit, "clicked", (GCallback)mx_edit, edit);
     ///
     row = gtk_list_box_row_new();
@@ -111,8 +113,6 @@ void mx_render_user_message(t_message *message, t_info *info) {
     if (message->type == E_MESSAGE_TYPE_TEXT
         && message->sender_id == info->user_info->user_id) {
         gtk_widget_set_name(label1, "user_message");
-        
-        g_object_set_data(G_OBJECT(row), "message_id", mx_itoa(message->id));//for editing and deleting messages probably   
     }
     else if (message->type == E_MESSAGE_TYPE_TEXT
         && message->sender_id != info->user_info->user_id)

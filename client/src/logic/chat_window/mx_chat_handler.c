@@ -1,7 +1,6 @@
 
 #include <client.h>
 
-#define GET (void *)-1
 
 t_info *chat_info(t_info *in) {
     static t_info *info = 0;
@@ -21,7 +20,7 @@ void mx_send_message(t_info *info) {
 
     if (mx_strlen(message) && mx_check_for_spaces(message)) {
         mx_run_message_send(info->token,
-         message, info->user_info->chat_id, info->user_info->user_id, info->ip, info->port);
+            message, info->user_info->chat_id, info->user_info->user_id, info->ip, info->port);
         mx_clear_history(info);
         mx_run_message_list(info->token, info->user_info->chat_id, info->ip, info->port);
         g_timeout_add(200, mx_scroll_down, info);
@@ -52,16 +51,10 @@ void mx_change_theme(GtkSwitch *button) {
 
 void mx_message_selected( void) {
     t_info *info = chat_info(GET);
-   
-    
-     
+
     GtkListBoxRow *row = gtk_list_box_get_selected_row(
         GTK_LIST_BOX(info->widgets->s_chat_window->scrolled_corespondent_list));
-     char *id = g_object_get_data(G_OBJECT(row), "message_id");//for editing and deleting messages probably
-     printf("Message ID: %s\n", id);
-     mx_delete_message(atoi(id), info);
-     printf("Refreshing\n");
-     mx_refresh_message_list();
+     gtk_widget_show_all(GTK_WIDGET(row));
      gtk_list_box_unselect_row(GTK_LIST_BOX(
          info->widgets->s_chat_window->scrolled_corespondent_list), GTK_LIST_BOX_ROW(row));
 }

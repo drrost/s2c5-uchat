@@ -15,7 +15,7 @@ void mx_message_delete(void *data) {
     	printf("In chat %d\n", info->user_info->chat_id);
     	printf("Message text: %s\n", message->message);
 		mx_run_message_delete(info->token,
-         message->message, info->user_info->chat_id, info->user_info->user_id, info->ip, info->port);
+            message->message, info->user_info->chat_id, info->user_info->user_id, info->ip, info->port);
     }
 
     // mx_render_user_message(message, info);

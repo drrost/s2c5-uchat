@@ -182,6 +182,6 @@ typedef enum {
 #define MX_SIGNIN_WINDOW 0
 #define MX_CHAT_WINDOW 1
 #define MX_REGISTER_WINDOW 2
-
+#define GET (void *)-1
 
 #endif
