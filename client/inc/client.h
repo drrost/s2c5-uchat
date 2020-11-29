@@ -73,6 +73,9 @@ void mx_signin_handler(t_info *info);
 void mx_chat_handler(t_info *info);
 void mx_register_handler(t_info *info);
 //Chat window
+void create(GtkWidget *b1, char *name_file, GtkWidget *box);
+void mx_edit (GtkWidget *click_but);
+void mx_trash (GtkWidget *click_but);
 GtkWidget *mx_name_mess_to(char *user);
 GtkWidget *mx_time_mess_to(char *data);
 void mx_run_chat_list(char *token);
