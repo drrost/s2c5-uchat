@@ -4,14 +4,16 @@
 
 #include <mx_log.h>
 #include <server.h>
+#include <memory.h>
 
 t_socket_connection mx_open_socket_to_listen(int port) {
     t_socket_connection connection;
     struct sockaddr_in address;
 
     connection.fd = socket(AF_INET, SOCK_STREAM, 0);
-    if (connection.fd == 0) {
+    if (connection.fd < 0) {
         mx_printerr("socket() failed\n");
+        mx_printerr(strerror(errno));
         exit(EXIT_FAILURE);
     }
 
@@ -23,6 +25,7 @@ t_socket_connection mx_open_socket_to_listen(int port) {
          sizeof(address));
     if (res < 0) {
         mx_printerr("bind() failed\n");
+        mx_printerr(strerror(errno));
         exit(EXIT_FAILURE);
     }
 

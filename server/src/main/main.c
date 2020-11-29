@@ -1,12 +1,12 @@
 #include <server.h>
-#include <mx_log.h>
 
 static void handle_arguments(
     int argc, char **argv, int *port, int *debug_mode_on) {
     if (argc == 1) {
         mx_printerr("usage: uchat_server <port_number>\n");
         exit(1);
-    } else {
+    }
+    else {
         *port = atoi(argv[1]);
         if (*port <= 0) {
             mx_printerr("<port_number> must be a valid integer\n");
@@ -32,6 +32,25 @@ static void run_as_regular(int port) {
 }
 
 static void run_as_daemon(int port) {
+    pid_t process_id = fork();
+
+    if (process_id < 0) {
+        mx_printerr("fork failed!\n");
+        exit(1);
+    }
+    if (process_id > 0) {
+        printf("process_id of child process %d \n", process_id);
+        exit(0);
+    }
+    umask(0);
+    pid_t sid = setsid();
+    if (sid < 0)
+        exit(1);
+
+    close(STDIN_FILENO);
+    close(STDOUT_FILENO);
+    close(STDERR_FILENO);
+
     run_as_regular(port);
 }
 
