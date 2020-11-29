@@ -4,10 +4,22 @@
 
 #include <mx_log.h>
 
+static FILE *gs_file(FILE *file) {
+    static FILE *in_file = 0;
+    if ((int)file == -1)
+        return in_file;
+    in_file = file;
+    return in_file;
+}
+
 static void print_debug(const char *line) {
-    FILE *file = fopen("/tmp/ulog.log", "a+");
+    FILE *file = gs_file((FILE *)-1);
+    if (!file) {
+        file = fopen("/tmp/ulog.log", "a+");
+        gs_file(file);
+    }
     fprintf(file, "%s\n", line);
-    fclose(file);
+//    fclose(file);
 }
 
 char *current_time() {
