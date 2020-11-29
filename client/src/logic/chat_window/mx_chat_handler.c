@@ -21,9 +21,9 @@ void mx_send_message(t_info *info) {
 
     if (mx_strlen(message) && mx_check_for_spaces(message)) {
         mx_run_message_send(info->token,
-         message, info->user_info->chat_id, info->user_info->user_id);
+         message, info->user_info->chat_id, info->user_info->user_id, info->ip, info->port);
         mx_clear_history(info);
-        mx_run_message_list(info->token, info->user_info->chat_id);
+        mx_run_message_list(info->token, info->user_info->chat_id, info->ip, info->port);
         g_timeout_add(200, mx_scroll_down, info);
     }
     gtk_entry_set_text(

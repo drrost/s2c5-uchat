@@ -15,7 +15,7 @@ void mx_message_delete(void *data) {
     	printf("In chat %d\n", info->user_info->chat_id);
     	printf("Message text: %s\n", message->message);
 		mx_run_message_delete(info->token,
-         message->message, info->user_info->chat_id, info->user_info->user_id);
+         message->message, info->user_info->chat_id, info->user_info->user_id, info->ip, info->port);
     }
 
     // mx_render_user_message(message, info);
@@ -57,10 +57,10 @@ static void message_list_completion(e_connection_code code, t_response *response
         mx_print_error(response);
 }
 
-void mx_run_message_list_delete(char *token, int id) {
+void mx_run_message_list_delete(char *token, int id, char *ip, int port) {
 	printf("In mx_run_message_list_delete\n");
 
-    t_connection *connection = mx_connection_open("127.0.0.1", 7766);
+    t_connection *connection = mx_connection_open(ip, port);
 
     t_request *request = mx_request_message_list(token, id);
     connection->send(connection, request, message_list_completion);
@@ -72,6 +72,6 @@ void mx_run_message_list_delete(char *token, int id) {
 
 void mx_delete_message(int message_id, t_info *info) {
 	info->user_info->delete_id = message_id;
-	mx_run_message_list_delete(info->token, info->user_info->chat_id);
+	mx_run_message_list_delete(info->token, info->user_info->chat_id, info->ip, info->port);
     
 }

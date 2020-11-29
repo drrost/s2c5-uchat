@@ -13,8 +13,8 @@ static void message_send_completion(e_connection_code code, t_response *response
 }
 
 void mx_run_message_send(char *token, const char *text,
-    int chat_id, int user_id) {
-    t_connection *connection = mx_connection_open("127.0.0.1", 7766);
+    int chat_id, int user_id, char *ip, int port) {
+    t_connection *connection = mx_connection_open(ip, port);
 
     t_message *message = mx_message_new();
     message->chat_id = chat_id;
@@ -31,8 +31,8 @@ void mx_run_message_send(char *token, const char *text,
 }
 
 void mx_run_message_delete(char *token, const char *text,
-    int chat_id, int user_id) {
-    t_connection *connection = mx_connection_open("127.0.0.1", 7766);
+    int chat_id, int user_id, char *ip, int port) {
+    t_connection *connection = mx_connection_open(ip, port);
 
     t_message *message = mx_message_new();
     message->chat_id = chat_id;
@@ -49,8 +49,8 @@ void mx_run_message_delete(char *token, const char *text,
 }
 
 void mx_run_sticker_send(char *token, const char *text,
-    int chat_id, int user_id) {
-    t_connection *connection = mx_connection_open("127.0.0.1", 7766);
+    int chat_id, int user_id, char *ip, int port) {
+    t_connection *connection = mx_connection_open(ip, port);
 
     t_message *message = mx_message_new();
     message->chat_id = chat_id;
