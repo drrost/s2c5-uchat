@@ -28,6 +28,7 @@ typedef struct s_user_info {
     char *login;
     bool logged;
     bool to_login;
+    int delete_id;
     bool regist; //clicked sign up button/register
     char *name;
     char *first_name;
@@ -72,6 +73,7 @@ void mx_set_settings_default(t_window_widgets *widgets);
 void mx_signin_handler(t_info *info);
 void mx_chat_handler(t_info *info);
 void mx_register_handler(t_info *info);
+void mx_free_info(t_info *info);
 //Chat window
 GtkWidget *mx_name_mess_to(char *user);
 GtkWidget *mx_time_mess_to(char *data);
@@ -92,6 +94,9 @@ char *gs_sender(char *in);
 void mx_find_sender_login_by_id(int id);
 void mx_refresh_message_list(void);
 void mx_expand_chat_history(void);
+void mx_run_message_delete(char *token, const char *text,
+    int chat_id, int user_id);
+void mx_delete_message(int message_id, t_info *info);
 //--Change theme
 void mx_css_connect_light(void);
 void mx_css_connect_dark(void);
