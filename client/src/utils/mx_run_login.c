@@ -19,8 +19,8 @@ static void login_completion(e_connection_code code, t_response *response) {
         mx_print_error(response);
 }
 
-char *mx_run_login(int *user_id, char *login, char *password) {
-    t_connection *connection = mx_connection_open("127.0.0.1", 7766);
+char *mx_run_login(int *user_id, char *login, char *password, char *ip, int port) {
+    t_connection *connection = mx_connection_open(ip, port);
 
     t_request *request = mx_request_login(login, password);
     connection->send(connection, request, login_completion);

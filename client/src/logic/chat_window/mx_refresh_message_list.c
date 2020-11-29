@@ -14,7 +14,7 @@ void mx_expand_chat_history(void) {
     else
         id = "1";
     info->user_info->chat_id = atoi(id);
-    mx_run_message_list(info->token, info->user_info->chat_id);
+    mx_run_message_list(info->token, info->user_info->chat_id, info->ip, info->port);
 }
 
 void mx_refresh_message_list(void) {

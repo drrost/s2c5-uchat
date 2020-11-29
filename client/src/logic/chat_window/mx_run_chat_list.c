@@ -82,8 +82,8 @@ chat_list_completion(e_connection_code code, t_response *response) {
 }
 
 
-void mx_run_chat_list(char *token) {
-    t_connection *connection = mx_connection_open("127.0.0.1", 7766);
+void mx_run_chat_list(char *token, char *ip, int port) {
+    t_connection *connection = mx_connection_open(ip, port);
     t_request *request = mx_request_chat_list(token);
     
     connection->send(connection, request, chat_list_completion);

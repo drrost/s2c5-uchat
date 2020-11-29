@@ -4,6 +4,27 @@
 
 #include <client.h>
 
+// void mx_info_del(t_info **info) {
+//     t_info *instance = *info;
+//     mx_strdel((&info->login));
+
+//     
+
+//     free(instance);
+//     *chat = 0;
+// }
+
+void mx_free_info(t_info *info) {
+    free(info->widgets->s_signin);
+    free(info->widgets->s_chat_window);
+    free(info->widgets->s_register);
+    free(info->widgets);
+
+    free(info->user_info);
+    mx_strdel(&info->token);
+    mx_strdel(&info->ip);
+}
+
 void mx_init_memory(t_info **info) {
     (*info)->widgets = malloc(sizeof(t_window_widgets));
     (*info)->widgets->s_signin = malloc(sizeof(t_signin));

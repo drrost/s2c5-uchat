@@ -16,7 +16,7 @@ void mx_search_conversation_list(t_list *list) {
             t_chat *chat = (t_chat *)list->data;
             if (!mx_strcmp(chat->name, contact)) {
                 mx_clear_history(info);
-                mx_run_message_list(info->token, chat->id);
+                mx_run_message_list(info->token, chat->id, info->ip, info->port);
                 break;
             }
             list = list->next;
@@ -39,7 +39,7 @@ chat_list_completion(e_connection_code code, t_response *response) {
 
 void mx_find_contact(void) {
     t_info *info = chat_info(GET);
-    t_connection *connection = mx_connection_open("127.0.0.1", 7766);
+    t_connection *connection = mx_connection_open(info->ip, info->port);
     t_request *request = mx_request_chat_list(info->token);
     
     connection->send(connection, request, chat_list_completion);

@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
     mx_log_d("CLIENT", "About to start UI %s", "some text here");
     gtk_main();
     mx_show_window(info);
+    mx_free_info(info);
     mx_check_leaks();
-
     return EXIT_SUCCESS;
 }

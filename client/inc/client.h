@@ -28,6 +28,7 @@ typedef struct s_user_info {
     char *login;
     bool logged;
     bool to_login;
+    int delete_id;
     bool regist; //clicked sign up button/register
     char *name;
     char *first_name;
@@ -72,18 +73,19 @@ void mx_set_settings_default(t_window_widgets *widgets);
 void mx_signin_handler(t_info *info);
 void mx_chat_handler(t_info *info);
 void mx_register_handler(t_info *info);
+void mx_free_info(t_info *info);
 //Chat window
 void create(GtkWidget *b1, char *name_file, GtkWidget *box);
 void mx_edit (GtkWidget *click_but);
 void mx_trash (GtkWidget *click_but);
 GtkWidget *mx_name_mess_to(char *user);
 GtkWidget *mx_time_mess_to(char *data);
-void mx_run_chat_list(char *token);
+void mx_run_chat_list(char *token, char *ip, int port);
 void mx_run_message_send(char *token, const char *text, 
-    int chat_id, int user_id);
+    int chat_id, int user_id, char *ip, int port);
 void mx_run_sticker_send(char *token, const char *text,
-    int chat_id, int user_id);
-void mx_run_message_list(char *token, int chat_id);
+    int chat_id, int user_id, char *ip, int port);
+void mx_run_message_list(char *token, int chat_id, char *ip, int port);
 void mx_set_preferences(GtkWidget *label);
 void mx_render_user_message(t_message *message, t_info *info);
 void mx_render_empty_user_message(t_info *info);
@@ -95,6 +97,9 @@ char *gs_sender(char *in);
 void mx_find_sender_login_by_id(int id);
 void mx_refresh_message_list(void);
 void mx_expand_chat_history(void);
+void mx_run_message_delete(char *token, const char *text,
+    int chat_id, int user_id, char *ip, int port);
+void mx_delete_message(int message_id, t_info *info);
 //--Change theme
 void mx_css_connect_light(void);
 void mx_css_connect_dark(void);
@@ -113,7 +118,7 @@ bool mx_register_validation(t_register *regist);
 void mx_register_clear_input(t_register *regist);
 void mx_login_clear_input(t_signin *win);
 //Login window
-char *mx_run_login(int *user_id, char *login, char *password);
+char *mx_run_login(int *user_id, char *login, char *password, char *ip, int port);
 //Connection
 void mx_connect(t_info *info);
 int mx_socket(int port, char *ip);
