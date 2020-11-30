@@ -85,8 +85,8 @@
 }
 
 #contact_row:selected {
-    background-color: rgba(72, 123, 166, 0.6);
-    border-bottom: 1px solid white;
+    background-color: rgba(0, 33, 50, 0.8);
+    border-bottom: 1px solid rgba(0, 33, 50, 0.8);
 }
 
 #entry_text_message {
