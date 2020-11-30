@@ -15,6 +15,6 @@ void mx_render_empty_user_message(t_info *info) {
     gtk_container_add(GTK_CONTAINER(row), box_left);
     gtk_container_add(GTK_CONTAINER(
         info->widgets->s_chat_window->scrolled_corespondent_list), row);
-    gtk_widget_set_name(label1, "sender_message");
+    gtk_widget_set_name(label1, "user_message");
     gtk_widget_show_all(row);
 }
