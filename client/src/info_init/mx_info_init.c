@@ -21,8 +21,9 @@ void mx_free_info(t_info *info) {
     free(info->widgets);
 
     free(info->user_info);
-    mx_strdel(&info->token);
+    //mx_strdel(&info->token);
     mx_strdel(&info->ip);
+    free(info);
 }
 
 void mx_init_memory(t_info **info) {
