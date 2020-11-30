@@ -32,7 +32,7 @@ void mx_send_message(t_info *info) {
     } 
 }
 
-gboolean mx_send_message_key(__attribute__((unused)) GtkWidget *widget,
+static gboolean mx_send_message_key(__attribute__((unused)) GtkWidget *widget,
                              GdkEventKey *event,
                              __attribute__((unused)) gpointer data) {
     switch (event->keyval) {
@@ -65,7 +65,7 @@ void mx_chat_handler(t_info *info) {
     t_chat_window *chat = info->widgets->s_chat_window;
     g_signal_connect(GTK_WIDGET(chat->window_main_chat), "destroy",
                      G_CALLBACK(gtk_main_quit), NULL);
-    info->widgets->id = g_signal_connect(GTK_WIDGET(chat->send_button), "clicked",
+    g_signal_connect(GTK_WIDGET(chat->send_button), "clicked",
                      (GCallback)mx_send_message, info);
     g_signal_connect(GTK_WIDGET(chat->entry_text_message), "key-release-event",
                      (GCallback)mx_send_message_key, NULL);

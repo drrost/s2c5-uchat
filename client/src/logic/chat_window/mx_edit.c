@@ -24,6 +24,17 @@ void mx_update_row(void) {
 	}
 }
 
+static gboolean mx_edit_message_key(__attribute__((unused)) GtkWidget *widget,
+                             GdkEventKey *event,
+                             __attribute__((unused)) gpointer data) {
+    switch (event->keyval) {
+        case GDK_KEY_Return:
+            mx_update_row();
+            break;
+    }
+    return FALSE;
+}
+
 void mx_message_edit(void *data) {
     t_message *message = (t_message *)data;
     t_info *info = gs_info(GET);
@@ -34,6 +45,8 @@ void mx_message_edit(void *data) {
 		info->send = false;
 		g_signal_connect(GTK_WIDGET(info->widgets->s_chat_window->send_button), 
 			"clicked", (GCallback)mx_update_row, NULL);
+		g_signal_connect(GTK_WIDGET(info->widgets->s_chat_window->entry_text_message), 
+			"key-release-event", (GCallback)mx_edit_message_key, NULL);
     }
 }
 
