@@ -47,14 +47,8 @@ void mx_append_and_print(t_chat *chat, t_window_widgets *widgets, char *active_l
     gtk_box_pack_start(GTK_BOX(box), login, FALSE, FALSE,
        15);
     gtk_box_set_spacing(GTK_BOX(box), 40);
-//    gtk_container_add(
-//        GTK_CONTAINER(widgets->s_chat_window->scrolled_chats_list), row);
-    gtk_list_box_insert(GTK_LIST_BOX(widgets->s_chat_window->scrolled_chats_list), row, -1);
-    char *chat_id = mx_itoa(chat->id);
-    g_object_set_data(G_OBJECT(row), "chat_id", chat_id);
-    mx_strdel(&chat_id);
-    // g_signal_connect(GTK_WIDGET(row), 
-    //     "button_press_event", G_CALLBACK(mx_expand_chat_history), row);
+   gtk_list_box_insert(GTK_LIST_BOX(widgets->s_chat_window->scrolled_chats_list), row, -1);
+    g_object_set_data(G_OBJECT(row), "chat_id", mx_itoa(chat->id));
     gtk_widget_set_name(row, "contact_row");
     gtk_widget_show_all(row);
 }
