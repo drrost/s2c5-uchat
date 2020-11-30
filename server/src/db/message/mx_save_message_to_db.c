@@ -7,7 +7,7 @@
 #include <sqlite3.h>
 
 static int run_sql(sqlite3 *db, t_message *message) {
-    char *sql = "INSERT INTO message (text, chat_id, user_id, type)"
+    char *sql = "INSERT INTO message (text, chat_id, user_id, type) "
                 "VALUES ('%s', %d, %d, %d);";
     int size = mx_strlen(sql);
     char *resolved = mx_strnew(size * 2);

@@ -4,8 +4,10 @@ INSERT INTO chat (name) VALUES ('Explorers');
 INSERT INTO chat (name) VALUES (NULL);
 INSERT INTO chat (name) VALUES (NULL);
 INSERT INTO chat (name) VALUES (NULL);
+INSERT INTO chat (name) VALUES (NULL);
 -- SELECT * FROM chat;
 
+-- User with id 1
 INSERT INTO chat_user (chat_id, user_id)
 VALUES (1, 1);
 INSERT INTO chat_user (chat_id, user_id)
@@ -18,7 +20,7 @@ VALUES (1, 15);
 INSERT INTO chat_user (chat_id, user_id)
 VALUES (2, 1);
 INSERT INTO chat_user (chat_id, user_id)
-VALUES (2, 3);
+VALUES (2, 2);
 
 INSERT INTO chat_user (chat_id, user_id)
 VALUES (3, 1);
@@ -47,8 +49,15 @@ VALUES (6, 2);
 INSERT INTO chat_user (chat_id, user_id)
 VALUES (6, 9);
 
+INSERT INTO chat (name) VALUES (NULL);
+INSERT INTO chat_user (chat_id, user_id)
+VALUES (7, 2);
+INSERT INTO chat_user (chat_id, user_id)
+VALUES (7, 10);
+
 --
--- SELECT * FROM chat_user;
+SELECT * FROM chat_user;
+SELECT * FROM user;
 
 -- Chats for a user
 -- SELECT c.* FROM chat_user cu LEFT JOIN chat c ON c.chat_id = cu.chat_id
