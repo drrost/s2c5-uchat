@@ -28,7 +28,7 @@ void mx_send_message(t_info *info) {
         }
         gtk_entry_set_text(
             GTK_ENTRY(info->widgets->s_chat_window->entry_text_message), "");
-        info->send = false;
+        //info->send = false;
     } 
 }
 
