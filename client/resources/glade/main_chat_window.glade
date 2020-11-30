@@ -216,8 +216,8 @@
                 <property name="valign">center</property>
               </object>
               <packing>
-                <property name="x">640</property>
-                <property name="y">11</property>
+                <property name="x">630</property>
+                <property name="y">6</property>
               </packing>
             </child>
           </object>

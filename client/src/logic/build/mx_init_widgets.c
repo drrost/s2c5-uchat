@@ -100,7 +100,7 @@ static void mx_init_chat_window(GtkBuilder *builder, t_chat_window *chat) {
         "resources/media/refresh.png");
     GdkPixbuf *pb3;
     pb3 = gdk_pixbuf_new_from_file_at_scale("resources/media/refresh.png",
-    25, 25, 1, NULL);
+    35, 35, 1, NULL);
     gtk_image_set_from_pixbuf(GTK_IMAGE(refresh_image), pb3);
     gtk_button_set_image(GTK_BUTTON(chat->refresh_button), refresh_image);
 }
