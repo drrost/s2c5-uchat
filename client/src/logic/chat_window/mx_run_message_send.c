@@ -49,6 +49,25 @@ void mx_run_message_delete(char *token, const char *text,
     mx_connection_close(&connection);
 }
 
+void mx_run_message_edit(char *token, const char *text,
+    int chat_id, int user_id, char *ip, int port, int message_id) {
+    t_connection *connection = mx_connection_open(ip, port);
+
+    t_message *message = mx_message_new();
+    message->id = message_id;
+    message->chat_id = chat_id;
+    message->sender_id = user_id;
+    message->message = mx_strdup(text);
+    message->type = E_MESSAGE_TYPE_UPDATE;
+
+    t_request *request = mx_request_message_send(token, message);
+    connection->send(connection, request, 0);
+    mx_message_del(&message);
+    mx_request_delete(&request);
+
+    mx_connection_close(&connection);
+}
+
 void mx_run_sticker_send(char *token, const char *text,
     int chat_id, int user_id, char *ip, int port) {
     t_connection *connection = mx_connection_open(ip, port);

@@ -29,6 +29,7 @@ typedef struct s_user_info {
     bool logged;
     bool to_login;
     int delete_id;
+    int edit_id;
     bool regist; //clicked sign up button/register
     char *name;
     char *first_name;
@@ -37,7 +38,7 @@ typedef struct s_user_info {
 
 typedef struct s_window_widgets {
     
-
+    gulong id;
     GtkBuilder *builder;
     GtkBuilder *builder_window2;
     GtkBuilder *builder_window3; 
@@ -49,6 +50,7 @@ typedef struct s_window_widgets {
 typedef struct s_info {
     int sock;
     int port;
+    bool send;
     char *token;
     char *ip;
     t_user_info *user_info;
@@ -99,6 +101,8 @@ void mx_refresh_message_list(void);
 void mx_expand_chat_history(void);
 void mx_run_message_delete(char *token, const char *text,
     int chat_id, int user_id, char *ip, int port,int message_id);
+void mx_run_message_edit(char *token, const char *text,
+    int chat_id, int user_id, char *ip, int port, int message_id);
 void mx_delete_message(int message_id, t_info *info);
 //--Change theme
 void mx_css_connect_light(void);

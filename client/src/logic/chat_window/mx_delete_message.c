@@ -7,20 +7,14 @@
 #define GET (void *)-1
 
 void mx_message_delete(void *data) {
-	printf("In mx_message_delete\n");
     t_message *message = (t_message *)data;
     t_info *info = gs_info(GET);
     if (info->user_info->delete_id == message->id) {
-    	printf("Deleting message...\n");
-    	printf("In chat %d\n", info->user_info->chat_id);
-    	printf("Message text: %s\n", message->message);
 		mx_run_message_delete(info->token,
             message->message, info->user_info->chat_id, 
-            info->user_info->user_id, info->ip, info->port, info->user_info->delete_id);
+            info->user_info->user_id, info->ip, info->port, 
+            info->user_info->delete_id);
     }
-
-    // mx_render_user_message(message, info);
-    // g_timeout_add(200, mx_scroll_down, info);
 }
 
 void mx_list_foreach_delete(t_list *list, void (*f)(void *)) {
@@ -59,8 +53,6 @@ static void message_list_completion(e_connection_code code, t_response *response
 }
 
 void mx_run_message_list_delete(char *token, int id, char *ip, int port) {
-	printf("In mx_run_message_list_delete\n");
-
     t_connection *connection = mx_connection_open(ip, port);
 
     t_request *request = mx_request_message_list(token, id);

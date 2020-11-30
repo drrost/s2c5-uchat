@@ -15,18 +15,21 @@ t_info *chat_info(t_info *in) {
 
 void mx_send_message(t_info *info) {
     info = chat_info(GET);
-    const char *message = gtk_entry_get_text(
-        GTK_ENTRY(info->widgets->s_chat_window->entry_text_message)); 
+    if (info->send) {
+        const char *message = gtk_entry_get_text(
+            GTK_ENTRY(info->widgets->s_chat_window->entry_text_message)); 
 
-    if (mx_strlen(message) && mx_check_for_spaces(message)) {
-        mx_run_message_send(info->token,
-            message, info->user_info->chat_id, info->user_info->user_id, info->ip, info->port);
-        mx_clear_history(info);
-        mx_run_message_list(info->token, info->user_info->chat_id, info->ip, info->port);
-        g_timeout_add(200, mx_scroll_down, info);
-    }
-    gtk_entry_set_text(
-        GTK_ENTRY(info->widgets->s_chat_window->entry_text_message), ""); 
+        if (mx_strlen(message) && mx_check_for_spaces(message)) {
+            mx_run_message_send(info->token,
+                message, info->user_info->chat_id, info->user_info->user_id, info->ip, info->port);
+            mx_clear_history(info);
+            mx_run_message_list(info->token, info->user_info->chat_id, info->ip, info->port);
+            g_timeout_add(200, mx_scroll_down, info);
+        }
+        gtk_entry_set_text(
+            GTK_ENTRY(info->widgets->s_chat_window->entry_text_message), "");
+        info->send = false;
+    } 
 }
 
 gboolean mx_send_message_key(__attribute__((unused)) GtkWidget *widget,
@@ -47,8 +50,6 @@ void mx_change_theme(GtkSwitch *button) {
         mx_css_connect_light();
 }
 
-
-
 void mx_message_selected( void) {
     t_info *info = chat_info(GET);
 
@@ -64,7 +65,7 @@ void mx_chat_handler(t_info *info) {
     t_chat_window *chat = info->widgets->s_chat_window;
     g_signal_connect(GTK_WIDGET(chat->window_main_chat), "destroy",
                      G_CALLBACK(gtk_main_quit), NULL);
-    g_signal_connect(GTK_WIDGET(chat->send_button), "clicked",
+    info->widgets->id = g_signal_connect(GTK_WIDGET(chat->send_button), "clicked",
                      (GCallback)mx_send_message, info);
     g_signal_connect(GTK_WIDGET(chat->entry_text_message), "key-release-event",
                      (GCallback)mx_send_message_key, NULL);

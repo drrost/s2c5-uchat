@@ -55,6 +55,7 @@ t_info *mx_info_new() {
 void mx_info_init(t_info **info) {
     (*info)->sock = 0;
     (*info)->user_info = 0;
+    (*info)->send = true;
     (*info)->user_info = mx_create_user();
     mx_init_memory(info);
 }
