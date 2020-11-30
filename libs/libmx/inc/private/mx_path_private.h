@@ -11,6 +11,7 @@
 
 bool mx_path_is_dir(t_path *this);
 bool mx_path_exists(t_path *this);
+bool mx_path_exists_str(char *p);
 
 char *mx_path_resolve(t_path *this);
 

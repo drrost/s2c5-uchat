@@ -4,7 +4,7 @@ INSERT INTO chat (name) VALUES ('Explorers');
 INSERT INTO chat (name) VALUES (NULL);
 INSERT INTO chat (name) VALUES (NULL);
 INSERT INTO chat (name) VALUES (NULL);
-SELECT * FROM chat;
+-- SELECT * FROM chat;
 
 INSERT INTO chat_user (chat_id, user_id)
 VALUES (1, 1);
@@ -48,11 +48,11 @@ INSERT INTO chat_user (chat_id, user_id)
 VALUES (6, 9);
 
 --
-SELECT * FROM chat_user;
+-- SELECT * FROM chat_user;
 
 -- Chats for a user
-SELECT c.* FROM chat_user cu LEFT JOIN chat c ON c.chat_id = cu.chat_id
-WHERE cu.user_id = 2;
+-- SELECT c.* FROM chat_user cu LEFT JOIN chat c ON c.chat_id = cu.chat_id
+-- WHERE cu.user_id = 2;
 
 -- Chat's participants
-SELECT u.* FROM chat_user cu LEFT JOIN user u on u.user_id = cu.user_id WHERE chat_id = 3;
+-- SELECT u.* FROM chat_user cu LEFT JOIN user u on u.user_id = cu.user_id WHERE chat_id = 3;

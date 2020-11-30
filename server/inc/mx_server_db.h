@@ -27,8 +27,6 @@ void mx_db_connection_del(t_db_connection **db_connection);
 int mx_db_connection_open(t_db_connection *db_connection, const char *file);
 void mx_db_connection_close(t_db_connection *db_connection);
 
-char *mx_db_path();
-
 // Auth
 
 int mx_user_id_for_credentials(const char *login, const char *password);

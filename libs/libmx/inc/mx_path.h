@@ -45,6 +45,8 @@ typedef struct s_path {
 t_path *mx_path_new(const char *path);
 void mx_path_del(t_path **path);
 
+char *mx_real_path(char *file_name);
+
 char *mx_path_resolve_all_escapes(char *s);
 
 #endif //INC_04_USH_MX_PATH_H
