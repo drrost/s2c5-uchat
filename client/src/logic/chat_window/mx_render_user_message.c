@@ -41,14 +41,14 @@ void mx_render_user_message(t_message *message, t_info *info) {
     GtkWidget *b1_icon;
 
     trash = gtk_button_new();
-    b1_img = gdk_pixbuf_new_from_file( "resources/media/trash.png", NULL);
-    b1_img = gdk_pixbuf_scale_simple(b1_img, 15, 15, GDK_INTERP_BILINEAR);
+    b1_img = gdk_pixbuf_new_from_file( "resources/media/delete.png", NULL);
+    b1_img = gdk_pixbuf_scale_simple(b1_img, 30, 30, GDK_INTERP_BILINEAR);
     b1_icon = gtk_image_new_from_pixbuf(b1_img);
     gtk_button_set_image (GTK_BUTTON(trash), b1_icon);
     gtk_box_pack_start(GTK_BOX(box), trash, 1, 1, 0);
     gtk_widget_set_name(trash, "sticker");
     gtk_widget_set_can_focus(trash, FALSE);
-    g_object_set_data(G_OBJECT(trash), "path", "resources/media/trash.png");
+    g_object_set_data(G_OBJECT(trash), "path", "resources/media/delete.png");
     g_object_set_data(G_OBJECT(trash), "message_id", mx_itoa(message->id));
     g_signal_connect (trash, "clicked", (GCallback)mx_trash, trash);
 // create edit button
@@ -58,7 +58,7 @@ void mx_render_user_message(t_message *message, t_info *info) {
 
     edit = gtk_button_new();
     b2_img = gdk_pixbuf_new_from_file( "resources/media/edit.png", NULL);
-    b2_img = gdk_pixbuf_scale_simple(b2_img, 15, 15, GDK_INTERP_BILINEAR);
+    b2_img = gdk_pixbuf_scale_simple(b2_img, 30, 30, GDK_INTERP_BILINEAR);
     b2_icon = gtk_image_new_from_pixbuf(b2_img);
     gtk_button_set_image (GTK_BUTTON(edit), b2_icon);
     gtk_box_pack_start(GTK_BOX(box), edit, 1, 1, 0);
