@@ -11,16 +11,19 @@ void mx_search_conversation_list(t_list *list) {
     const char *contact = gtk_entry_get_text(
         GTK_ENTRY(info->widgets->s_chat_window->fiend_entry));
 
-    if (mx_strlen(contact) && mx_check_for_spaces(contact))
-        while (list) {
+    if (mx_strlen(contact) && mx_check_for_spaces(contact)) {
+        while (list != NULL) {
             t_chat *chat = (t_chat *)list->data;
-            if (!mx_strcmp(chat->name, contact)) {
-                mx_clear_history(info);
-                mx_run_message_list(info->token, chat->id, info->ip, info->port);
-                break;
-            }
+            if (chat->name) {
+                if (!mx_strcmp(chat->name, contact)) {
+                    mx_clear_history(info);
+                    mx_run_message_list(info->token, chat->id, info->ip, info->port);
+                    break;
+                } 
+            }    
             list = list->next;
         }
+    }
 }
 
 static void
