@@ -7,7 +7,8 @@
 #include <sqlite3.h>
 
 int mx_db_fetch_last_message(sqlite3 *db, t_message *message) {
-    message->id = sqlite3_last_insert_rowid(db);
+    if (message->id == 0)
+        message->id = sqlite3_last_insert_rowid(db);
     char *sql = "SELECT * FROM message WHERE message_id = %d";
     int size = mx_strlen(sql);
     char *resolved = mx_strnew(size * 2);
