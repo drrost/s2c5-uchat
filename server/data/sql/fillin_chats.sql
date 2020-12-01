@@ -56,8 +56,8 @@ INSERT INTO chat_user (chat_id, user_id)
 VALUES (7, 10);
 
 --
-SELECT * FROM chat_user;
-SELECT * FROM user;
+-- SELECT * FROM chat_user;
+-- SELECT * FROM user;
 
 -- Chats for a user
 -- SELECT c.* FROM chat_user cu LEFT JOIN chat c ON c.chat_id = cu.chat_id
