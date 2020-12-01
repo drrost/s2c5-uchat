@@ -3,29 +3,29 @@
 //
 
 #include <client.h>
-#include <mx_log.h>
 
 void mx_init(t_info **info) {
-    // pthread_t thread_listen;
-    // pthread_t thread_send;
 
     mx_info_init(info);
     mx_init_gtk(*info);
-    //mx_connect(*info);
 }
 
 int main(int argc, char *argv[]) {
-    mx_log_d("CLIENT", "Enter to the app");
+    int start = 0;
 
     t_info *info = 0;
     info = mx_validate_args(argc, argv);
 
     gtk_init(&argc, &argv);
+    char *token = mx_run_login(&start,  "user", "password", info->ip, info->port);
+    if (!token) {
+        printf("Could not connect to the server. Please try again later\n");
+        mx_free_info_start(info);
+        return 1;
+    }
     mx_init(&info);
-    mx_log_d("CLIENT", "About to start UI %s", "some text here");
     gtk_main();
     mx_show_window(info);
     mx_free_info(info);
-    mx_check_leaks();
     return EXIT_SUCCESS;
 }

@@ -23,9 +23,13 @@ char *mx_run_login(int *user_id, char *login, char *password, char *ip, int port
     t_connection *connection = mx_connection_open(ip, port);
 
     t_request *request = mx_request_login(login, password);
+    if (connection->socket == 0) {
+        mx_request_delete(&request);
+        mx_connection_close(&connection);
+        return 0;
+    }
     connection->send(connection, request, login_completion);
     char *token = 0;
-    //int id = 0;
     JsonNode *node_body = json_find_member(
         request->response->jsonNode, "body");
     JsonNode *node_token = json_find_member(

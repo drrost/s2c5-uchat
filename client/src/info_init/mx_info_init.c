@@ -14,13 +14,22 @@
 //     *chat = 0;
 // }
 
-void mx_free_info(t_info *info) {
-    free(info->widgets->s_signin);
-    free(info->widgets->s_chat_window);
-    free(info->widgets->s_register);
-    free(info->widgets);
+void mx_free_info_start (t_info *info) {
+    mx_strdel(&info->ip);
+    free(info);
+}
 
-    free(info->user_info);
+void mx_free_info(t_info *info) {
+    if (info->widgets)
+        free(info->widgets);
+    if (info->user_info)
+        free(info->user_info);
+    if (info->widgets->s_signin)
+        free(info->widgets->s_signin);
+    if (info->widgets->s_chat_window)
+        free(info->widgets->s_chat_window);
+    if (info->widgets->s_register)
+        free(info->widgets->s_register);
     //mx_strdel(&info->token);
     mx_strdel(&info->ip);
     free(info);
